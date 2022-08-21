@@ -15,9 +15,8 @@ export class HomeComponent implements OnInit {
 
   @ViewChild('stickyMenu') stickyMenu!: ElementRef;
 
-
   @HostListener('window:scroll', ['$event'])
-    handleScroll(){
-      this.sticky = window.pageYOffset >= 97;
-    }
+  handleScroll(){
+    this.sticky = window.pageYOffset >= 97;
+  }
 }

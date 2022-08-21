@@ -1,38 +1,26 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AppMaterialModule } from './shared/app-material.module';
-
-import { ReactiveFormsModule } from '@angular/forms';
-
-import { HomeComponent } from './home/home.component';
-
 import { AppRoutingModule } from './app-routing.module';
-import { NavbarComponent } from './home/navbar/navbar.component';
-import { GetStartedComponent } from './home/get-started/get-started.component';
-import { FeatureComponent } from './home/feature/feature.component';
-import { ContactUsComponent } from './home/contact-us/contact-us.component';
-import { FooterComponent } from './home/footer/footer.component';
 
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent,
-    NavbarComponent,
-    GetStartedComponent,
-    FeatureComponent,
-    ContactUsComponent,
-    FooterComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AppMaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HomeModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }
