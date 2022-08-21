@@ -1,0 +1,51 @@
+body, div, .nav {
+  background: transparent;
+  font-family: 'Bahnschrift', sans-serif;
+}
+
+.nav {
+  font-size: 20px;
+  padding: 8.5px 50px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  margin:auto;
+
+  div {
+    width: 30%;
+  }
+
+  ul {
+    justify-content: right;
+    width: 70%;
+    display: flex;
+    list-style: none;
+
+    li {
+
+      padding: 5px 20px;
+      text-align: center;
+    }
+
+    li:nth-child(4){
+      margin-top:-3px;
+      margin-left: 35px;
+      border-radius: 5px;
+      border:2px solid #E0563B;
+      box-sizing: border-box;
+    }
+
+    a {
+      color: #fff;
+      font-weight: 300;
+      text-decoration: none;
+    }
+  }
+}
+
+
+@media screen and (min-width: 1367px){
+  nav{
+    max-width: 1250px;
+  }
+}

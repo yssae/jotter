@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.cdnfonts.com/css/bahnschrift');
+
+@import "./app/variable.scss";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+  min-width: 1366px;
+  font-family: $primary-font;
+  background-color: whitesmoke;
+}
+
+html, body {
+  scroll-behavior: smooth;
+  height: 100%;
+}
