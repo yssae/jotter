@@ -1,0 +1,36 @@
+<div class="wrapper">
+  <div class="form-container">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit(contactForm.value)">
+      <h2>Send us a message.</h2>
+      <p>Our team is happy to answer all your inquiries.</p><br>
+
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" formControlName="name">
+
+        <p *ngIf="submitted && f['name'].errors?.['required']" class="field-error">Required</p>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" formControlName="email">
+        <div *ngIf="submitted" class="field-error">
+          <p *ngIf="f['email'].errors?.['required']">Required</p>
+          <p *ngIf="f['email'].errors?.['email']">Invalid email</p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea cols="30" rows="5" formControlName="message"></textarea>
+        <p *ngIf="submitted && f['message'].errors?.['required']" class="field-error">Required</p>
+      </div>
+
+      <input type="submit" value="Submit" id="submit-btn">
+    </form>
+  </div>
+
+  <div class="illustration">
+    <img src="assets/images/clip-online-advertising-smm 1.png" alt="">
+  </div>
+</div>

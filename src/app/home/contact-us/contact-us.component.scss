@@ -1,0 +1,72 @@
+@import "./../../variable.scss";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+
+.wrapper {
+  height: 867px;
+  max-width: 1396px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.illustration {
+  width: 45%;
+  text-align: center;
+  img {
+    height: 520px;
+  }
+}
+
+.form-container {
+  width: 55%;
+  text-align: center;
+
+  h2, p, .field{
+    text-align: left;
+  }
+
+  input[type=submit] {
+    width: 120px;
+    height: 40px;
+    padding: 5px;
+    margin-top: 30px;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    border: transparent;
+    background: #1a1a1a;
+    color: $font-color-secondary;
+  }
+
+  input[type=submit]:active {
+    box-shadow: 0 5px #333;
+    transform: translateY(4px);
+  }
+}
+
+form {
+  margin: auto;
+  width: 75%;
+  font-size: 16px;
+  padding: 30px 60px;
+  border-radius: 15px;
+  background: $color-primary;
+  color: $font-color-secondary;
+
+  .field {
+    margin: 15px auto;
+  }
+
+  label {
+    line-height: 25px;
+  }
+
+  input, textarea {
+    width: 100%;
+    padding: 7px;
+    font-size: 16px;
+    resize: none;
+    border: transparent;
+    outline: transparent;
+  }
+}
