@@ -13,6 +13,7 @@ import { NavbarComponent } from './home/navbar/navbar.component';
 import { GetStartedComponent } from './home/get-started/get-started.component';
 import { FeatureComponent } from './home/feature/feature.component';
 import { ContactUsComponent } from './home/contact-us/contact-us.component';
+import { FooterComponent } from './home/footer/footer.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ContactUsComponent } from './home/contact-us/contact-us.component';
     NavbarComponent,
     GetStartedComponent,
     FeatureComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
