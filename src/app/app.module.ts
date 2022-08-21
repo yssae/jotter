@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './home/navbar/navbar.component';
 import { GetStartedComponent } from './home/get-started/get-started.component';
+import { FeatureComponent } from './home/feature/feature.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { GetStartedComponent } from './home/get-started/get-started.component';
     AppComponent,
     HomeComponent,
     NavbarComponent,
-    GetStartedComponent
+    GetStartedComponent,
+    FeatureComponent
   ],
   imports: [
     BrowserModule,
