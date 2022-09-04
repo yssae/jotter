@@ -1,0 +1,141 @@
+.container {
+  height: auto;
+  padding: 10px 0;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+.direct {
+  margin: 5% auto;
+  width: 470px;
+  min-height: 500px;
+  padding: 30px;
+  background: #fff;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 35px;
+  line-height: 40px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  color: #34596F;
+}
+
+.login-icons {
+  button {
+      margin: auto 10px;
+      width: 55px;
+      height: 55px;
+      background-color: #fff;
+      border-radius: 50%;
+      padding: 5px 0 0;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+
+      img {
+          width: 30px;
+          height: 30px;
+      }
+  }
+}
+
+.login-option-spiel {
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0.03em;
+  color: rgba(51, 51, 51, 0.9);
+  font-weight: 300;
+}
+
+
+form{
+  p{
+      top: 5px;
+      text-align: center;
+      position: relative;
+  }
+
+  p, a, input::placeholder {
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    color: #333333;
+  }
+
+  p, a{
+    font-size: 12px;
+  }
+
+  a:hover {
+    color:#74919F;
+  }
+
+  button {
+    width: 106px;
+    height: 33px;
+    border: 1px solid transparent;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: 0.03em;
+    color: #FFFFFF;
+    background: #34596F;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+  }
+
+  #sign-in{
+    font-weight: 200;
+  }
+
+  .field{
+    margin: 8px auto;
+
+    span {
+      img {
+        height: 22px;
+        width: 22px;
+        position: relative;
+        right: -35px;
+        top: 7px;
+      }
+
+      input{
+        color: #333;
+        border: 0.5px solid #ECF0F1;
+        background-color: #ECF0F1;
+        padding: 8px 30px 8px 45px;
+        font-size: 14px;
+        text-align: start;
+        font-weight: 200;
+      }
+
+      input:active, input:focus{
+        outline: 0.5px solid #74919F;
+        border: 0.5px solid #74919F;
+      }
+    }
+
+  }
+
+}
+
+mat-icon {
+  top: 5px;
+  width: 35px;
+  z-index: 10;
+  position: relative;
+  margin-left: -35px;
+  font-size: 18px;
+}
+
+
+
+
+
+

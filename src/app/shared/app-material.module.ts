@@ -90,5 +90,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     PortalModule,
     ScrollingModule,
   ],
+  declarations: [
+  ],
 })
 export class AppMaterialModule {}

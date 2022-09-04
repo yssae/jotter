@@ -1,0 +1,51 @@
+<div class="container" id="register" [ngClass]="isDirectlyAccessed() ? 'direct' : 'notDirect'">
+  <h1>Create Account</h1>
+
+  <div class="login-icons">
+    <button><img src="assets/images/Google Icon.png" alt=""></button>
+    <button><img src="assets/images/Facebook Icon.png" alt=""></button>
+    <button><img src="assets/images/Twitter Icon.png" alt=""></button>
+  </div>
+  <br>
+  <p class="login-option-spiel">or use your email to register</p>
+
+  <form [formGroup]="enrollForm" (ngSubmit)="onRegister(enrollForm.value)">
+
+    <div class="field">
+      <span>
+        <img src="assets/images/account.png" alt="" id="user">
+        <input type="text" placeholder="Username" formControlName="username">
+        <div *ngIf = "submitted && f['username'].errors?.['required']" class="field-error">
+          Field is required
+        </div>
+      </span>
+    </div>
+
+    <div class="field">
+      <span>
+        <img src="assets/images/Email Icon.png" alt="">
+        <input type="email" placeholder="Email" id="email" formControlName="email" email>
+      </span>
+    </div>
+
+    <div class="field">
+      <span>
+        <img src="assets/images/Password Icon.png" alt="">
+        <input formControlName="password" placeholder="Password" id="password" [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </span>
+    </div>
+
+    <div class="field">
+      <span>
+        <img src="assets/images/Password Icon.png" alt="">
+        <input type="password" placeholder="Confirm Password" formControlName="cpassword">
+        <mat-icon matSuffix (click)="chide = !chide">{{chide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </span>
+    </div>
+
+    <p>By creating account, you agree to all <br> Jotter's <a (click)="onOpenTC()">terms and conditions</a></p><br>
+    <button id="sign-in">REGISTER</button>
+  </form>
+
+</div>

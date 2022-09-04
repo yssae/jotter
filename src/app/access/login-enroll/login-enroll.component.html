@@ -1,0 +1,27 @@
+<div class="container">
+  <jtr-back-button [path]="''"></jtr-back-button>
+  <div class="box" [@containerState]="containerState">
+    <div class="box-1" [@boxOneState]="boxOneState">
+      <div id="login-form" *ngIf="loginState"><login></login></div>
+      <div id="enroll" *ngIf="!loginState"><enroll></enroll></div>
+    </div>
+
+    <div class="box-2" [@boxTwoState]="boxTwoState">
+      <div class="spiel" *ngIf="loginState">
+        <h1>Hello there!</h1>
+        <p>Enter your details and start your journey with us.</p>
+        <button (click)="onToggleSignUp()">SIGN UP</button>
+      </div>
+
+      <div class="spiel" *ngIf="!loginState">
+        <h1>Welcome Back!</h1>
+        <p>To keep connected, please log in.</p>
+        <button id="signInToggle" (click)="onToggleSignUp()">SIGN IN</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="bg">
+  <img src="assets/images/urban-328 1.png" alt="">
+</div>
