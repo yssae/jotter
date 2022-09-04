@@ -6,11 +6,10 @@
     <button><img src="assets/images/Facebook Icon.png" alt=""></button>
     <button><img src="assets/images/Twitter Icon.png" alt=""></button>
   </div>
-  <br>
-  <p class="login-option-spiel">or use your email to register</p>
+
+  <p class="register-option-spiel">or use your email to register</p>
 
   <form [formGroup]="enrollForm" (ngSubmit)="onRegister(enrollForm.value)">
-
     <div class="field">
       <span>
         <img src="assets/images/account.png" alt="" id="user">
@@ -44,8 +43,7 @@
       </span>
     </div>
 
-    <p>By creating account, you agree to all <br> Jotter's <a (click)="onOpenTC()">terms and conditions</a></p><br>
-    <button id="sign-in">REGISTER</button>
+    <p>By creating account, you agree to all <br> Jotter's <a (click)="onOpenTC()">terms and conditions</a></p>
+    <div class="register-button-wrapper"><button id="sign-in">REGISTER</button></div>
   </form>
-
 </div>

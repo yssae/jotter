@@ -6,7 +6,6 @@
   font-family: 'Roboto', sans-serif;
 }
 
-
 .direct {
   margin: 5% auto;
   width: 470px;
@@ -27,37 +26,40 @@ h1 {
 }
 
 .login-icons {
-  button {
-      margin: auto 10px;
-      width: 55px;
-      height: 55px;
-      background-color: #fff;
-      border-radius: 50%;
-      padding: 5px 0 0;
-      border: 1px solid rgba(0, 0, 0, 0.08);
+  margin: 15px auto;
 
-      img {
-          width: 30px;
-          height: 30px;
-      }
+  button {
+    width: 55px;
+    height: 55px;
+    margin: auto 10px;
+    padding: 5px 0 0;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
   }
 }
 
-.login-option-spiel {
+.register-option-spiel {
   font-size: 12px;
+  font-weight: 300;
   line-height: 20px;
+  margin: 20px auto;
   text-align: center;
   letter-spacing: 0.03em;
   color: rgba(51, 51, 51, 0.9);
-  font-weight: 300;
 }
 
 
-form{
-  p{
-      top: 5px;
-      text-align: center;
-      position: relative;
+form {
+  p {
+    top: 5px;
+    text-align: center;
+    position: relative;
   }
 
   p, a, input::placeholder {
@@ -68,32 +70,39 @@ form{
     color: #333333;
   }
 
-  p, a{
+  p, a {
     font-size: 12px;
   }
 
   a:hover {
-    color:#74919F;
+    color: #74919F;
   }
 
-  button {
-    width: 106px;
-    height: 33px;
-    border: 1px solid transparent;
-    line-height: 20px;
-    text-align: center;
-    letter-spacing: 0.03em;
-    color: #FFFFFF;
-    background: #34596F;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
+  .register-button-wrapper {
+    width: 410px;
+    bottom: 50px;
+    position: absolute;
+
+    button {
+      width: 106px;
+      height: 33px;
+      line-height: 20px;
+      letter-spacing: 0.03em;
+      text-align: center;
+      color: #FFFFFF;
+      background: #34596F;
+      border-radius: 20px;
+      border: 1px solid transparent;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    #sign-in {
+      font-weight: 200;
+      font-family: inherit;
+      text-align: center;
+    }
   }
 
-  #sign-in{
-    font-weight: 200;
-  }
-
-  .field{
+  .field {
     margin: 8px auto;
 
     span {
@@ -105,7 +114,7 @@ form{
         top: 7px;
       }
 
-      input{
+      input {
         color: #333;
         border: 0.5px solid #ECF0F1;
         background-color: #ECF0F1;
@@ -115,12 +124,12 @@ form{
         font-weight: 200;
       }
 
-      input:active, input:focus{
+      input:active,
+      input:focus {
         outline: 0.5px solid #74919F;
         border: 0.5px solid #74919F;
       }
     }
-
   }
 
 }
@@ -133,9 +142,3 @@ mat-icon {
   margin-left: -35px;
   font-size: 18px;
 }
-
-
-
-
-
-
