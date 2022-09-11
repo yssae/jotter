@@ -31,3 +31,13 @@ html, body {
   font-family: $primary-font;
   color: $font-color-error;
 }
+
+.jtr-dialog {
+  .mat-dialog-container {
+    padding: 15px;
+    border-radius: 10px !important;
+  }
+  .semi-rounded-edge {
+    border-radius: 15px !important;
+  }
+}

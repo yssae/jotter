@@ -1,15 +1,17 @@
+@import '../../../variable.scss';
+
 .container {
   padding: 30px 0;
   text-align: center;
   font-family: 'Roboto', sans-serif;
 
   h1 {
-    color: #34596F;
     font-weight: bold;
     text-align: center;
     font-size: 35px;
     line-height: 40px;
     letter-spacing: 0.05em;
+    color: $color-primary-md-dark;
   }
 
   .login-icons {
@@ -20,7 +22,7 @@
       margin: auto 10px;
       border-radius: 50%;
       padding: 5px 0 0;
-      background-color: #fff;
+      background-color: $font-color-secondary;
       border: 1px solid rgba(0, 0, 0, 0.08);
 
       img {
@@ -48,15 +50,15 @@
     }
 
     a, input::placeholder {
-      color: #333333;
-      font-weight: 300;
       font-size: 14px;
+      font-weight: 300;
       text-decoration: none;
       letter-spacing: 0.03em;
+      color: $font-color-primary;
     }
 
     a:hover {
-      color:#74919F;
+      color: $color-primary-light;
     }
 
     .sign-in-wrapper {
@@ -68,12 +70,12 @@
         width: 96px;
         height: 33px;
         margin: 20px auto;
-        color: #FFFFFF;
         line-height: 20px;
         text-align: center;
         border-radius: 20px;
         letter-spacing: 0.03em;
-        background: #34596F;
+        color: $font-color-secondary;
+        background: $color-primary-md-dark;
         border: 1px solid transparent;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       }
@@ -97,15 +99,22 @@
 
         input {
           font-size: 14px;
+          font-weight: 400;
           padding: 8px 30px 8px 40px;
-          border: 0.5px solid #ECF0F1;
-          text-align: start !important;
-          background-color: #ECF0F1 !important;
+          border: 0.5px solid $field-bg-color;
+          background-color: $field-bg-color;
+          font-family: inherit;
+          text-align: start;
+        }
+
+        input::placeholder {
+          font-weight: 400;
+          color: #808080;
         }
 
         input:active, input:focus{
-          outline: 0.5px solid #74919F;
-          border: 0.5px solid #74919F;
+          outline: 0.5px solid $color-primary-light;
+          border: 0.5px solid $color-primary-light;
         }
       }
     }

@@ -67,7 +67,6 @@ form {
     font-weight: 300;
     font-size: 13px;
     letter-spacing: 0.03em;
-    color: #333333;
   }
 
   p, a {
@@ -122,6 +121,7 @@ form {
         font-size: 14px;
         text-align: start;
         font-weight: 200;
+        font-family: inherit;
       }
 
       input:active,
@@ -131,7 +131,6 @@ form {
       }
     }
   }
-
 }
 
 mat-icon {

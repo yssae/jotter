@@ -9,19 +9,16 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HomeModule } from './home/home.module';
 import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
+import { AccessModule } from './access/access.module';
+
 import { LoginEnrollComponent } from './access/login-enroll/login-enroll.component';
-import { LoginComponent } from './access/login-enroll/login/login.component';
-import { EnrollComponent } from './access/login-enroll/enroll/enroll.component';
-import { TermsAndConditionComponent } from './access/login-enroll/terms-and-condition/terms-and-condition.component';
-import { JtrbackbuttonComponent } from './shared/components/jtrbackbutton/jtrbackbutton.component';
+// import { LoginComponent } from './access/login-enroll/login/login.component';
+// import { EnrollComponent } from './access/login-enroll/enroll/enroll.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginEnrollComponent,
-    LoginComponent,
-    EnrollComponent,
-    TermsAndConditionComponent,
-    JtrbackbuttonComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +27,9 @@ import { JtrbackbuttonComponent } from './shared/components/jtrbackbutton/jtrbac
     AppMaterialModule,
     ReactiveFormsModule,
     HomeModule,
-    CoreModule
+    CoreModule,
+    SharedModule,
+    AccessModule
   ],
   providers: [],
   bootstrap: [AppComponent],

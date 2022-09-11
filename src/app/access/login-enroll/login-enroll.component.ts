@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginEnrollAnimation } from './login-enroll.animation';
-
 @Component({
   selector: 'app-login-enroll',
   templateUrl: './login-enroll.component.html',

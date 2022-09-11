@@ -1,25 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { TermsAndConditionComponent } from '../terms-and-condition/terms-and-condition.component';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { User } from '../../../shared/models/user';
-
+import { VericationComponent } from '../../verication/verication.component';
+import { TermsAndConditionComponent } from '../terms-and-condition/terms-and-condition.component';
 @Component({
   selector: 'enroll',
   templateUrl: './enroll.component.html',
   styleUrls: ['./enroll.component.scss']
 })
 export class EnrollComponent implements OnInit {
-  hide = true;
-  chide = true;
-  testRoute: any;
-  enrollForm: FormGroup;
+  hide: boolean = true;
+  chide: boolean = true;
   submitted: boolean = false;
+  enrollForm: FormGroup;
+  testRoute: any;
 
   constructor(
-    public dialog: MatDialog,
     private fb: FormBuilder,
+    private dialog: MatDialog,
     private activatedroute:ActivatedRoute) { }
 
 
@@ -77,5 +77,10 @@ export class EnrollComponent implements OnInit {
     this.submitted = true;
 
     //this.access.onRegister(enrollForm); : { [key: string]: AbstractControl }
+    // TO DO: close dialog and redirect when verification is correct
+    this.dialog.open(VericationComponent, {
+      disableClose: true,
+      panelClass: 'jtr-dialog'
+    });
   }
 }
