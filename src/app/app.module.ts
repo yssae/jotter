@@ -8,17 +8,14 @@ import { AppMaterialModule } from './shared/app-material.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { HomeModule } from './home/home.module';
-import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
-import { AccessModule } from './access/access.module';
+// import { CoreModule } from './core/core.module';
+// import { CoreRoutingModule } from './core/core.routing.module';
+// import { SharedModule } from './shared/shared.module';
+// import { AccessModule } from './access/access.module';
 
-import { LoginEnrollComponent } from './access/login-enroll/login-enroll.component';
-// import { LoginComponent } from './access/login-enroll/login/login.component';
-// import { EnrollComponent } from './access/login-enroll/enroll/enroll.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginEnrollComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,9 +24,6 @@ import { LoginEnrollComponent } from './access/login-enroll/login-enroll.compone
     AppMaterialModule,
     ReactiveFormsModule,
     HomeModule,
-    CoreModule,
-    SharedModule,
-    AccessModule
   ],
   providers: [],
   bootstrap: [AppComponent],
