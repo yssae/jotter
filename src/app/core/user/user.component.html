@@ -1,1 +1,32 @@
-<p>user works!</p>
+<mat-drawer-container class="container" hasBackdrop=true>
+  <mat-drawer mode="over" position="end" [opened]="drawerState" #sidenav>
+    <jtr-back-button (click)="sidenav.close()"></jtr-back-button>
+    <form>
+      <div class="dp-ign">
+        <img src="assets/images/User Account Link.png" alt="User Account">
+        <p>{{ username }}</p>
+      </div>
+      <hr>
+      <div class="field">
+        <p>Email Address</p>
+        <p>noitsbecky@gmail.com</p>
+        <button><img src="assets/images/edit.png" alt=""></button>
+      </div>
+      <div class="field">
+        <p>Password</p>
+        <p>••••••••••</p>
+        <button><img src="assets/images/edit.png" alt=""></button>
+      </div>
+    </form>
+    <div class="logout">
+      <button>Sign Out</button>
+    </div>
+
+  </mat-drawer>
+  <mat-drawer-content>
+    <user-nav (sidenav)="sidenav.toggle()" [drawerState]="drawerState"></user-nav>
+    <section>
+      <router-outlet></router-outlet>
+    </section>
+  </mat-drawer-content>
+</mat-drawer-container>

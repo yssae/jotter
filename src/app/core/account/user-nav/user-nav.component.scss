@@ -1,0 +1,62 @@
+@import './../../../variable.scss';
+
+.wrapper {
+  height: 97px;
+  display: flex;
+  padding: 0 40px;
+  background-color: $font-color-secondary;
+}
+
+.logo {
+  width: 30%;
+  display: flex;
+  align-items: center;
+}
+
+.user-nav {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+ul {
+  padding: 0;
+  display: flex;
+  list-style: none;
+  align-items: center;
+  margin: 0 80px;
+
+  li {
+    height: 30px;
+    margin: 0 20px;
+    line-height: 30px;
+    padding: 0.5px 10px;
+    cursor: pointer;
+  }
+
+  a {
+    text-decoration: none;
+    font-family: "Raleway", "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    text-align: center;
+    color: $font-color-primary;
+    font-size: 16px;
+    cursor: pointer;
+  }
+}
+
+.account {
+  border: transparent;
+  background-color: transparent;
+}
+
+.active {
+  background: #333333;
+  border-radius: 4px;
+
+  a {
+    color: #fff;
+  }
+}
