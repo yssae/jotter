@@ -8,6 +8,7 @@ import { LoginComponent } from './login-enroll/login/login.component';
 import { EnrollComponent } from './login-enroll/enroll/enroll.component';
 import { VericationComponent } from './verication/verication.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { TermsAndConditionComponent } from './login-enroll/terms-and-condition/terms-and-condition.component';
 
 import { AppMaterialModule } from '../shared/app-material.module';
@@ -18,6 +19,7 @@ import { SharedModule } from '../shared/shared.module';
     EnrollComponent,
     VericationComponent,
     ForgotPasswordComponent,
+    ResetPasswordComponent,
     TermsAndConditionComponent,
 
   ],
@@ -35,6 +37,7 @@ import { SharedModule } from '../shared/shared.module';
     LoginComponent,
     EnrollComponent,
     ForgotPasswordComponent,
+    ResetPasswordComponent,
   ]
 })
 export class AccessModule { }
