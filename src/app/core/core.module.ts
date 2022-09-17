@@ -17,6 +17,13 @@ import { NotebookComponent } from './notebooks/notebook/notebook.component';
 import { NbToolsComponent } from './nb-tools/nb-tools.component';
 import { DeleteComponent } from './nb-tools/delete/delete.component';
 import { CreateditComponent } from './nb-tools/create-edit/create-edit.component';
+
+import { AllNotesComponent } from './all-notes/all-notes.component';
+
+import { TextEditorComponent } from './nb-tools/text-editor/text-editor.component';
+
+import { QuillModule } from 'ngx-quill'
+
 @NgModule({
   declarations: [
     UserComponent,
@@ -28,20 +35,24 @@ import { CreateditComponent } from './nb-tools/create-edit/create-edit.component
     NotebookComponent,
     NbToolsComponent,
     CreateditComponent,
-    DeleteComponent
+    DeleteComponent,
+    TextEditorComponent,
+    AllNotesComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     CoreRoutingModule,
     AppMaterialModule,
-    SharedModule
+    SharedModule,
+    QuillModule
   ],
   exports: [
     NotebooksComponent,
     CreateditComponent,
     DeleteComponent,
-    NbToolsComponent
+    NbToolsComponent,
+    TextEditorComponent
   ]
 })
 export class CoreModule { }
