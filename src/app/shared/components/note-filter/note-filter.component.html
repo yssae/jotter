@@ -1,12 +1,25 @@
 <div class="container">
   <h1>{{ pageTitle }}</h1>
+
   <div class="filter-fx">
     <div class="search filter-item" id="search">
       <mat-icon>search</mat-icon>
       <input type="text" placeholder="Search">
     </div>
+
+    <button *ngIf="filterMenu['addButton']" class="filter-item" (click)="onOpenTool()">
+      <mat-icon>add</mat-icon> {{ filterMenu['title'] }}
+    </button>
+
+    <button class="filter-item" [matMenuTriggerFor]="sortMenu">
+      <mat-icon>sort</mat-icon> Sort
+    </button>
+
+    <mat-menu #sortMenu="matMenu">
+      <button mat-menu-item>Title A to Z</button>
+      <button mat-menu-item>Title Z to A</button>
+      <button mat-menu-item>Date Created <p>Newest First</p></button>
+      <button mat-menu-item>Date Created <p>Oldest First</p></button>
+    </mat-menu>
   </div>
-  <button *ngIf="filterMenu['addButton']" class="filter-item" (click)="onOpenTool()">
-    <mat-icon>add</mat-icon> {{ filterMenu['title'] }}
-  </button>
 </div>

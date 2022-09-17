@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 // import { TextEditorComponent } from '../text-editor/text-editor.component';
 // import { toolType } from 'src/app/_models/toolType';
 
+import { NbToolsComponent } from 'src/app/core/nb-tools/nb-tools.component';
+import { TextEditorComponent } from 'src/app/core/nb-tools/text-editor/text-editor.component';
 @Component({
   selector: 'note-filter',
   templateUrl: './note-filter.component.html',
@@ -34,17 +36,17 @@ export class NoteFilterComponent implements OnInit {
       return;
     }
 
-    // if(this.toolType.type == 1){
-    //   this.dialog.open(
-    //     NbToolsComponent,
-    //     {
-    //       panelClass:'modal',
-    //       data: {type: 'Create'}
-    //   });
-    // }
+    if(this.toolType.type == 1){
+      this.dialog.open(
+        NbToolsComponent,
+        {
+          panelClass:'modal',
+          data: {type: 'Create'}
+      });
+    }
 
-    // if(this.toolType.type == 2){
-    //   this.dialog.open(TextEditorComponent,{id:'editor'});
-    // }
+    if(this.toolType.type == 2){
+      this.dialog.open(TextEditorComponent,{id:'editor'});
+    }
   }
 }

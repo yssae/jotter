@@ -3,8 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { UserComponent } from './user/user.component';
 
-import { NotebooksComponent } from './notebooks/notebooks.component';
-import { NotebookComponent } from './notebooks/notebook/notebook.component';
+import { NotebooksListComponent } from './notebooks-list/notebooks-list.component';
+import { NotebooksComponent } from './notebooks-list/notebooks/notebooks.component';
+import { NotebookComponent } from './notebooks-list/notebooks/notebook/notebook.component';
 
 import { AllNotesComponent } from './all-notes/all-notes.component';
 import { FavoritesComponent } from './favorites/favorites.component';
@@ -16,7 +17,7 @@ const routes: Routes = [
     children: [
       {
         path: 'notebooks',
-        component: NotebooksComponent,
+        component: NotebooksListComponent,
         data: {
           type: 1
         }

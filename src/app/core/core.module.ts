@@ -11,8 +11,9 @@ import { ChangeComponent } from './account/change/change.component'; //container
 import { ChangeEmailComponent } from './account/change/change-email/change-email.component';
 import { ChangePasswordComponent } from './account/change/change-password/change-password.component';
 
-import { NotebooksComponent } from './notebooks/notebooks.component';
-import { NotebookComponent } from './notebooks/notebook/notebook.component';
+import { NotebooksListComponent } from './notebooks-list/notebooks-list.component';
+import { NotebooksComponent } from './notebooks-list/notebooks/notebooks.component';
+import { NotebookComponent } from './notebooks-list/notebooks/notebook/notebook.component';
 
 import { NbToolsComponent } from './nb-tools/nb-tools.component';
 import { DeleteComponent } from './nb-tools/delete/delete.component';
@@ -20,6 +21,8 @@ import { CreateditComponent } from './nb-tools/create-edit/create-edit.component
 
 import { AllNotesComponent } from './all-notes/all-notes.component';
 
+import { NotesComponent } from './notes/notes.component';
+import { NoteComponent } from './notes/note/note.component';
 import { TextEditorComponent } from './nb-tools/text-editor/text-editor.component';
 
 import { QuillModule } from 'ngx-quill'
@@ -31,13 +34,16 @@ import { QuillModule } from 'ngx-quill'
     ChangeComponent,
     ChangeEmailComponent,
     ChangePasswordComponent,
+    NotebooksListComponent,
     NotebooksComponent,
     NotebookComponent,
     NbToolsComponent,
     CreateditComponent,
     DeleteComponent,
     TextEditorComponent,
-    AllNotesComponent
+    AllNotesComponent,
+    NotesComponent,
+    NoteComponent
   ],
   imports: [
     CommonModule,
@@ -48,11 +54,14 @@ import { QuillModule } from 'ngx-quill'
     QuillModule
   ],
   exports: [
+    NotebooksListComponent,
     NotebooksComponent,
     CreateditComponent,
     DeleteComponent,
     NbToolsComponent,
-    TextEditorComponent
+    TextEditorComponent,
+    NotesComponent,
+    NoteComponent
   ]
 })
 export class CoreModule { }

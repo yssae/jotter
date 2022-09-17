@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'notebooks',
-  templateUrl: './notebooks.component.html',
-  styleUrls: ['./notebooks.component.scss']
+  selector: 'app-notebooks-list',
+  templateUrl: './notebooks-list.component.html',
+  styleUrls: ['./notebooks-list.component.scss']
 })
-export class NotebooksComponent implements OnInit {
+export class NotebooksListComponent implements OnInit {
   sideNavOpened: boolean;
   title: string = "Notebooks";
 

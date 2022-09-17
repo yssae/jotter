@@ -1,9 +1,9 @@
 .container {
-  padding: 3%;
+  padding: 3% 0;
   height: 100%;
   min-height: 500px;
   max-width: 1440px;
-  min-width: 1366px;
+  min-width: 1284px;
   margin: auto;
 }
 
@@ -12,8 +12,8 @@ ul{
   list-style: none;
   grid-template-columns: repeat(4, 1fr);
   li {
-    margin: 20px 23px;
-    min-width: 300px;
+    margin: 20px auto;
+    min-width: 288px;
   }
 }
 

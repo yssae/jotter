@@ -2,12 +2,13 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { NbToolsComponent } from '../../nb-tools/nb-tools.component';
+
 @Component({
-  selector: 'notebook',
-  templateUrl: './notebook.component.html',
-  styleUrls: ['./notebook.component.scss']
+  selector: 'notebooks',
+  templateUrl: './notebooks.component.html',
+  styleUrls: ['./notebooks.component.scss']
 })
-export class NotebookComponent implements OnInit {
+export class NotebooksComponent implements OnInit {
   triggerFx: boolean = false;
 
   centered = true;
@@ -52,5 +53,4 @@ export class NotebookComponent implements OnInit {
 
     this.dialog.open(NbToolsComponent, { panelClass: 'jtr-dialog', data: {type: 'Delete'}});
   }
-
 }
