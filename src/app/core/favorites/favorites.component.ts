@@ -6,7 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./favorites.component.scss']
 })
 export class FavoritesComponent implements OnInit {
+  title:string = "Favorites";
 
+  filterMenu = {
+    'search' : true,
+    'addButton' : false,
+    'title' : 'Favorites',
+    'sort' : true
+  }
   constructor() { }
 
   ngOnInit(): void {

@@ -20,6 +20,7 @@ import { DeleteComponent } from './nb-tools/delete/delete.component';
 import { CreateditComponent } from './nb-tools/create-edit/create-edit.component';
 
 import { AllNotesComponent } from './all-notes/all-notes.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 
 import { NotesComponent } from './notes/notes.component';
 import { NoteComponent } from './notes/note/note.component';
@@ -42,6 +43,7 @@ import { QuillModule } from 'ngx-quill'
     DeleteComponent,
     TextEditorComponent,
     AllNotesComponent,
+    FavoritesComponent,
     NotesComponent,
     NoteComponent
   ],
