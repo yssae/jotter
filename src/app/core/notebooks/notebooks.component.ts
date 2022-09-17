@@ -23,7 +23,7 @@ export class NotebooksComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.sideNavOpened=true
+    this.sideNavOpened = true;
     console.log(this.activatedRoute.data);
     this.activatedRoute.data.subscribe(data => console.log(data));
   }
