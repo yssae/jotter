@@ -14,6 +14,9 @@
         <input type="password" placeholder="Password">
       </span>
     </div>
-    <div class="submit-btn"><input type="submit" class="submit" value="Submit" (click)="onSubmit($event)"></div>
+    <div class="action-button">
+      <button class="submit" type="submit" (click)="onSubmit($event)">Submit</button>
+      <button class="cancel" (click)="onCancel($event)">Cancel</button>
+    </div>
   </form>
 </div>

@@ -18,4 +18,8 @@ export class ChangeEmailComponent implements OnInit {
     this.dialog.open(VericationComponent, {panelClass: 'jtr-dialog'});
   }
 
+  onCancel(e: any) {
+    e.preventDefault();
+    this.dialog.closeAll();
+  }
 }
