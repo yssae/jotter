@@ -6,16 +6,14 @@
     </div>
   </div>
   <div class="tools" *ngIf="triggerFx" (mouseleave)="onHover()">
-    <button matRipple [matRippleCentered]="centered" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
-      [matRippleColor]="color">
-      <img src="assets/images/Open Notebook.png" alt="Open Notebook"></button>
-
-    <button (click)="onEditNb()" matRipple [matRippleCentered]="centered" [matRippleUnbounded]="unbounded"
-      [matRippleRadius]="radius" [matRippleColor]="color">
-      <img src="assets/images/Edit Notebook.png" alt="Edit Notebook"></button>
-
-    <button (click)="onDeleteNb()" matRipple [matRippleCentered]="centered" [matRippleUnbounded]="unbounded"
-      [matRippleRadius]="radius" [matRippleColor]="color">
-      <img src="assets/images/Delete Notebook Icon.png" alt="Delete Notebook"></button>
+    <button matRipple [matRippleCentered]="centered" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius" [matRippleColor]="color">
+      <img src="assets/images/Open Notebook.png" alt="Open Notebook">
+    </button>
+    <button (click)="onEditNb()" matRipple [matRippleCentered]="centered" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius" [matRippleColor]="color">
+      <img src="assets/images/Edit Notebook.png" alt="Edit Notebook">
+    </button>
+    <button (click)="onDeleteNb()" matRipple [matRippleCentered]="centered" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius" [matRippleColor]="color">
+      <img src="assets/images/Delete Notebook Icon.png" alt="Delete Notebook">
+    </button>
   </div>
 </div>

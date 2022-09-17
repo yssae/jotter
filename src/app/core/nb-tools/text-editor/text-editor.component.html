@@ -1,1 +1,29 @@
-<p>text-editor works!</p>
+<form class="container" [formGroup]="noteForm" (ngSubmit)="onSubmit(noteForm.value)">
+  <div class="header">
+    <jtr-back-button mat-dialog-close></jtr-back-button>
+    <div><input id="title" type="text" formControlName="noteTitle"></div>
+  </div>
+
+  <div class="body">
+    <quill-editor [styles]="{height: '420px', border:'none'}" (onEditorChanged)="changedEditor($event)"></quill-editor>
+  </div>
+
+  <div class="footer">
+    <div class="wrap">
+      <button><img src="assets/images/Delete.png" alt=""></button>
+      <button><img src="assets/images/Save.png" alt=""></button>
+
+      <div class="divider"></div>
+
+      <button><img src="assets/images/Print.png" alt=""></button>
+      <button><img src="assets/images/Move To.png" alt=""></button>
+      <button><img src="assets/images/Copy To.png" alt=""></button>
+
+      <div class="divider"></div>
+
+      <button><img src="assets/images/Favorite.png" alt=""></button>
+      <button (click)="openColorPicker($event)"><img src="assets/images/Color Picker.png" alt=""></button>
+      <input id='color-picker' type='color' #colorPicker formControlName="color" (change)="onColorChange(colorPicker.value)" />
+    </div>
+  </div>
+</form>
