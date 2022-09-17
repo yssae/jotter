@@ -1,1 +1,7 @@
-<p>change works!</p>
+<div class="container">
+  <div class="left"><img src="assets/images/clip-data-protection 1.png" alt="Forgot Password Image"></div>
+  <div class="right">
+    <change-email *ngIf="getdialogType()"></change-email>
+    <change-password *ngIf="!getdialogType()"></change-password>
+  </div>
+</div>

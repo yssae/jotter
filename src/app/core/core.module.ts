@@ -8,12 +8,15 @@ import { SharedModule } from '../shared/shared.module';
 
 import { UserNavComponent } from './account/user-nav/user-nav.component';
 import { ChangeComponent } from './account/change/change.component'; //container component
-
+import { ChangeEmailComponent } from './account/change/change-email/change-email.component';
+import { ChangePasswordComponent } from './account/change/change-password/change-password.component';
 @NgModule({
   declarations: [
     UserComponent,
     UserNavComponent,
-    ChangeComponent
+    ChangeComponent,
+    ChangeEmailComponent,
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,
