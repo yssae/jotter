@@ -61,6 +61,7 @@ import { QuillModule } from 'ngx-quill'
   exports: [
     NotebooksListComponent,
     NotebooksComponent,
+    NotebookComponent,
     CreateditComponent,
     DeleteComponent,
     NbToolsComponent,

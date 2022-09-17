@@ -1,4 +1,5 @@
 <div class="container">
+  <!-- to do: once clicked, redirect user to notebook -->
   <div class="wrapper" (mouseenter)="onHover()">
     <div class="cover-details" *ngIf="!triggerFx">
       <p class="title">Speak Now</p>
@@ -6,14 +7,14 @@
     </div>
   </div>
   <div class="tools" *ngIf="triggerFx" (mouseleave)="onHover()">
-    <button matRipple [matRippleCentered]="centered" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius" [matRippleColor]="color">
-      <img src="assets/images/Open Notebook.png" alt="Open Notebook">
-    </button>
-    <button (click)="onEditNb()" matRipple [matRippleCentered]="centered" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius" [matRippleColor]="color">
-      <img src="assets/images/Edit Notebook.png" alt="Edit Notebook">
-    </button>
-    <button (click)="onDeleteNb()" matRipple [matRippleCentered]="centered" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius" [matRippleColor]="color">
-      <img src="assets/images/Delete Notebook Icon.png" alt="Delete Notebook">
+    <button *ngFor="let button of notebookButtons; let index = index"
+      matRipple
+      [matRippleCentered]="centered"
+      [matRippleUnbounded]="unbounded"
+      [matRippleRadius]="radius"
+      [matRippleColor]="color"
+      (click)="onClick(index)">
+      <mat-icon>{{ button }}</mat-icon>
     </button>
   </div>
 </div>
