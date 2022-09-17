@@ -13,6 +13,10 @@ import { ChangePasswordComponent } from './account/change/change-password/change
 
 import { NotebooksComponent } from './notebooks/notebooks.component';
 import { NotebookComponent } from './notebooks/notebook/notebook.component';
+
+import { NbToolsComponent } from './nb-tools/nb-tools.component';
+import { DeleteComponent } from './nb-tools/delete/delete.component';
+import { CreateditComponent } from './nb-tools/create-edit/create-edit.component';
 @NgModule({
   declarations: [
     UserComponent,
@@ -21,7 +25,10 @@ import { NotebookComponent } from './notebooks/notebook/notebook.component';
     ChangeEmailComponent,
     ChangePasswordComponent,
     NotebooksComponent,
-    NotebookComponent
+    NotebookComponent,
+    NbToolsComponent,
+    CreateditComponent,
+    DeleteComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +38,10 @@ import { NotebookComponent } from './notebooks/notebook/notebook.component';
     SharedModule
   ],
   exports: [
-    NotebooksComponent
+    NotebooksComponent,
+    CreateditComponent,
+    DeleteComponent,
+    NbToolsComponent
   ]
 })
 export class CoreModule { }

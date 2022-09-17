@@ -1,0 +1,68 @@
+<div class="wrapper">
+  <h1><b>{{ headerTitle }} Notebook </b></h1>
+
+  <div class="innerwrap">
+    <div class="cover">
+      <div class="box" #cover></div>
+      <a id="customUpload" (click)="onTriggerFileUpload()">Custom Cover</a>
+      <input type="file" name="Custom Cover" id="uploadInput" (change)="onUploadCustomCover($event)" #customUpload>
+    </div>
+
+    <br>
+    <div class="defaultBox">
+      <div id="title">
+        <input type="text" name="title" value="Untitled Notebook">
+        <button
+          matRipple
+          [matRippleCentered]="centered"
+          [matRippleUnbounded]="unbounded"
+          [matRippleRadius]="radius"
+          [matRippleColor]="color">
+          <img src="assets/images/Edit Title.png" height="17" width="17"></button>
+
+        <p>9 notes</p>
+      </div>
+
+      <div class="choose">
+        <p><b>Choose Cover</b></p>
+        <ul class="default-covers">
+          <li>
+            <input type="radio" name="defaultCover" value="c1" id="c1">
+            <label for="c1"><img type="image" src="assets/images/cover1.png" alt=""></label>
+          </li>
+          <li>
+            <input type="radio" name="defaultCover" value="c1" id="c2">
+            <label for="c2"><img type="image" src="assets/images/cover2.png" alt=""></label>
+          </li>
+          <li>
+            <input type="radio" name="defaultCover" value="c1" id="c3">
+            <label for="c3"><img type="image" src="assets/images/cover3.png" alt=""></label>
+          </li>
+          <li>
+            <input type="radio" name="defaultCover" value="c1" id="c4">
+            <label for="c4"><img type="image" src="assets/images/cover1.png" alt=""></label>
+          </li>
+          <li><input type="radio" name="defaultCover" value="c1" id="c5">
+            <label for="c5"><img type="image" src="assets/images/cover2.png" alt=""></label>
+          </li>
+          <li><input type="radio" name="defaultCover" value="c1" id="c6">
+            <label for="c6"><img type="image" src="assets/images/cover3.png" alt=""></label>
+          </li>
+          <li>
+            <input type="radio" name="defaultCover" value="c1" id="c7">
+            <label for="c7"><img type="image" src="assets/images/cover1.png" alt=""></label>
+          </li>
+          <li>
+            <input type="radio" name="defaultCover" value="c1" id="c8">
+            <label for="c8"><img type="image" src="assets/images/cover2.png" alt=""></label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button>Save</button>
+    <button id="cancel" mat-dialog-close>Cancel</button>
+  </div>
+</div>

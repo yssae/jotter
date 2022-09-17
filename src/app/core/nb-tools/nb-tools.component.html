@@ -1,0 +1,4 @@
+<div class="modal wrapper">
+  <app-create-edit *ngIf="!determineNbTool()" [headerTitle]="headerTitle"></app-create-edit>
+  <delete *ngIf="determineNbTool()"></delete>
+</div>
