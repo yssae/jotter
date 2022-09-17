@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ChangeComponent } from '../account/change/change.component';
 @Component({
@@ -10,6 +11,10 @@ export class UserComponent implements OnInit {
   ideNavOpened:boolean;
   username: string ="biggiebong13"
   drawerState:boolean = false;
+  passwordMasked: string = '••••••••••';
+  user = {
+    'email': 'user@gmail.com'
+  }
 
   constructor(private dialog: MatDialog) { }
 

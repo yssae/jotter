@@ -10,13 +10,18 @@ import { UserNavComponent } from './account/user-nav/user-nav.component';
 import { ChangeComponent } from './account/change/change.component'; //container component
 import { ChangeEmailComponent } from './account/change/change-email/change-email.component';
 import { ChangePasswordComponent } from './account/change/change-password/change-password.component';
+
+import { NotebooksComponent } from './notebooks/notebooks.component';
+import { NotebookComponent } from './notebooks/notebook/notebook.component';
 @NgModule({
   declarations: [
     UserComponent,
     UserNavComponent,
     ChangeComponent,
     ChangeEmailComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    NotebooksComponent,
+    NotebookComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +31,7 @@ import { ChangePasswordComponent } from './account/change/change-password/change
     SharedModule
   ],
   exports: [
-
+    NotebooksComponent
   ]
 })
 export class CoreModule { }
