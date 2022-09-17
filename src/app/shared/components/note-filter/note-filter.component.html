@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>{{ pageTitle }}</h1>
+  <div class="filter-fx">
+    <div class="search filter-item" id="search">
+      <mat-icon>search</mat-icon>
+      <input type="text" placeholder="Search">
+    </div>
+  </div>
+  <button *ngIf="filterMenu['addButton']" class="filter-item" (click)="onOpenTool()">
+    <mat-icon>add</mat-icon> {{ filterMenu['title'] }}
+  </button>
+</div>
