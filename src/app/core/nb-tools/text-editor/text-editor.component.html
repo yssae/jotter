@@ -10,19 +10,19 @@
 
   <div class="footer">
     <div class="wrap">
-      <button><img src="assets/images/Delete.png" alt=""></button>
-      <button><img src="assets/images/Save.png" alt=""></button>
+      <button><mat-icon>delete</mat-icon></button>
+      <button><mat-icon>save</mat-icon></button>
 
       <div class="divider"></div>
 
-      <button><img src="assets/images/Print.png" alt=""></button>
-      <button><img src="assets/images/Move To.png" alt=""></button>
-      <button><img src="assets/images/Copy To.png" alt=""></button>
+      <button><mat-icon>print</mat-icon></button>
+      <button><mat-icon>move_to_inbox</mat-icon></button>
+      <button><mat-icon>file_copy</mat-icon></button>
 
       <div class="divider"></div>
 
-      <button><img src="assets/images/Favorite.png" alt=""></button>
-      <button (click)="openColorPicker($event)"><img src="assets/images/Color Picker.png" alt=""></button>
+      <button><mat-icon>bookmark_border</mat-icon></button>
+      <button (click)="openColorPicker($event)"><mat-icon>color_lens</mat-icon></button>
       <input id='color-picker' type='color' #colorPicker formControlName="color" (change)="onColorChange(colorPicker.value)" />
     </div>
   </div>
