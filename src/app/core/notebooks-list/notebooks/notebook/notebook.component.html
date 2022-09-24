@@ -1,3 +1,18 @@
 <div class="container">
-  <jtr-back-button [path]="'/user/notebooks'"></jtr-back-button>
+  <div class="notebook-head">
+    <jtr-back-button [path]="'/user'" class="back-button"></jtr-back-button>
+    <note-filter [pageTitle]="title" [filterMenu]="filterMenu" class="filter"></note-filter>
+  </div>
+  <!-- to do: loop thru avail notes of notebook -->
+  <ul class="notebook-body">
+    <li><note></note></li>
+    <li><note></note></li>
+    <li><note></note></li>
+    <li><note></note></li>
+    <li><note></note></li>
+    <li><note></note></li>
+    <li><note></note></li>
+    <li><note></note></li>
+    <li><note></note></li>
+  </ul>
 </div>

@@ -1,0 +1,42 @@
+// .container {
+//   padding: 3%;
+//   margin: auto;
+//   height: 100%;
+//   width: 100%;
+//   min-height: 500px;
+//   max-width: 1440px;
+//   min-width: 1366px;
+//   box-sizing: border-box;
+//   border: 1px solid purple;
+// }
+
+.container {
+  padding: 3% 0;
+  height: 100%;
+  min-height: 500px;
+  max-width: 1440px;
+  min-width: 1284px;
+  margin: auto;
+}
+
+.notebook-head {
+  display: flex;
+
+  .back-button {
+    width: 3%;
+  }
+  .filter {
+    width: 97%;
+  }
+}
+
+ul{
+  display: grid;
+  list-style: none;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 20px;
+  li {
+    margin: 20px auto;
+    min-width: 288px;
+  }
+}

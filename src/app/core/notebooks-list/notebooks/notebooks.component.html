@@ -1,20 +1,12 @@
 <div class="container">
-  <!-- to do: once clicked, redirect user to notebook -->
-  <div class="wrapper" (mouseenter)="onHover()">
-    <div class="cover-details" *ngIf="!triggerFx">
-      <p class="title">Speak Now</p>
-      <p class="date">October 20, 2021</p>
-    </div>
-  </div>
-  <div class="tools" *ngIf="triggerFx" (mouseleave)="onHover()">
-    <button *ngFor="let button of notebookButtons; let index = index"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleUnbounded]="unbounded"
-      [matRippleRadius]="radius"
-      [matRippleColor]="color"
-      (click)="onClick(index)">
-      <mat-icon>{{ button }}</mat-icon>
-    </button>
-  </div>
+  <note-filter [pageTitle]="title" [filterMenu]="filterMenu"></note-filter>
+  <ul class="notebook-lists">
+    <!-- To do: click notebook item and navigate to notebook component and load its notes -->
+    <li><notebook-item></notebook-item></li>
+    <li><notebook-item></notebook-item></li>
+    <li><notebook-item></notebook-item></li>
+    <li><notebook-item></notebook-item></li>
+    <li><notebook-item></notebook-item></li>
+    <li><notebook-item></notebook-item></li>
+  </ul>
 </div>

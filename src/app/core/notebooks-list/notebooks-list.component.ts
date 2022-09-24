@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-notebooks-list',
+  selector: '<app-notebooks-list>',
   templateUrl: './notebooks-list.component.html',
   styleUrls: ['./notebooks-list.component.scss']
 })
