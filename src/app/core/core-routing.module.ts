@@ -4,22 +4,46 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from './user/user.component';
 import { NotebooksListComponent } from './notebooks-list/notebooks-list.component';
 import { NotebookComponent } from './notebooks-list/notebooks/notebook/notebook.component';
+import { NotebooksComponent } from './notebooks-list/notebooks/notebooks.component';
 import { AllNotesComponent } from './all-notes/all-notes.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: '', //user
     component: UserComponent,
     children: [
       {
-        path: 'notebooks',
-        component: NotebooksListComponent,
-        data: { type: 1 },
+        path:'',
+        redirectTo: 'notebooks',
+        pathMatch: 'full'
       },
       {
-        path: 'notebook',
-        component: NotebookComponent
+        path: 'notebooks',
+        component: NotebooksListComponent,
+        children: [
+          {
+            path:'',
+            redirectTo: 'list',
+            pathMatch: 'full',
+          },
+          {
+            path: 'list',
+            component: NotebooksComponent,
+            data: { type: 1 },
+          },
+          {
+            path: 'notebook',
+            component: NotebookComponent,
+            data: { type: 2 },
+          },
+          {
+            path: 'notebook/:id',
+            component: NotebookComponent,
+            data: { type: 2 }
+          }
+        ],
+        data: { type: 1 },
       },
       {
         path: 'notes',

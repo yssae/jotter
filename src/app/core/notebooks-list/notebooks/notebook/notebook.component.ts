@@ -6,7 +6,13 @@ import { Component, Inject, OnInit } from '@angular/core';
   styleUrls: ['./notebook.component.scss']
 })
 export class NotebookComponent implements OnInit {
-
+  title: string = 'Evermore';
+  filterMenu = {
+    'search' : true,
+    'addButton' : true,
+    'title' : 'Note',
+    'sort' : true
+  }
   constructor() { }
 
 
