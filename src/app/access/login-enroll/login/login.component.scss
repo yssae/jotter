@@ -88,13 +88,14 @@
     }
 
     .field {
-      margin: 5px auto;
+      margin: 8px auto;
       span {
-        img {
+        mat-icon {
           top: 7px;
           right: -35px;
           height: 25px;
           position: relative;
+          color: #ccc;
         }
 
         input {

@@ -1,5 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { TextEditorComponent } from 'src/app/core/nb-tools/text-editor/text-editor.component';
 @Component({
   selector: 'notebook',
   templateUrl: './notebook.component.html',
@@ -13,10 +14,14 @@ export class NotebookComponent implements OnInit {
     'title' : 'Note',
     'sort' : true
   }
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
 
   ngOnInit(): void {
   }
 
+  openNote() {
+    alert('open Note clicked')
+    this.dialog.open(TextEditorComponent)
+  }
 }

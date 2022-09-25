@@ -9,7 +9,7 @@ const routes: Routes = [
     loadChildren: () => import('./core/core.module').then(m => m.CoreModule)
   },
   {
-    path: 'login',
+    path: 'auth',
     loadChildren: () => import('./access/access.module').then(m => m.AccessModule)
   }
 ];
