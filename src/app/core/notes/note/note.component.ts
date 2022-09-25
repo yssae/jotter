@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TextEditorComponent } from '../../nb-tools/text-editor/text-editor.component';
+
+import { MockNoteService } from 'src/app/mock/mock-note.service';
 @Component({
   selector: 'note',
   templateUrl: './note.component.html',
@@ -9,12 +11,14 @@ import { TextEditorComponent } from '../../nb-tools/text-editor/text-editor.comp
 export class NoteComponent implements OnInit {
   noteContent = 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam, modi dignissimos iste harum aperiam possimus quis provident! Rem consequatur harum ab iure veniam magnam, deserunt ea commodi iste. Aperiam, eos.';
 
-  constructor(private dialog: MatDialog) { }
+  constructor(
+    private dialog: MatDialog
+    ) { }
 
   ngOnInit(): void {
   }
 
   openNote() {
-    this.dialog.open(TextEditorComponent);
+    this.dialog.open(TextEditorComponent, {id:'editor'});
   }
 }

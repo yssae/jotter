@@ -35,7 +35,8 @@ export class TextEditorComponent implements OnInit {
   }
 
   changedEditor(e: any) {
-    //console.log(e);
+    console.log(e);
+    console.log(e.html);
   }
 
   openColorPicker(e:any) {
