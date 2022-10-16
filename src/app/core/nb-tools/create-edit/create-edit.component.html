@@ -2,7 +2,7 @@
   <h1><b>{{ headerTitle }} Notebook </b></h1>
 
   <div class="innerwrap">
-    <div class="cover">
+    <div class="cover"> <!-- [style.background-image]="'url('+ notebookItem.cover +')'" -->
       <div class="box" #cover></div>
       <a id="customUpload" (click)="onTriggerFileUpload()">Custom Cover</a>
       <input type="file" name="Custom Cover" id="uploadInput" (change)="onUploadCustomCover($event)" #customUpload>

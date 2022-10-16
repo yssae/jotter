@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Notebook } from 'src/app/shared/models/notebook.model';
 
 @Component({
   selector: 'delete',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteComponent implements OnInit {
 
+  @Input() notebookData: Notebook;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  deleteNotebook() {
+    console.log(this.notebookData);
+  }
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit, Renderer2, ElementRef, ViewChild, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { Notebook } from 'src/app/shared/models/notebook.model';
 @Component({
-  selector: 'app-create-edit',
+  selector: 'create-edit',
   templateUrl: './create-edit.component.html',
   styleUrls: ['./create-edit.component.scss']
 })
@@ -15,9 +15,8 @@ export class CreateditComponent implements OnInit {
 
   nbfxName: string;
 
+  @ViewChild('cover') cover: ElementRef;
   @ViewChild('customUpload') customUpload:ElementRef;
-
-  @ViewChild('cover') cover:ElementRef;
 
   @Input('headerTitle') headerTitle:ElementRef;
 
