@@ -3,8 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router'
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NbToolsComponent } from '../../nb-tools/nb-tools.component';
 import { MockNoteService } from 'src/app/mock/mock-note.service';
-import { Note } from 'src/app/shared/models/note.model';
 import { Notebook } from 'src/app/shared/models/notebook.model';
+import { JTROUTES } from 'src/app/shared/constants/jtr-routes.const';
 
 @Component({
   selector: 'notebook-item',
@@ -36,39 +36,35 @@ export class NotebookItemComponent implements OnInit {
     });
   }
 
-
   onHover() {
     this.triggerFx = this.triggerFx ? false : true;
   }
 
   openNotebook(notebookID: string) {
-    //receive notebook id, route to notebook acc to id
-    this.router.navigate(['user/notebooks/notebook'], {queryParams: {id: notebookID}});
+    this.router.navigate([JTROUTES.NOTEBOOK], {queryParams: {id: notebookID}});
   }
 
   editNotebook(notebookID: string) {
-    console.log(notebookID); // use id reference to edit and open nb, pass data to dialog
-    this.dialog.open(NbToolsComponent, {panelClass: 'jtr-dialog', data: {type: 'Edit'}});
+    this.dialog.open(NbToolsComponent, {panelClass: 'jtr-dialog', data: {type: 'Edit', notebookID: notebookID}});
   }
 
-  deleteNotebook(notebookID: string) {
-    console.log(notebookID); // use id reference to delete nb
-    this.dialog.open(NbToolsComponent, { panelClass: 'jtr-dialog', data: {type: 'Delete'}});
+  deleteNotebook(notebookItem: Notebook) {
+    this.dialog.open(NbToolsComponent, { panelClass: 'jtr-dialog', data: {type: 'Delete', notebookData: notebookItem}});
   }
 
-  onClick(index: number, notebookID: string) {
+  onClick(index: number, notebookItem: Notebook) {
     console.log(index);
     switch (index) {
       case 0 :
-        this.openNotebook(notebookID);
+        this.openNotebook(notebookItem._id);
         break;
 
       case 1 :
-        this.editNotebook(notebookID);
+        this.editNotebook(notebookItem._id);
         break;
 
       case 2 :
-        this.deleteNotebook(notebookID);
+        this.deleteNotebook(notebookItem);
         break;
     }
   }
