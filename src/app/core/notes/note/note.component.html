@@ -1,7 +1,6 @@
-<div class="wrapper" (click)="openNote()">
-  <p>{{ noteContent }}</p>
+<div class="wrapper" (click)="openNote(note._id)">
+  <p><b>{{ note.title }}</b><br>{{ content }}</p>
   <div class="thumbnail">
-    <p class="date">November 12</p>
+    <p class="date">{{ note?.updatedAt }}</p>
   </div>
 </div>
-<!-- to do: once click, trigger text editor and load existing data -->

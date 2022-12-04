@@ -5,13 +5,13 @@ export const note: Note[] = [
     _id: '885001',
     notebookID : '485001',
     title: 'the 1',
-    content: '&lt;p&gt;I&#39;m doing good, I&#39;m on some new shit&lt;/p&gt;&lt;p&gt;Been saying &quot;yes&quot; instead of &quot;no&quot;&lt;/p&gt;&lt;p&gt;I thought I saw you at the bus stop, I didn&#39;t though&lt;/p&gt;&lt;p&gt;I hit the ground running each night&lt;/p&gt;&lt;p&gt;I hit the Sunday matinée&lt;/p&gt;&lt;p&gt;You know the greatest films of all time were never made&lt;/p&gt;',
+    content: '<p class=\"ql-align-center\"><span style=\"color: rgb(61, 20, 102);\">I\'m doing good, I\'m on some new shit<\/span><\/p><p class=\"ql-align-center\"><span style=\"color: rgb(61, 20, 102);\">Been saying \"yes\" instead of no<\/span><\/p><p class=\"ql-align-center\"><span style=\"color: rgb(61, 20, 102);\">I thought I saw you at the bus stop, I didn\'t though<\/span><\/p><p class=\"ql-align-center\"><span style=\"color: rgb(61, 20, 102);\">I hit the ground running each night<\/span><\/p><p class=\"ql-align-center\"><span style=\"color: rgb(61, 20, 102);\">I hit the Sunday matin\u00E9e<\/span><\/p><p class=\"ql-align-center\"><span style=\"color: rgb(61, 20, 102);\">You know the greatest films of all time were never madea<\/span><\/p>\r\n',
   },
   {
     _id: '885002',
     notebookID : '485001',
     title: 'Cardigan',
-    content: "&lt;p class=&quot;ql-align-center&quot;&gt;When I felt like an old cardigan&lt;/p&gt;&lt;p class=&quot;ql-align-center&quot;&gt;under someone&#39;s bed,&lt;/p&gt;&lt;p class=&quot;ql-align-center&quot;&gt;you put me on and said,&lt;/p&gt;&lt;p class=&quot;ql-align-center&quot;&gt;I was your favorite.&lt;/p&gt;",
+    content: "<p>Vintage tee, brand new phone</p><p>High heels on cobblestones</p><p>When you are young, they assume you know nothing</p><p>Sequin smile, black lipstick</p><p>Sensual politics</p><p>When you are young, they assume you know nothing</p>",
     images : [
       {
         name: 'Cardigan',

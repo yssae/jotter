@@ -5,15 +5,7 @@
   </div>
   <!-- to do: loop thru avail notes of notebook -->
   <!-- to do: note is clickable, once click, open text editor containing note -->
-  <ul class="notebook-body">
-    <li><note></note></li>
-    <li><note></note></li>
-    <li><note></note></li>
-    <li><note></note></li>
-    <li><note></note></li>
-    <li><note></note></li>
-    <li><note></note></li>
-    <li><note></note></li>
-    <li><note></note></li>
+  <ul class="notebook-body" *ngIf="noteEntries">
+    <li *ngFor="let note of noteEntries"><note [note]="note"></note></li>
   </ul>
 </div>

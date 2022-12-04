@@ -1,13 +1,5 @@
 <div class="container">
-  <ul>
-    <li><note></note></li>
-    <li><note></note></li>
-    <li><note></note></li>
-    <li><note></note></li>
-    <li><note></note></li>
-    <li><note></note></li>
-    <li><note></note></li>
-    <li><note></note></li>
-    <li><note></note></li>
+  <ul *ngIf="notes">
+    <li *ngFor="let note of notes"><note [note]="note"></note></li>
   </ul>
 </div>
