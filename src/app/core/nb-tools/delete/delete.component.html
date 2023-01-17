@@ -1,14 +1,14 @@
 <div class="wrapper">
-  <h1>Delete this Notebook?</h1>
+  <h1>Delete Notebook?</h1>
 
   <br>
   <div class="main">
-      <img src="assets/images/pexels-dmitri-posudin-4604195.jpg" alt="">
-      <p>This action can not be undone. Are you sure you want to permanently remove this notebook?</p>
+      <img [src]="notebookData?.cover" alt="Notebook thumbnail">
+      <p>This action cannot be undone. Are you sure you want to permanently remove <b>{{ notebookData.title }}</b> notebook?</p>
   </div>
   <br><br>
   <div class="action">
-      <button>Delete</button>
+      <button (click)="deleteNotebook()">Delete</button>
       <button id="cancelButton" mat-dialog-close>Cancel</button>
   </div>
 </div>

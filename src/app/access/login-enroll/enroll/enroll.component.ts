@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { User } from '../../../shared/models/user';
+import { User } from '../../../shared/models/user.model';
 import { VericationComponent } from '../../verication/verication.component';
 import { TermsAndConditionComponent } from '../terms-and-condition/terms-and-condition.component';
 @Component({

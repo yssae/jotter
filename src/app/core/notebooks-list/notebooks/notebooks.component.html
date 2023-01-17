@@ -1,12 +1,8 @@
 <div class="container">
   <note-filter [pageTitle]="title" [filterMenu]="filterMenu"></note-filter>
   <ul class="notebook-lists">
-    <!-- To do: click notebook item and navigate to notebook component and load its notes -->
-    <li><notebook-item></notebook-item></li>
-    <li><notebook-item></notebook-item></li>
-    <li><notebook-item></notebook-item></li>
-    <li><notebook-item></notebook-item></li>
-    <li><notebook-item></notebook-item></li>
-    <li><notebook-item></notebook-item></li>
+    <li *ngFor="let notebook of notebooks; let index = index">
+      <notebook-item [notebookItem]="notebook"></notebook-item>
+    </li>
   </ul>
 </div>

@@ -1,7 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { Notebook } from 'src/app/shared/models/notebook.model';
 @Component({
   selector: 'app-nb-tools',
   templateUrl: './nb-tools.component.html',
@@ -10,22 +10,24 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class NbToolsComponent implements OnInit {
   toolType: any;
   headerTitle: any;
+  cover: any;
+  notebookID: any;
+
+  selectedNotebook: Notebook;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialog: MatDialog,
     private activatedRoute: ActivatedRoute) {
+
       this.headerTitle = data.type;
+      this.selectedNotebook = data.notebookData;
+
       console.log(this.headerTitle);
+      console.log('data', data.notebookData);
     }
 
   ngOnInit(): void {
-    //this.determineNbTool();
-
-    // this.activatedRoute.data.subscribe(data => {
-    //   console.log(data)
-    //   this.toolType = data;
-    // })
   }
 
   determineNbTool() {

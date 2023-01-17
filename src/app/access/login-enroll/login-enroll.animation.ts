@@ -1,6 +1,6 @@
 import { trigger, state, style, transition, animate, animation } from '@angular/animations';
 export const LoginEnrollAnimation = animation ([
-  trigger('boxTwoState', [
+  trigger('spielWrapperState', [
     state('right', style({
       opacity: 1,
       transform : 'translateX(-470px)',
@@ -10,7 +10,7 @@ export const LoginEnrollAnimation = animation ([
     transition('left <=> right', animate(500)),
   ]),
 
-  trigger('boxOneState', [
+  trigger('formWrapperState', [
     state('left', style({
       transform : 'translateX(300px)',
       'border-radius' : '0px 20px 20px 0px',
@@ -19,7 +19,7 @@ export const LoginEnrollAnimation = animation ([
     transition('left <=> right', animate(500))
   ]),
 
-  trigger('containerState', [
+  trigger('wrapperState', [
     state('false', style({
       opacity: 1,
       transform: 'translateY(10px)'

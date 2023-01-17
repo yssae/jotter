@@ -7,10 +7,12 @@ import { LoginEnrollAnimation } from './login-enroll.animation';
   animations: [LoginEnrollAnimation.animation]
 })
 export class LoginEnrollComponent implements OnInit {
-  boxOneState = "right";
-  boxTwoState = "left";
+  formWrapperState = "right";
+  spielWrapperState = "left";
+
   loginState = true;
   enrollState = false;
+  wrapperState = false;
   containerState = false;
 
   constructor() { }
@@ -19,13 +21,9 @@ export class LoginEnrollComponent implements OnInit {
   }
 
   onToggleSignUp() {
-    this.boxTwoState == 'left' ? this.boxTwoState = 'right' : this.boxTwoState = "left";
-    this.boxOneState == 'left' ? this.boxOneState = 'right' : this.boxOneState = "left";
+    this.spielWrapperState == 'left' ? this.spielWrapperState = 'right' : this.spielWrapperState = "left";
+    this.formWrapperState == 'left' ? this.formWrapperState = 'right' : this.formWrapperState = "left";
     this.loginState == true ? this.loginState = false : this.loginState = true;
-  }
-
-  ngAfterViewInIt() {
-    console.log('view in it');
   }
 
 }

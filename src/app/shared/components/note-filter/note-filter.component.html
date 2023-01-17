@@ -7,12 +7,12 @@
       <input type="text" placeholder="Search">
     </div>
 
-    <button *ngIf="filterMenu['addButton']" class="filter-item" (click)="onOpenTool()">
+    <button class="filter-item" *ngIf="filterMenu['addButton']" (click)="onOpenTool()">
       <mat-icon>add</mat-icon> {{ filterMenu['title'] }}
     </button>
 
     <button class="filter-item" [matMenuTriggerFor]="sortMenu">
-      <mat-icon>sort</mat-icon> Sort
+      <mat-icon>sort</mat-icon>Sort
     </button>
 
     <!-- To do: refactor button -->

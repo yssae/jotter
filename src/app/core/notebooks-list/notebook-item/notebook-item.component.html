@@ -1,10 +1,10 @@
 <div class="container">
   <!-- to do: once clicked, redirect user to notebook -->
-  <div class="wrapper" (mouseenter)="onHover()">
-    <div class="cover-details" *ngIf="!triggerFx">
-      <p class="title">Speak Now</p>
-      <p class="date">October 20, 2021</p>
-    </div>
+  <div class="wrapper"(mouseenter)="onHover()" #notebookCover [style.background-image]="'url('+ notebookItem.cover +')'">
+      <div class="cover-details" *ngIf="!triggerFx">
+        <p class="title">{{ notebookItem.title | titlecase }}</p>
+        <p class="date">{{ notebookItem?.updatedAt | date: 'longDate' }}</p>
+      </div>
   </div>
 
   <div class="tools" *ngIf="triggerFx" (mouseleave)="onHover()">
@@ -14,7 +14,7 @@
       [matRippleUnbounded]="unbounded"
       [matRippleRadius]="radius"
       [matRippleColor]="color"
-      (click)="onClick(index)">
+      (click)="onClick(index, notebookItem)">
       <mat-icon>{{ button }}</mat-icon>
     </button>
   </div>

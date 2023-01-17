@@ -14,7 +14,7 @@ import { TermsAndConditionComponent } from './login-enroll/terms-and-condition/t
 
 import { AppMaterialModule } from '../shared/app-material.module';
 import { SharedModule } from '../shared/shared.module';
-import { AccessRoutingModule } from './access-routing.module';
+import { AccessRoutingModule } from './access.routing.module';
 @NgModule({
   declarations: [
     LoginComponent,

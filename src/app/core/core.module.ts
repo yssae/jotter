@@ -5,7 +5,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { UserComponent } from './user/user.component';
 import { CoreRoutingModule } from './core-routing.module';
-import { AppMaterialModule } from '../shared/app-material.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { UserNavComponent } from './account/user-nav/user-nav.component';
@@ -29,7 +28,8 @@ import { NotesComponent } from './notes/notes.component';
 import { NoteComponent } from './notes/note/note.component';
 import { TextEditorComponent } from './nb-tools/text-editor/text-editor.component';
 
-import { QuillModule } from 'ngx-quill'
+import { QuillModule } from 'ngx-quill';
+import { AppMaterialModule } from '../shared/app-material.module';
 
 @NgModule({
   declarations: [
@@ -56,8 +56,8 @@ import { QuillModule } from 'ngx-quill'
     RouterModule,
     ReactiveFormsModule,
     CoreRoutingModule,
-    AppMaterialModule,
     SharedModule,
+    AppMaterialModule,
     QuillModule
   ],
   exports: [

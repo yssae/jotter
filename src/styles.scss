@@ -43,6 +43,12 @@ html, body {
   }
 }
 
+.special-dialog {
+  .mat-dialog-container {
+    padding: 0;
+  }
+}
+
 #editor {
   margin: auto;
   max-width: 985px;

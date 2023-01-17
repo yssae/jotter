@@ -8,7 +8,7 @@ import { ChangeComponent } from '../account/change/change.component';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  ideNavOpened:boolean;
+  sideNavOpened:boolean;
   username: string ="biggiebong13"
   drawerState:boolean = false;
   passwordMasked: string = '••••••••••';

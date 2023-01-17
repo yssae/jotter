@@ -10,11 +10,9 @@
 }
 
 .notebook-lists {
+  margin: 40px 20px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   list-style: none;
   margin-top: 20px;
-  li {
-    margin: 20px auto;
-  }
 }
