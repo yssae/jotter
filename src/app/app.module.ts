@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppMaterialModule } from './shared/app-material.module';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeModule } from './home/home.module';
+import { CoreModule } from './core/core.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +18,7 @@ import { HomeModule } from './home/home.module';
     HttpClientModule,
     AppMaterialModule,
     ReactiveFormsModule,
-    HomeModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent],
