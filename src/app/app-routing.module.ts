@@ -6,7 +6,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   {
     path: 'user',
-    loadChildren: () => import('./core/core.module').then(m => m.CoreModule)
+    loadChildren: () => import('./feature/feature.module').then(m => m.FeatureModule)
   },
   {
     path: 'auth',

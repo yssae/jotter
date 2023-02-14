@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { UserComponent } from './user/user.component';
-import { CoreRoutingModule } from './core-routing.module';
+import { CoreRoutingModule } from './feature-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { UserNavComponent } from './account/user-nav/user-nav.component';
@@ -73,4 +73,4 @@ import { AppMaterialModule } from '../shared/app-material.module';
     NotebookItemComponent
   ]
 })
-export class CoreModule { }
+export class FeatureModule { }

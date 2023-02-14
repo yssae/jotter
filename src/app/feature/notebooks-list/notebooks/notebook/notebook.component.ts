@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { TextEditorComponent } from 'src/app/core/nb-tools/text-editor/text-editor.component';
+import { TextEditorComponent } from 'src/app/feature/nb-tools/text-editor/text-editor.component';
 import { ActivatedRoute } from '@angular/router';
 
 import { MockNoteService } from 'src/app/mock/mock-note.service';
