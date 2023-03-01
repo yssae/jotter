@@ -1,0 +1,95 @@
+@import "_variables.scss";
+
+.container {
+  width: 600px;
+  padding: 30px 0;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.spiel {
+  width: 80%;
+  margin: auto;
+  h1 {
+    font-size: 30px;
+    line-height: 40px;
+    text-align: center;
+    letter-spacing: 0.05em;
+    color: $color-primary;
+  }
+  p {
+    margin-top: 10px;
+    text-align: left;
+    line-height: 25px;
+    letter-spacing: 0.03em;
+    color: $font-color-primary;
+  }
+
+  img {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+form {
+  width: 80%;
+  margin: 15px auto 0;
+  text-align: center;
+
+  .submit-btn  {
+    input {
+      width: 106px;
+      height: 33px;
+      margin-top: 30px;
+      line-height: 20px;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      text-align: center;
+      font-family: inherit;
+      border-radius: 5px;
+      color: $font-color-secondary;
+      background: $button-color-1;
+      border: 1px solid transparent;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .resend-wrapper {
+      width: 106px;
+      margin: auto;
+
+      a {
+        cursor: pointer;
+        font-size: small;
+        color: $color-primary;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .field {
+    margin: 8px auto;
+
+    span {
+      img {
+        height: 25px;
+        position: relative;
+        right: -35px;
+        top: 7px;
+      }
+
+      input {
+        font-size: 14px;
+        text-align: start;
+        padding: 8px 30px 8px 40px;
+        border: 0.5px solid #ECF0F1;
+        background-color: #ECF0F1;
+      }
+
+      input:active,
+      input:focus {
+        outline: 0.5px solid $color-primary-light;
+        border: 0.5px solid $color-primary-light;
+      }
+    }
+  }
+}

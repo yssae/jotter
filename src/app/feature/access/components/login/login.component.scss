@@ -1,0 +1,123 @@
+@import "_variables.scss";
+
+.container {
+  padding: 30px 0;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+
+  h1 {
+    font-weight: bold;
+    text-align: center;
+    font-size: 35px;
+    line-height: 40px;
+    letter-spacing: 0.05em;
+    color: $color-primary-md-dark;
+  }
+
+  .login-icons {
+    margin: 15px auto;
+    button {
+      width: 55px;
+      height: 55px;
+      margin: auto 10px;
+      border-radius: 50%;
+      padding: 5px 0 0;
+      background-color: $font-color-secondary;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+
+  .login-option-spiel {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+    margin: 20px auto;
+    text-align: center;
+    letter-spacing: 0.03em;
+    color: rgba(51, 51, 51, 0.9);
+  }
+
+  form {
+    a {
+      top: 10px;
+      position: relative;
+      text-align: center;
+    }
+
+    a, input::placeholder {
+      font-size: 14px;
+      font-weight: 300;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      color: $font-color-primary;
+    }
+
+    a:hover {
+      color: $color-primary-light;
+    }
+
+    .sign-in-wrapper {
+      width: 410px;
+      bottom: 50px;
+      position: absolute;
+
+      button {
+        width: 96px;
+        height: 33px;
+        margin: 20px auto;
+        line-height: 20px;
+        text-align: center;
+        border-radius: 20px;
+        letter-spacing: 0.03em;
+        color: $font-color-secondary;
+        background: $color-primary-md-dark;
+        border: 1px solid transparent;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      }
+
+      #sign-in{
+        font-weight: 200;
+        font-family: inherit;
+        text-align: center;
+      }
+    }
+
+    .field {
+      margin: 8px auto;
+      span {
+        mat-icon {
+          top: 7px;
+          right: -35px;
+          height: 25px;
+          position: relative;
+          color: #ccc;
+        }
+
+        input {
+          font-size: 14px;
+          font-weight: 400;
+          padding: 8px 30px 8px 40px;
+          border: 0.5px solid $field-bg-color;
+          background-color: $field-bg-color;
+          font-family: inherit;
+          text-align: start;
+        }
+
+        input::placeholder {
+          font-weight: 400;
+          color: #808080;
+        }
+
+        input:active, input:focus{
+          outline: 0.5px solid $color-primary-light;
+          border: 0.5px solid $color-primary-light;
+        }
+      }
+    }
+  }
+}
