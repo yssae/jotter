@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: () => import('./access/access.module').then(m => m.AccessModule)
+    loadChildren: () => import('./feature/access/access.module').then(m => m.AccessModule)
   }
 ];
 

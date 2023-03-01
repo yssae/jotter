@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { VericationComponent } from 'src/app/access/verication/verication.component';
+import { VericationComponent } from '@jtr/feature/access';
 @Component({
   selector: 'change-email',
   templateUrl: './change-email.component.html',

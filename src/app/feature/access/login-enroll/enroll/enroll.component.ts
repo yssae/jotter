@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { User } from '../../../shared/models/user.model';
-import { VericationComponent } from '../../verication/verication.component';
-import { TermsAndConditionComponent } from '../terms-and-condition/terms-and-condition.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { VericationComponent } from '@jtr/feature/access';
+import { TermsAndConditionComponent } from '@jtr/feature/access';
+import { User } from '@jtr/shared';
+
 @Component({
   selector: 'enroll',
   templateUrl: './enroll.component.html',

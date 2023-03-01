@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ChangeEmailComponent } from './change-email/change-email.component';
-import { ForgotPasswordComponent } from 'src/app/access/forgot-password/forgot-password.component';
+import { ForgotPasswordComponent } from '@jtr/feature/access';
 @Component({
   selector: 'app-change',
   templateUrl: './change.component.html',
