@@ -6,11 +6,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
 import { CoreRoutingModule } from './feature-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { AccountModule } from './account/account.module';
 
-import { UserNavComponent } from './account/user-nav/user-nav.component';
-import { ChangeComponent } from './account/change/change.component'; //container component
-import { ChangeEmailComponent } from './account/change/change-email/change-email.component';
-import { ChangePasswordComponent } from './account/change/change-password/change-password.component';
+import { UserNavComponent } from './user/user-nav/user-nav.component';
 
 import { NotebooksListComponent } from './notebooks-list/notebooks-list.component';
 import { NotebooksComponent } from './notebooks-list/notebooks/notebooks.component';
@@ -35,9 +33,6 @@ import { AppMaterialModule } from '../shared/app-material.module';
   declarations: [
     UserComponent,
     UserNavComponent,
-    ChangeComponent,
-    ChangeEmailComponent,
-    ChangePasswordComponent,
     NotebooksListComponent,
     NotebooksComponent,
     NotebookComponent,
@@ -58,7 +53,8 @@ import { AppMaterialModule } from '../shared/app-material.module';
     CoreRoutingModule,
     SharedModule,
     AppMaterialModule,
-    QuillModule
+    QuillModule,
+    AccountModule
   ],
   exports: [
     NotebooksListComponent,
