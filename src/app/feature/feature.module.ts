@@ -6,6 +6,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FeatureRoutingModule } from './feature-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { AccountModule } from '@jtr/feature/account';
+import { NotesModule } from '@jtr/feature/notes';
+
+import { QuillModule } from 'ngx-quill';
+import { AppMaterialModule } from '../shared/app-material.module';
+
+
 
 import { NotebooksListComponent } from './notebooks-list/notebooks-list.component';
 import { NotebooksComponent } from './notebooks-list/notebooks/notebooks.component';
@@ -16,15 +22,8 @@ import { NbToolsComponent } from './nb-tools/nb-tools.component';
 import { DeleteComponent } from './nb-tools/delete/delete.component';
 import { CreateditComponent } from './nb-tools/create-edit/create-edit.component';
 
-import { AllNotesComponent } from './all-notes/all-notes.component';
-import { FavoritesComponent } from './favorites/favorites.component';
-
-import { NotesComponent } from './notes/notes.component';
-import { NoteComponent } from './notes/note/note.component';
 import { TextEditorComponent } from './nb-tools/text-editor/text-editor.component';
 
-import { QuillModule } from 'ngx-quill';
-import { AppMaterialModule } from '../shared/app-material.module';
 
 @NgModule({
   declarations: [
@@ -35,11 +34,7 @@ import { AppMaterialModule } from '../shared/app-material.module';
     CreateditComponent,
     DeleteComponent,
     TextEditorComponent,
-    AllNotesComponent,
-    FavoritesComponent,
-    NotesComponent,
-    NoteComponent,
-    NotebookItemComponent
+    NotebookItemComponent,
   ],
   imports: [
     CommonModule,
@@ -50,6 +45,7 @@ import { AppMaterialModule } from '../shared/app-material.module';
     AppMaterialModule,
     QuillModule,
     AccountModule,
+    NotesModule,
   ],
   exports: [
     NotebooksListComponent,
@@ -59,8 +55,6 @@ import { AppMaterialModule } from '../shared/app-material.module';
     DeleteComponent,
     NbToolsComponent,
     TextEditorComponent,
-    NotesComponent,
-    NoteComponent,
     NotebookItemComponent
   ]
 })

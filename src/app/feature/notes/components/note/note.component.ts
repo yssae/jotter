@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { TextEditorComponent } from '../../nb-tools/text-editor/text-editor.component';
+import { TextEditorComponent } from '../../../nb-tools/text-editor/text-editor.component';
 import { MockNoteService } from 'src/app/mock/mock-note.service';
 import { Note } from 'src/app/shared/models/note.model';
 @Component({
