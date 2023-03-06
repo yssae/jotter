@@ -9,8 +9,12 @@ import { FavoritesComponent } from './favorites/favorites.component';
 
 const routes: Routes = [
   {
-    path: '', // user
+    path: 'user', // user
     loadChildren: () => import('./user/user.module').then(m => m.UserModule),
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./access/access.module').then(m => m.AccessModule)
   }
 ];
 

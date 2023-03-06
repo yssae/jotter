@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ChangeComponent } from '@jtr/feature/account';
 
 
@@ -17,9 +18,15 @@ export class UserComponent implements OnInit {
     'email': 'user@gmail.com'
   }
 
-  constructor(private dialog: MatDialog) { }
+  constructor(
+    private dialog: MatDialog,
+    private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  logout() {
+    this.router.navigate(['auth'])
   }
 
   onEmailChange(e: Event) {
