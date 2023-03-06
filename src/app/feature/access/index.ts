@@ -4,3 +4,4 @@ export { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 export { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 export { VericationComponent } from './components/verication/verication.component';
 export { TermsAndConditionComponent } from './components/terms-and-condition/terms-and-condition.component';
+export { AccessModule } from './access.module';
