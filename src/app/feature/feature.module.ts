@@ -3,74 +3,44 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { UserComponent } from './user/user.component';
-import { CoreRoutingModule } from './feature-routing.module';
+import { FeatureRoutingModule } from './feature-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { AccountModule } from '@jtr/feature/account';
+import { NotesModule } from '@jtr/feature/notes';
 
-import { UserNavComponent } from './account/user-nav/user-nav.component';
-import { ChangeComponent } from './account/change/change.component'; //container component
-import { ChangeEmailComponent } from './account/change/change-email/change-email.component';
-import { ChangePasswordComponent } from './account/change/change-password/change-password.component';
-
-import { NotebooksListComponent } from './notebooks-list/notebooks-list.component';
-import { NotebooksComponent } from './notebooks-list/notebooks/notebooks.component';
-import { NotebookComponent } from './notebooks-list/notebooks/notebook/notebook.component';
-import { NotebookItemComponent } from './notebooks-list/notebook-item/notebook-item.component';
+import { QuillModule } from 'ngx-quill';
+import { AppMaterialModule } from '../shared/app-material.module';
 
 import { NbToolsComponent } from './nb-tools/nb-tools.component';
 import { DeleteComponent } from './nb-tools/delete/delete.component';
 import { CreateditComponent } from './nb-tools/create-edit/create-edit.component';
 
-import { AllNotesComponent } from './all-notes/all-notes.component';
-import { FavoritesComponent } from './favorites/favorites.component';
+import { TextEditorComponent } from './notes/components/text-editor/text-editor.component';
 
-import { NotesComponent } from './notes/notes.component';
-import { NoteComponent } from './notes/note/note.component';
-import { TextEditorComponent } from './nb-tools/text-editor/text-editor.component';
-
-import { QuillModule } from 'ngx-quill';
-import { AppMaterialModule } from '../shared/app-material.module';
 
 @NgModule({
   declarations: [
-    UserComponent,
-    UserNavComponent,
-    ChangeComponent,
-    ChangeEmailComponent,
-    ChangePasswordComponent,
-    NotebooksListComponent,
-    NotebooksComponent,
-    NotebookComponent,
     NbToolsComponent,
     CreateditComponent,
     DeleteComponent,
     TextEditorComponent,
-    AllNotesComponent,
-    FavoritesComponent,
-    NotesComponent,
-    NoteComponent,
-    NotebookItemComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    CoreRoutingModule,
+    FeatureRoutingModule,
     SharedModule,
     AppMaterialModule,
-    QuillModule
+    QuillModule,
+    AccountModule,
+    NotesModule,
   ],
   exports: [
-    NotebooksListComponent,
-    NotebooksComponent,
-    NotebookComponent,
     CreateditComponent,
     DeleteComponent,
     NbToolsComponent,
     TextEditorComponent,
-    NotesComponent,
-    NoteComponent,
-    NotebookItemComponent
   ]
 })
 export class FeatureModule { }

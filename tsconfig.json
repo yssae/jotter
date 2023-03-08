@@ -24,9 +24,10 @@
       "dom"
     ],
     "paths": {
-      "@jtr/shared": ["src/app/shared"],
       "@jtr/feature/*": ["src/app/feature/*"],
       "@jtr/feature/access": ["src/app/feature/access"],
+      "@jtr/shared": ["src/app/shared"],
+
     }
   },
   "angularCompilerOptions": {
