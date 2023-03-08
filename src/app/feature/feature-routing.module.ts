@@ -1,11 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserComponent } from '@jtr/feature/user';
-import { NotebooksListComponent } from './notebooks-list/notebooks-list.component';
-import { NotebookComponent } from './notebooks-list/notebooks/notebook/notebook.component';
-import { NotebooksComponent } from './notebooks-list/notebooks/notebooks.component';
-import { AllNotesComponent } from './user/pages/all-notes/all-notes.component';
-import { FavoritesComponent } from './user/pages/favorites/favorites.component';
+
 
 const routes: Routes = [
   {

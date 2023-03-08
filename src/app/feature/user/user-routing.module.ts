@@ -4,11 +4,6 @@ import { UserComponent } from '@jtr/feature/user';
 import { AllNotesComponent } from '@jtr/feature/user';
 import { FavoritesComponent } from '@jtr/feature/user';
 
-import { NotebooksListComponent } from '../notebooks-list/notebooks-list.component';
-import { NotebookComponent } from '../notebooks-list/notebooks/notebook/notebook.component';
-import { NotebooksComponent } from '../notebooks-list/notebooks/notebooks.component';
-
-
 const routes: Routes = [
   {
     path: '', //users
@@ -21,30 +16,7 @@ const routes: Routes = [
       },
       {
         path: 'notebooks',
-        component: NotebooksListComponent,
-        children: [
-          {
-            path:'',
-            redirectTo: 'list',
-            pathMatch: 'full',
-          },
-          {
-            path: 'list',
-            component: NotebooksComponent,
-            data: { type: 1 },
-          },
-          {
-            path: 'notebook',
-            component: NotebookComponent,
-            data: { type: 2 },
-          },
-          {
-            path: 'notebook/:id',
-            component: NotebookComponent,
-            data: { type: 2 }
-          }
-        ],
-        data: { type: 1 },
+        loadChildren: () => import('./../notebooks/notebooks.module').then(m => m.NotebooksModule)
       },
       {
         path: 'notes',

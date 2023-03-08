@@ -1,11 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { NbToolsComponent } from '../../nb-tools/nb-tools.component';
+import { NbToolsComponent } from '../../../nb-tools/nb-tools.component';
 import { MockNoteService } from 'src/app/mock/mock-note.service';
 import { Notebook } from 'src/app/shared/models/notebook.model';
 @Component({
-  selector: 'notebooks',
+  selector: 'jtr-notebooks',
   templateUrl: './notebooks.component.html',
   styleUrls: ['./notebooks.component.scss']
 })
