@@ -8,12 +8,9 @@ import { SharedModule } from '../shared/shared.module';
 import { AccountModule } from '@jtr/feature/account';
 import { NotesModule } from '@jtr/feature/notes';
 import { QuillModule } from 'ngx-quill';
-import { TextEditorComponent } from './notes/components/text-editor/text-editor.component';
 
 @NgModule({
-  declarations: [
-    TextEditorComponent,
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     RouterModule,
@@ -24,9 +21,6 @@ import { TextEditorComponent } from './notes/components/text-editor/text-editor.
     QuillModule,
     AccountModule,
     NotesModule,
-  ],
-  exports: [
-    TextEditorComponent,
   ]
 })
 export class FeatureModule { }
