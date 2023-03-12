@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 // import { TextEditorComponent } from '../text-editor/text-editor.component';
 // import { toolType } from 'src/app/_models/toolType';
 
-import { NbToolsComponent } from 'src/app/feature/nb-tools/nb-tools.component';
+import { NbToolsComponent } from '@jtr/feature/notebooks/pages/nb-tools/nb-tools.component';
 import { TextEditorComponent } from '@jtr/feature/notes/components/text-editor/text-editor.component';
 @Component({
   selector: 'note-filter',
