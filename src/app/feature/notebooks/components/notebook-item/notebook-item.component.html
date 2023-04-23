@@ -1,6 +1,6 @@
 <div class="container">
   <!-- to do: once clicked, redirect user to notebook -->
-  <div class="wrapper"(mouseenter)="onHover()" #notebookCover [style.background-image]="'url('+ notebookItem.cover +')'">
+  <div class="wrapper" (mouseenter)="onHover()" #notebookCover [style.background-image]="'url('+ notebookItem.cover +')'">
       <div class="cover-details" *ngIf="!triggerFx">
         <p class="title">{{ notebookItem.title | titlecase }}</p>
         <p class="date">{{ notebookItem?.updatedAt | date: 'longDate' }}</p>
