@@ -22,16 +22,19 @@ export class NoteComponent implements OnInit {
     this.content = this.htmlToText(this.note.content);
   }
 
-  openNote(id: string) {
-    this.dialog.open(TextEditorComponent, {id:'editor'});
+  openNote(id: string, note?: Note) {
+    this.dialog.open(TextEditorComponent, {
+      id:'editor',
+      data: note
+    });
   }
 
   htmlToText(content: string): string {
     let divElement = this.renderer.createElement('div');
     this.renderer.setProperty(divElement, 'innerHTML', content);
-    console.log(divElement);
-    console.log(divElement.textContent)
-    console.log(divElement.innerText)
+    // console.log(divElement);
+    // console.log(divElement.textContent)
+    // console.log(divElement.innerText)
     return divElement.textContent || divElement.innerText || '';
   }
 

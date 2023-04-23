@@ -6,16 +6,18 @@ import { AppMaterialModule } from 'src/app/shared/app-material.module';
 import { NotesComponent } from './pages/notes/notes.component';
 import { NoteComponent } from '@jtr/feature/notes';
 import { TextEditorComponent } from '@jtr/feature/notes';
+import { InvertColorDirective } from './directives/invert-color.directive';
 @NgModule({
   declarations: [
     NotesComponent,
     NoteComponent,
-    TextEditorComponent
+    TextEditorComponent,
+    InvertColorDirective
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    QuillModule,
+    QuillModule.forRoot(),
     AppMaterialModule
   ],
   exports: [

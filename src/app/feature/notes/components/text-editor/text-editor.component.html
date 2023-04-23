@@ -1,11 +1,15 @@
-<form class="container" [formGroup]="noteForm" (ngSubmit)="onSubmit(noteForm.value)">
+<form class="container" [formGroup]="noteForm" (ngSubmit)="onSubmit(noteForm.value)"
+  [style.background]="noteForm.get('background')?.value">
   <div class="header">
     <jtr-back-button mat-dialog-close></jtr-back-button>
-    <div><input id="title" type="text" formControlName="noteTitle"></div>
+    <div><input id="title" type="text" formControlName="title" jtrInvertColor
+        [bgColor]="noteForm.get('background')?.value"></div>
   </div>
 
   <div class="body">
-    <quill-editor [styles]="{height: '420px', border:'none'}" (onEditorChanged)="changedEditor($event)"></quill-editor>
+    <quill-editor #quillEditor [modules]="editorConfig" (onEditorChanged)="changedEditor($event)"
+      [styles]="{height: '420px', border:'none'}" jtrInvertColor [bgColor]="noteForm.get('background')?.value">
+    </quill-editor>
   </div>
 
   <div class="footer">
@@ -23,7 +27,8 @@
 
       <button><mat-icon>bookmark_border</mat-icon></button>
       <button (click)="openColorPicker($event)"><mat-icon>color_lens</mat-icon></button>
-      <input id='color-picker' type='color' #colorPicker formControlName="color" (change)="onColorChange(colorPicker.value)"/>
+      <input id='color-picker' type='color' #colorPicker formControlName="background"
+        (change)="onColorChange(colorPicker.value)" />
     </div>
   </div>
 </form>
