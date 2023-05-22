@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="dialog-img">
+    <img [src]="dialogData.image" [alt]="dialogData.alt">
+    <p class= "dialog-title"
+      [ngClass]="isSuccess() ? 'success' : 'fail'">
+        {{ dialogData.title | titlecase }}
+    </p>
+  </div>
+  <br>
+  <p class="dialog-message">{{ dialogData.message }}</p>
+  <br>
+  <button mat-flat-button mat-dialog-close>Close</button>
+</div>
+
+
+

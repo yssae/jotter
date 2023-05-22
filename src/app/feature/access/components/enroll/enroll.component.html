@@ -9,15 +9,15 @@
 
   <p class="register-option-spiel">or use your email to register</p>
 
-  <form [formGroup]="enrollForm" (ngSubmit)="onRegister(enrollForm.value)">
+  <form [formGroup]="enrollForm" (ngSubmit)="register(enrollForm)">
     <div class="field">
       <span>
         <img src="assets/images/account.png" alt="" id="user">
         <input type="text" placeholder="Username" formControlName="username">
-        <div *ngIf = "submitted && f['username'].errors?.['required']" class="field-error">
-          Field is required
-        </div>
       </span>
+      <p *ngIf = "submitted && f['username'].errors?.['required']" class="field-error">
+        Field is required
+      </p>
     </div>
 
     <div class="field">
@@ -25,24 +25,35 @@
         <img src="assets/images/Email Icon.png" alt="">
         <input type="email" placeholder="Email" id="email" formControlName="email" email>
       </span>
+      <div *ngIf = "submitted && f['email'].errors" class="field-error">
+        <p *ngIf="f['email'].errors['required']">Field is required</p>
+        <p *ngIf="f['email'].errors['email']">Invalid input</p>
+      </div>
     </div>
 
     <div class="field">
       <span>
         <img src="assets/images/Password Icon.png" alt="">
         <input formControlName="password" placeholder="Password" id="password" [type]="hide ? 'password' : 'text'">
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon><!-- to improve, make a shared component -->
       </span>
+      <p *ngIf = "submitted && f['password'].errors?.['required']" class="field-error">
+        Field is required
+      </p>
     </div>
 
     <div class="field">
       <span>
         <img src="assets/images/Password Icon.png" alt="">
-        <input type="password" placeholder="Confirm Password" formControlName="cpassword">
+        <input formControlName="cpassword" placeholder="Confirm Password" [type]="chide ? 'password' : 'text'">
         <mat-icon matSuffix (click)="chide = !chide">{{chide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </span>
+      <div *ngIf = "submitted && f['cpassword'].errors" class="field-error">
+        <p *ngIf="f['cpassword'].errors['required']">Field is required</p>
+        <p *ngIf="f['cpassword'].errors['mustMatch']">Passwords do not match</p>
+      </div>
     </div>
-
+    <br>
     <p>By creating account, you agree to all <br> Jotter's <a (click)="onOpenTC()">terms and conditions</a></p>
     <div class="register-button-wrapper"><button id="sign-in">REGISTER</button></div>
   </form>

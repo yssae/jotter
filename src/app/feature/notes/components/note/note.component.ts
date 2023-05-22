@@ -18,7 +18,6 @@ export class NoteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.note);
     this.content = this.htmlToText(this.note.content);
   }
 
@@ -32,9 +31,6 @@ export class NoteComponent implements OnInit {
   htmlToText(content: string): string {
     let divElement = this.renderer.createElement('div');
     this.renderer.setProperty(divElement, 'innerHTML', content);
-    // console.log(divElement);
-    // console.log(divElement.textContent)
-    // console.log(divElement.innerText)
     return divElement.textContent || divElement.innerText || '';
   }
 

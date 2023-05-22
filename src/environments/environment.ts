@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   version: 'v1',
   country: 'ph',
-  language: 'en'
+  language: 'en',
+  API_BASEURL: '',
 };
 
 /*

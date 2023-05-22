@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { AppMaterialModule } from './shared/app-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
+
+import { environment } from 'src/environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,12 @@ import { CoreModule } from './core/core.module';
     ReactiveFormsModule,
     CoreModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'API_BASEURL',
+      useValue: environment.API_BASEURL
+    }
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

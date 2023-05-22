@@ -57,7 +57,6 @@ h1 {
 
 form {
   p {
-    top: 5px;
     text-align: center;
     position: relative;
   }
@@ -79,8 +78,7 @@ form {
 
   .register-button-wrapper {
     width: 410px;
-    bottom: 50px;
-    position: absolute;
+    margin-top: 20px;
 
     button {
       width: 106px;
@@ -103,7 +101,6 @@ form {
 
   .field {
     margin: 8px auto;
-
     span {
       img {
         height: 22px;

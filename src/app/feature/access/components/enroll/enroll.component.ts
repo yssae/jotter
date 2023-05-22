@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { VericationComponent } from '@jtr/feature/access';
+import { JTRValidators } from '@jtr/shared';
 import { TermsAndConditionComponent } from '@jtr/feature/access';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { JtrDialogService } from '@jtr/shared';
+import { takeUntil, Subject } from 'rxjs';
 import { User } from '@jtr/shared';
 
 @Component({
@@ -11,7 +14,9 @@ import { User } from '@jtr/shared';
   templateUrl: './enroll.component.html',
   styleUrls: ['./enroll.component.scss']
 })
-export class EnrollComponent implements OnInit {
+export class EnrollComponent implements OnInit, OnDestroy {
+  @Output() toggle = new EventEmitter();
+  private ngStop$ = new Subject<boolean>();
   hide: boolean = true;
   chide: boolean = true;
   submitted: boolean = false;
@@ -21,67 +26,60 @@ export class EnrollComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private dialog: MatDialog,
-    private activatedroute:ActivatedRoute) { }
+    private auth: AuthService,
+    private route: ActivatedRoute,
+    private jtr: JtrDialogService) {
 
+    this.enrollForm = this.fb.group({
+      username: ['', Validators.required,],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      cpassword: ['', Validators.required],
+    },
+    {
+      validator: JTRValidators.mustMatch('password', 'cpassword')
+    });
+  }
 
   ngOnInit(): void {
-
-    this.activatedroute.data.subscribe(data => this.testRoute = data);
-    //alert(this.testRoute['onManualRedirect']);
-
-    /*
-      "username":"adrian",
-      "email":"test@test.com",
-      "password":"test3321
-    */
-    this.enrollForm = this.fb.group({
-      username: [
-        '',
-        Validators.required,
-      ],
-      email: [
-        '',
-        Validators.required,
-        Validators.email
-      ],
-      password:  [
-        '',
-        Validators.required,
-      ],
-      cpassword:  [
-        '',
-        Validators.required,
-      ],
-    });
-    this.hide =true;
-    console.log('hide', this.hide);
+    this.route.data
+      .pipe(takeUntil(this.ngStop$))
+      .subscribe(data => this.testRoute = data);
   }
 
+  register(enrollForm: FormGroup) {
+    this.submitted = true;
 
-  get f() {
-    return this.enrollForm.controls;
+    if (enrollForm.invalid) {
+      return;
+    }
+
+    this.auth.enroll(enrollForm.value)
+      .pipe(takeUntil(this.ngStop$))
+      .subscribe(() => {
+        this.jtr.success("Registration is successful, you may now login.");
+        this.switchToLogin();
+      })
   }
 
+  switchToLogin() {
+    this.toggle.emit();
+  }
 
   onOpenTC() {
     this.dialog.open(TermsAndConditionComponent);
   }
 
-
   isDirectlyAccessed() {
     return this.testRoute['onManualRedirect'];
   }
 
+  get f() {
+    return this.enrollForm.controls;
+  }
 
-  onRegister(enrollForm: User) {
-
-    this.submitted = true;
-
-    //this.access.onRegister(enrollForm); : { [key: string]: AbstractControl }
-    // TO DO: close dialog and redirect when verification is correct
-    this.dialog.open(VericationComponent, {
-      disableClose: true,
-      panelClass: 'jtr-dialog'
-    });
+  ngOnDestroy() {
+    this.ngStop$.next(true);
+    this.ngStop$.unsubscribe();
   }
 }

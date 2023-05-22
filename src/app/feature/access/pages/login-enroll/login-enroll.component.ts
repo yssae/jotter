@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { LoginEnrollAnimation } from './login-enroll.animation';
 @Component({
   selector: 'app-login-enroll',
@@ -21,9 +21,9 @@ export class LoginEnrollComponent implements OnInit {
   }
 
   onToggleSignUp() {
-    this.spielWrapperState == 'left' ? this.spielWrapperState = 'right' : this.spielWrapperState = "left";
-    this.formWrapperState == 'left' ? this.formWrapperState = 'right' : this.formWrapperState = "left";
-    this.loginState == true ? this.loginState = false : this.loginState = true;
+    this.spielWrapperState = this.spielWrapperState === 'left' ? 'right' : 'left';
+    this.formWrapperState = this.formWrapperState === 'left' ? 'right' : 'left';
+    this.loginState = !this.loginState;
   }
 
 }
