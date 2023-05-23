@@ -1,15 +1,12 @@
 <mat-drawer-container class="container" hasBackdrop=true>
   <mat-drawer mode="over" position="end" [opened]="drawerState" #sidenav>
     <jtr-back-button (click)="sidenav.close()"></jtr-back-button>
-
     <form>
       <div class="dp-ign">
         <img src="assets/images/User Account Link.png" alt="User Account">
-        <p>{{ username }}</p>
+        <p>{{ user.username }}</p>
       </div>
-
       <hr>
-
       <div class="field">
         <p>Email Address</p>
         <p>{{ user.email }}</p>
@@ -17,16 +14,14 @@
           <img src="assets/images/edit.png" alt="">
         </button>
       </div>
-
       <div class="field">
         <p>Password</p>
-        <p>{{ passwordMasked }}</p>
+        <p>••••••••••</p>
         <button (click)="onPassChange($event)">
           <img src="assets/images/edit.png" alt="">
         </button>
       </div>
     </form>
-
     <div class="logout">
       <button type="button" (click)="logout()">Sign Out</button>
     </div>

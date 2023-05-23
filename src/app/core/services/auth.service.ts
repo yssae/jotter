@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ENDPOINT } from 'src/app/shared/constants/endpoint.const';
+import { JTROUTES } from 'src/app/shared/constants/jtr-routes.const';
 import { JtrDialogService } from '@jtr/shared';
 import { User } from '@jtr/shared';
 import { catchError, first, map, tap } from 'rxjs/operators';
 import { throwError, Observable, BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +18,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
+    private router: Router,
     public jtr: JtrDialogService) {
       this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
       this.user = this.userSubject.asObservable();
@@ -45,6 +48,12 @@ export class AuthService {
         return throwError(error);
       })
     )
+  }
+
+  logout() {
+    localStorage.removeItem('user');
+    this.userSubject.next(null);
+    this.router.navigate([JTROUTES.LOGIN]);
   }
 
   public get userValue() {

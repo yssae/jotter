@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ChangeComponent } from '@jtr/feature/account';
-
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-user',
@@ -10,23 +10,23 @@ import { ChangeComponent } from '@jtr/feature/account';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  sideNavOpened:boolean;
-  username: string ="biggiebong13"
-  drawerState:boolean = false;
-  passwordMasked: string = '••••••••••';
+  drawerState: boolean = false;
+  sideNavOpened: boolean;
   user = {
-    'email': 'user@gmail.com'
+    'email': 'ysae@gmail.com',
+    'username': 'ysae',
   }
 
   constructor(
     private dialog: MatDialog,
-    private router: Router) { }
+    private auth: AuthService,
+    ) { }
 
   ngOnInit(): void {
   }
 
   logout() {
-    this.router.navigate(['auth'])
+    this.auth.logout();
   }
 
   onEmailChange(e: Event) {
