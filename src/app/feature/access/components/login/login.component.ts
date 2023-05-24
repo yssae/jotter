@@ -28,6 +28,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    if(this.auth.userValue) {
+      this.router.navigate([JTROUTES.USER_DASHBOARD]);
+    }
   }
 
   login() {
