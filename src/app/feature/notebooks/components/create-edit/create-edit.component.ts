@@ -1,6 +1,9 @@
 import { Component, OnInit, Renderer2, ElementRef, ViewChild, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NewNotebook, NotebookCover } from 'src/app/shared/models/notebook.model';
 import { Notebook } from 'src/app/shared/models/notebook.model';
+import { COVEROPTIONS } from 'src/app/shared/constants/cover-options.const';
+
 @Component({
   selector: 'create-edit',
   templateUrl: './create-edit.component.html',
@@ -9,32 +12,31 @@ import { Notebook } from 'src/app/shared/models/notebook.model';
 export class CreateditComponent implements OnInit {
   centered = true;
   unbounded = true;
-
   radius: number = 20;
   color: string = "rgb(51, 51, 51, 0.30)";
-
+  notebookCovers = COVEROPTIONS;
+  notebookForm: FormGroup;
   nbfxName: string;
+  @ViewChild('customUpload') customUpload: ElementRef;
+  @Input('headerTitle') headerTitle: ElementRef;
 
-  @ViewChild('cover') cover: ElementRef;
-  @ViewChild('customUpload') customUpload:ElementRef;
-
-  @Input('headerTitle') headerTitle:ElementRef;
-
-  constructor(
-    private renderer: Renderer2,
-    private elementRef: ElementRef) { }
+  constructor(private fb: FormBuilder) {
+    this.notebookForm = this.fb.group({
+      title: ['Untitled Notebook', Validators.required],
+      cover: [this.notebookCovers[0].src, Validators.required],
+      imageDescription: this.notebookCovers[0].alt,
+    })
+  }
 
   ngOnInit(): void {
   }
 
+  save() {
+    console.log(this.notebookForm.value)
+    if(this.notebookForm.invalid) {
+      return;
+    }
 
-  onUploadCustomCover(e:any) {
-    console.log('contents', e);
-    console.log(e.target.files[0]);
-    let fileInput = e.target.files[0];
-    const reader = new FileReader();
-    console.log(reader.readAsDataURL(fileInput))
-    //this.renderer.setStyle(this.cover.nativeElement, 'backgroundImage', );
   }
 
   onTriggerFileUpload() {
@@ -43,8 +45,7 @@ export class CreateditComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-   // this.renderer.setStyle(this.cover.nativeElement, 'background', 'yellow');
-    //this.renderer.setProperty(this.cover.nativeElement, 'innerHTML', '<p>Hello World<p>');
+
   }
 
 }

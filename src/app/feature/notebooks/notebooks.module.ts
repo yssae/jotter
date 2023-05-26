@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '@jtr/shared';
 import { AppMaterialModule } from 'src/app/shared/app-material.module';
@@ -23,6 +24,7 @@ import { NbToolsComponent } from '@jtr/feature/notebooks';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule,
     SharedModule,
     AppMaterialModule,
