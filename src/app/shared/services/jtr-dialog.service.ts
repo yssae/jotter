@@ -16,4 +16,8 @@ export class JtrDialogService {
   error(message?: string) {
     this.dialog.open(JtrDialogComponent, { data: { status: 'fail', message } });
   }
+
+  closeAll() {
+    this.dialog.closeAll();
+  }
 }

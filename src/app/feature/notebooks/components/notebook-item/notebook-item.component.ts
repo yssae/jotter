@@ -44,28 +44,30 @@ export class NotebookItemComponent implements OnInit {
     this.router.navigate([JTROUTES.NOTEBOOK], {queryParams: {id: notebookID}});
   }
 
-  editNotebook(notebookID: string) {
-    this.dialog.open(NbToolsComponent, {panelClass: 'jtr-dialog', data: {type: 'Edit', notebookID: notebookID}});
+  editNotebook(notebook: Notebook) {
+    this.dialog.open(NbToolsComponent, {panelClass: 'jtr-dialog', data: {type: 'Edit', notebook: notebook}});
   }
 
   deleteNotebook(notebookItem: Notebook) {
     this.dialog.open(NbToolsComponent, { panelClass: 'jtr-dialog', data: {type: 'Delete', notebookData: notebookItem}});
   }
 
-  onClick(index: number, notebookItem: Notebook) {
-    console.log(index);
+  selectTool(index: number, notebookItem: Notebook) {
     switch (index) {
       case 0 :
         this.openNotebook(notebookItem._id);
         break;
 
       case 1 :
-        this.editNotebook(notebookItem._id);
+        this.editNotebook(notebookItem);
         break;
 
       case 2 :
         this.deleteNotebook(notebookItem);
         break;
+
+      default :
+        this.openNotebook(notebookItem._id)
     }
   }
 }

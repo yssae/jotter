@@ -12,7 +12,7 @@ import { Notebook } from 'src/app/shared/models/notebook.model';
 export class NotebooksComponent implements OnInit {
   sideNavOpened: boolean;
   title: string = "Notebooks";
-  filterMenu = {
+  readonly filterMenu = {
     'search' : true,
     'addButton' : true,
     'title' : 'Notebook',
@@ -22,7 +22,9 @@ export class NotebooksComponent implements OnInit {
   notebooks : Notebook[];
   selectedNotebook: Notebook;
 
-  constructor(private noteService: MockNoteService,) { }
+  constructor(
+    private noteService: MockNoteService,
+    ) { }
 
   ngOnInit(): void {
     this.mapNotebooks();
