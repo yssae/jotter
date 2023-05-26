@@ -12,7 +12,7 @@ export interface NotebookCover {
   name: string,
   thumbnail: string,
   src: string,
-  alt?: string
+  alt: string
 }
 
 export interface NewNotebook {

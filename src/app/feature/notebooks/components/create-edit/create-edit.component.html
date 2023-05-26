@@ -20,7 +20,7 @@
           <li *ngFor="let cover of notebookCovers">
             <input type="radio" [id]="cover.name" formControlName="cover" [value]="cover.src">
             <label [for]="cover.name">
-              <img [src]="cover.thumbnail" [alt]="cover.alt" type="image">
+              <img [src]="cover.thumbnail" [alt]="cover.alt" type="image" [matTooltip]="cover.alt">
             </label>
           </li>
         </ul>
