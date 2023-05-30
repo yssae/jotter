@@ -1,27 +1,31 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NbToolsComponent } from '../../pages/nb-tools/nb-tools.component';
 import { MockNoteService } from 'src/app/mock/mock-note.service';
 import { Notebook } from 'src/app/shared/models/notebook.model';
 import { JTROUTES } from 'src/app/shared/constants/jtr-routes.const';
+import { takeUntil, Subject } from 'rxjs';
 
 @Component({
   selector: 'notebook-item',
   templateUrl: './notebook-item.component.html',
   styleUrls: ['./notebook-item.component.scss']
 })
-export class NotebookItemComponent implements OnInit {
-  notebookButtons = ['open_in_new', 'edit', 'delete_outline'];
-  color: string = "rgb(255, 255, 255, 0.30)";
+export class NotebookItemComponent implements OnInit, OnDestroy {
+  private ngStop$ = new Subject<boolean>();
 
-  toolType: any;
-  radius: number = 25;
-  centered: boolean = true;
-  unbounded: boolean = true;
-  triggerFx: boolean = false;
+  readonly notebookButtons = ['open_in_new', 'edit', 'delete_outline'];
+  readonly color: string = "rgb(255, 255, 255, 0.30)";
+  readonly centered: boolean = true;
+  readonly unbounded: boolean = true;
+  readonly radius: number = 25;
 
   @Input() notebookItem: Notebook;
+
+  toolType: number = 0;
+  triggerFx: boolean = false;
+
 
   constructor(
     private dialog: MatDialog,
@@ -31,17 +35,21 @@ export class NotebookItemComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(data => {
-      this.toolType = data;
+    this.activatedRoute.data
+    .pipe(takeUntil(this.ngStop$))
+    .subscribe((data: any) => {
+      this.toolType = data.type;
     });
+
+    console.log(this.notebookItem)
   }
 
   onHover() {
     this.triggerFx = this.triggerFx ? false : true;
   }
 
-  openNotebook(notebookID: string) {
-    this.router.navigate([JTROUTES.NOTEBOOK], {queryParams: {id: notebookID}});
+  openNotebook(notebook: Notebook) {
+    this.router.navigateByUrl(JTROUTES.NOTEBOOK + notebook._id, { state: notebook })
   }
 
   editNotebook(notebook: Notebook) {
@@ -55,7 +63,7 @@ export class NotebookItemComponent implements OnInit {
   selectTool(index: number, notebookItem: Notebook) {
     switch (index) {
       case 0 :
-        this.openNotebook(notebookItem._id);
+        this.openNotebook(notebookItem);
         break;
 
       case 1 :
@@ -67,7 +75,12 @@ export class NotebookItemComponent implements OnInit {
         break;
 
       default :
-        this.openNotebook(notebookItem._id)
+        this.openNotebook(notebookItem)
     }
+  }
+
+  ngOnDestroy(): void {
+    this.ngStop$.next(true);
+    this.ngStop$.unsubscribe();
   }
 }

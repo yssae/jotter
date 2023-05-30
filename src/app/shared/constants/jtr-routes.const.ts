@@ -8,7 +8,7 @@ export const JTROUTES = {
   RESET_PASSWORD: '/auth/reset-password/:id',
   USER_DASHBOARD : '/user',
   NOTEBOOKS_LIST: '/user/notebooks/list',
-  NOTEBOOK: '/user/notebooks/notebook',
+  NOTEBOOK: '/user/notebooks/notebook/',
   ALL_NOTES: '/user/notes',
   FAVORITES: '/user/favorites',
 }

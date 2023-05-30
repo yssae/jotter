@@ -19,12 +19,8 @@ export class NbToolsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialog: MatDialog,
     private activatedRoute: ActivatedRoute) {
-
       this.headerTitle = data.type;
       this.selectedNotebook = data.notebookData;
-
-      console.log(this.headerTitle);
-      console.log('data', data.notebookData);
     }
 
   ngOnInit(): void {

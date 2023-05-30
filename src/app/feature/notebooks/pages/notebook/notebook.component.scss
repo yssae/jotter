@@ -28,3 +28,16 @@ ul{
     min-width: 288px;
   }
 }
+
+.no-content {
+  height: 100%;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 400;
+  font-style: italic;
+  color: #ccc;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
