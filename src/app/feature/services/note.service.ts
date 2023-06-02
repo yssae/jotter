@@ -20,10 +20,13 @@ export class NoteService {
     const url = environment.API_BASEURL + ENDPOINT.CREATE_NOTE;
     return this.http.post(url, note)
       .pipe(
-        map((response) => console.log(response))
+        // tap((response) => console.log(response)),
+        map((response: any) => response && response.status === 'success' ? true : false),
+        catchError(error => {
+            this.jtr.error();
+            return throwError(error);
+        })
       )
-      .subscribe()
-
   }
 
   fetchNotes(notebookID: any) {

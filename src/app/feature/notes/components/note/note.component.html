@@ -1,8 +1,12 @@
 <div class="wrapper" (click)="openNote(note._id, note)"
   [style.background-color]="note.background"
-  jtrInvertColor bgColor="{{note.background}}">
-  <p><b>{{ note.title }}</b><br>{{ content }}</p>
+  jtrInvertColor bgColor="{{note.background }}">
+  <p>
+    <b>{{ note.title }}</b>
+    <br>
+    <span class="content-wrapper">{{ content }}</span>
+  </p>
   <div class="thumbnail">
-    <p class="date">{{ note?.updatedAt }}</p>
+    <p class="date">{{ note?.createdAt | date: 'longDate'}}</p>
   </div>
 </div>

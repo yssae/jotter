@@ -1,34 +1,44 @@
-<form class="container" [formGroup]="noteForm" (ngSubmit)="onSubmit(noteForm.value)"
-  [style.background]="noteForm.get('background')?.value">
+<form class="container" [formGroup]="noteForm" (ngSubmit)="save()" [style.background]="background">
   <div class="header">
     <jtr-back-button mat-dialog-close></jtr-back-button>
-    <div><input id="title" type="text" formControlName="title" jtrInvertColor
-        [bgColor]="noteForm.get('background')?.value"></div>
+    <div>
+      <input type="text" formControlName="title" jtrInvertColor [bgColor]="background" id="title">
+    </div>
   </div>
-
   <div class="body">
-    <quill-editor #quillEditor [modules]="editorConfig" (onEditorChanged)="changedEditor($event)"
-      [styles]="{height: '420px', border:'none'}" jtrInvertColor [bgColor]="noteForm.get('background')?.value">
+    <quill-editor
+      #quillEditor
+      [modules]="editorConfig"
+      [styles]="{height: '420px', border:'none'}"
+      [bgColor]="background" jtrInvertColor
+      (onEditorChanged)="changedEditor($event)">
     </quill-editor>
   </div>
-
-  <div class="footer">
+  <div class="footer" >
     <div class="wrap">
-      <button><mat-icon>delete</mat-icon></button>
-      <button><mat-icon>save</mat-icon></button>
+      <button jtrInvertColor [bgColor]="background"><mat-icon>delete</mat-icon></button>
+      <button jtrInvertColor [bgColor]="background" type="submit"><mat-icon>save</mat-icon></button>
 
-      <div class="divider"></div>
+      <!-- <div class="divider" jtrInvertColor [bgColor]="background"></div> -->
 
-      <button><mat-icon>print</mat-icon></button>
-      <button><mat-icon>move_to_inbox</mat-icon></button>
-      <button><mat-icon>file_copy</mat-icon></button>
+      <button (click)="print()" type="button" jtrInvertColor [bgColor]="background"><mat-icon>print</mat-icon></button>
 
-      <div class="divider"></div>
+      <!-- NOTE: No fx in BE to support this fx at the moment -->
+      <!-- <button type="button" jtrInvertColor [bgColor]="background"><mat-icon>move_to_inbox</mat-icon></button>
+      <button type="button" jtrInvertColor [bgColor]="background"><mat-icon>file_copy</mat-icon></button> -->
 
-      <button><mat-icon>bookmark_border</mat-icon></button>
-      <button (click)="openColorPicker($event)"><mat-icon>color_lens</mat-icon></button>
-      <input id='color-picker' type='color' #colorPicker formControlName="background"
-        (change)="onColorChange(colorPicker.value)" />
+      <!-- <div class="divider" jtrInvertColor [bgColor]="background"></div> -->
+
+      <button (click)="bookmark()" type="button" jtrInvertColor [bgColor]="background"><mat-icon>bookmark_border</mat-icon></button>
+      <button (click)="openColorPicker($event)" type="button" jtrInvertColor [bgColor]="background"><mat-icon>color_lens</mat-icon></button>
+
+      <input
+        matRipple
+        type='color'
+        formControlName="background"
+        (change)="onColorChange(colorPicker.value)"
+        jtrInvertColor [bgColor]="background"
+        id='color-picker' #colorPicker/>
     </div>
   </div>
 </form>

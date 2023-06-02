@@ -1,7 +1,7 @@
 <div class="container">
   <div class="notebook-head">
     <jtr-back-button [path]="'/user'" class="back-button"></jtr-back-button>
-    <note-filter [pageTitle]="notebook.title" [filterMenu]="filterMenu" class="filter"></note-filter>
+    <note-filter [pageTitle]="notebook.title" [filterMenu]="filterMenu" [notebookID]="currentNbID" class="filter"></note-filter>
   </div>
   <!-- to do: loop thru avail notes of notebook -->
   <!-- to do: note is clickable, once click, open text editor containing note -->

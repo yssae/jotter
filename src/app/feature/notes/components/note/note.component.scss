@@ -31,4 +31,13 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.content-wrapper {
+  font-size: 15px;
+  line-height: 20px;
+  width: 90%;
+  margin:auto;
 }

@@ -1,10 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-// import { NbToolsComponent } from '../nb-tools/nb-tools.component';
-// import { TextEditorComponent } from '../text-editor/text-editor.component';
-// import { toolType } from 'src/app/_models/toolType';
-
 import { NbToolsComponent } from '@jtr/feature/notebooks/pages/nb-tools/nb-tools.component';
 import { TextEditorComponent } from '@jtr/feature/notes/components/text-editor/text-editor.component';
 @Component({
@@ -17,6 +13,7 @@ export class NoteFilterComponent implements OnInit {
 
   @Input() pageTitle: string;
   @Input() filterMenu: any;
+  @Input() notebookID: string | null;
 
   constructor(
     private dialog: MatDialog,
@@ -25,6 +22,7 @@ export class NoteFilterComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(data => {
+      console.log(data)
       this.toolType = data;
     });
   }
@@ -46,7 +44,7 @@ export class NoteFilterComponent implements OnInit {
     }
 
     if(this.toolType.type == 2){
-      this.dialog.open(TextEditorComponent,{id:'editor'});
+      this.dialog.open(TextEditorComponent,{ id:'editor' , data: this.notebookID});
     }
   }
 }

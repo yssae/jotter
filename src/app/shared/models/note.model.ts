@@ -5,6 +5,7 @@ export interface Note {
   delta?: any,
   content: string,
   background?: string,
+  bookmarked?: boolean,
   images?: [
     {
       name?: string,

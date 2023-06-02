@@ -33,6 +33,7 @@
     border: none;
     font-family: 'Raleway', 'Roboto';
     font-weight: 500;
+    outline: transparent;
   }
 
   input:focus{
@@ -70,11 +71,10 @@
   margin: auto !important;
   position: absolute;
   background: none;
-  border: 1px solid #C4C4C4;
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  border: 1px solid #333;
+  border-top: 0.25px solid #C4C4C4;
   .wrap {
     width: fit-content;
     margin: auto;
@@ -92,15 +92,13 @@
     border: transparent;
     mat-icon {
       font-size: 35px;
-      color: #333;
     }
   }
 
   .divider {
     width: 0;
     height: 39px;
-    border: 1px solid #000000;
-    background-color: #000000;
+    border: 0.5px solid;
     margin: auto 20px;
   }
 }

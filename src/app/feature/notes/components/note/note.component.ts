@@ -23,8 +23,8 @@ export class NoteComponent implements OnInit {
 
   openNote(id: string, note?: Note) {
     this.dialog.open(TextEditorComponent, {
-      id:'editor',
-      data: note
+      id: "editor",
+      data: { note: note }
     });
   }
 
