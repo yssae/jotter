@@ -56,6 +56,33 @@ export class AuthService {
     this.router.navigate([JTROUTES.LOGIN]);
   }
 
+  isTokenExpired(): boolean {
+    const token = this.getToken();
+    if (!token) {
+      // Token not found, consider it expired
+      return true;
+    }
+
+    const tokenData = this.parseToken(token);
+    const currentTime = Date.now() / 1000; // Convert to seconds
+
+    return tokenData.exp < currentTime;
+  }
+
+  private parseToken(token: string): string | any {
+    const base64URL = token.split('.')[1];
+    const base64 = base64URL.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+  }
+
+  private getToken(): string | null {
+    return localStorage.getItem('user');
+  }
+
   public get userValue() {
     return this.userSubject.value;
   }

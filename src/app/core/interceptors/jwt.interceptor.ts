@@ -18,6 +18,10 @@ export class JwtInterceptor implements HttpInterceptor {
     const user = this.auth.userValue;
     const isAPIURL = request.url.startsWith(environment.API_BASEURL);
 
+    if(this.auth.isTokenExpired()) {
+      this.auth.logout();
+    }
+
     if(user && isAPIURL) {
       request = request.clone({
         setHeaders: {
