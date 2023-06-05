@@ -11,8 +11,8 @@ import { TextEditorComponent } from '@jtr/feature/notes/components/text-editor/t
 export class NoteFilterComponent implements OnInit {
   toolType: any;
 
-  @Input() pageTitle: string;
   @Input() filterMenu: any;
+  @Input() pageTitle: string = "";
   @Input() notebookID: string | null;
 
   constructor(

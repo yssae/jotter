@@ -28,7 +28,7 @@ export class NotebookComponent implements OnInit {
 
   noteEntries: Note[];
   notebook: Notebook;
-  currentNbID: string | null = '';
+  currentNbID: string | null = "";
 
   constructor(
     private dialog: MatDialog,
@@ -36,15 +36,14 @@ export class NotebookComponent implements OnInit {
     private route: ActivatedRoute,
     private noteService: NoteService,
     private location: Location,
-    private notebookService: NotebookService,
-    private mockNoteService: MockNoteService) {
+    private notebookService: NotebookService,) {
 
     }
 
 
   ngOnInit(): void {
-    this.mapNotebook(this.location.getState());
     this.currentNbID = this.route.snapshot.paramMap.get('id');
+    this.mapNotebook(this.location.getState());
     this.mapNoteEntries();
   }
 
@@ -53,13 +52,6 @@ export class NotebookComponent implements OnInit {
   }
 
   mapNoteEntries() {
-    // this.mockNoteService.getNotes()
-    //   .pipe(takeUntil(this.ngUnsubscribe))
-    //   .subscribe(data => {
-    //     //console.log(data);
-    //     this.noteEntries = data;
-    //   });
-
     this.noteService.fetchNotes(this.currentNbID)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(data => {

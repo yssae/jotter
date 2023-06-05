@@ -41,9 +41,9 @@ export class NotebookService {
   }
 
   fetchNotebookDetails(notebookID: string) {
-    const url = environment.API_BASEURL + ENDPOINT.NOTEBOOK;
-    const nbParams = new HttpParams().append('id', notebookID);
-    return this.http.get(url, { params: nbParams }).pipe(
+    const url = environment.API_BASEURL + ENDPOINT.NOTEBOOK + notebookID;
+    return this.http.get(url).pipe(
+      map((response: any) => response.data),
       catchError(error => {
         this.jtr.error();
         return throwError(error);
