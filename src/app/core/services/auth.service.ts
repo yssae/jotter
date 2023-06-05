@@ -17,12 +17,13 @@ export class AuthService {
   public user: Observable<User | null>;
 
   constructor(
-    private http: HttpClient,
     private router: Router,
-    public jtr: JtrDialogService) {
+    private http: HttpClient,
+    public jtr: JtrDialogService
+  ) {
       this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
       this.user = this.userSubject.asObservable();
-    }
+  }
 
   enroll(user: User) {
     const url = environment.API_BASEURL + ENDPOINT.REGISTER;
@@ -50,7 +51,7 @@ export class AuthService {
     )
   }
 
-  logout() {
+  logout(): void {
     localStorage.removeItem('user');
     this.userSubject.next(null);
     this.router.navigate([JTROUTES.LOGIN]);
@@ -65,17 +66,18 @@ export class AuthService {
 
     const tokenData = this.parseToken(token);
     const currentTime = Date.now() / 1000; // Convert to seconds
-
     return tokenData.exp < currentTime;
   }
 
-  private parseToken(token: string): string | any {
+  private parseToken(token: string) {
     const base64URL = token.split('.')[1];
     const base64 = base64URL.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-
+    const jsonPayload = decodeURIComponent(
+      window.atob(base64)
+        .split('')
+        .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+        .join('')
+    );
     return JSON.parse(jsonPayload);
   }
 
@@ -83,7 +85,8 @@ export class AuthService {
     return localStorage.getItem('user');
   }
 
-  public get userValue() {
+
+  public get userValue(): User | null {
     return this.userSubject.value;
   }
 
