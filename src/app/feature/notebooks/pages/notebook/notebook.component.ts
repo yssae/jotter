@@ -2,8 +2,6 @@ import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TextEditorComponent } from '@jtr/feature/notes/components/text-editor/text-editor.component';
 import { ActivatedRoute, Router } from '@angular/router';
-
-import { MockNoteService } from 'src/app/mock/mock-note.service';
 import { Note } from 'src/app/shared/models/note.model';
 import { Subject, takeUntil } from 'rxjs';
 import { Notebook } from 'src/app/shared/models/notebook.model';
@@ -16,7 +14,7 @@ import { NotebookService } from '@jtr/feature/services/notebook.service';
   templateUrl: './notebook.component.html',
   styleUrls: ['./notebook.component.scss']
 })
-export class NotebookComponent implements OnInit {
+export class NotebookComponent implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject();
 
   readonly filterMenu = {
@@ -52,6 +50,7 @@ export class NotebookComponent implements OnInit {
   }
 
   mapNoteEntries() {
+    console.log('map entries')
     this.noteService.fetchNotes(this.currentNbID)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(data => {

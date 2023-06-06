@@ -4,7 +4,7 @@ import { JtrDialogService } from '@jtr/shared';
 import { environment } from 'src/environments/environment';
 import { ENDPOINT } from 'src/app/shared/constants/endpoint.const';
 import { Note } from 'src/app/shared/models/note.model';
-import { map, tap, filter, catchError, throwError } from 'rxjs';
+import { Subject, map, tap, filter, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,16 +17,27 @@ export class NoteService {
   ) { }
 
   createNote(note: Note) {
-    const url = environment.API_BASEURL + ENDPOINT.CREATE_NOTE;
+    const url = environment.API_BASEURL + ENDPOINT.NOTES;
     return this.http.post(url, note)
       .pipe(
-        // tap((response) => console.log(response)),
         map((response: any) => response && response.status === 'success' ? true : false),
         catchError(error => {
             this.jtr.error();
             return throwError(error);
         })
       )
+  }
+
+  updateNote(note: Note, id: string) {
+    const url = environment.API_BASEURL + ENDPOINT.NOTES + id;
+    return this.http.put(url, note)
+      .pipe(
+        map((response: any) => response && response.status === 'success' ? true : false),
+        catchError(error => {
+          this.jtr.error();
+          return throwError(error);
+      })
+    )
   }
 
   fetchNotes(notebookID: any) {

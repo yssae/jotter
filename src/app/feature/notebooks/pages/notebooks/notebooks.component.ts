@@ -16,7 +16,7 @@ export class NotebooksComponent implements OnInit, OnDestroy {
     'sort' : true
   }
 
-  private ngStop$ = new Subject<boolean>();
+  private ngUnsubscribe = new Subject<boolean>();
 
   sideNavOpened: boolean;
   title: string = "Notebooks";
@@ -36,13 +36,13 @@ export class NotebooksComponent implements OnInit, OnDestroy {
 
   mapNotebooks() {
     // this.mocknoteService.getNotebooks()
-    // .pipe(takeUntil(this.ngStop$))
+    // .pipe(takeUntil(this.ngUnsubscribe))
     // .subscribe(data => {
     //   this.notebooks = data;
     // });
 
     this.notebookService.fetchNotebooks()
-    .pipe(takeUntil(this.ngStop$))
+    .pipe(takeUntil(this.ngUnsubscribe))
     .subscribe((notebooks: any) => {
       this.notebooks = notebooks
       // console.log(notebooks)
@@ -51,8 +51,8 @@ export class NotebooksComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.ngStop$.next(true);
-    this.ngStop$.unsubscribe();
+    this.ngUnsubscribe.next(true);
+    this.ngUnsubscribe.unsubscribe();
   }
 
 }

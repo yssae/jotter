@@ -12,16 +12,16 @@
 p {
   padding: 15px 20px;
   margin: auto;
-  height: 50%;
+  height: 80%;
   box-sizing: border-box;
   overflow: hidden;
 }
 
 .thumbnail {
-  height: 50%;
+  height: 20%;
   box-sizing: border-box;
   background-size: cover;
-  background-image: url("../../../../../assets/images/thumbnail-sample.png");
+  //background-image: url("../../../../../assets/images/thumbnail-sample.png");
 }
 
 .date {
@@ -37,7 +37,8 @@ p {
 
 .content-wrapper {
   font-size: 15px;
-  line-height: 20px;
+  line-height: 24px;
+  letter-spacing: 0.7px;
   width: 90%;
   margin:auto;
 }

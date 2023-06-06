@@ -1,8 +1,8 @@
 <div class="wrapper" (click)="openNote(note._id, note)"
   [style.background-color]="note.background"
-  jtrInvertColor bgColor="{{note.background }}">
+  jtrInvertColor bgColor="{{ note.background }}">
   <p>
-    <b>{{ note.title }}</b>
+    <b>{{ note.title | titlecase }}</b>
     <br>
     <span class="content-wrapper">{{ content }}</span>
   </p>
