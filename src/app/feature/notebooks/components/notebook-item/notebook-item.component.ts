@@ -13,7 +13,7 @@ import { takeUntil, Subject } from 'rxjs';
   styleUrls: ['./notebook-item.component.scss']
 })
 export class NotebookItemComponent implements OnInit, OnDestroy {
-  private ngStop$ = new Subject<boolean>();
+  private ngUnsubscribe = new Subject<boolean>();
 
   readonly notebookButtons = ['open_in_new', 'edit', 'delete_outline'];
   readonly color: string = "rgb(255, 255, 255, 0.30)";
@@ -36,7 +36,7 @@ export class NotebookItemComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.activatedRoute.data
-    .pipe(takeUntil(this.ngStop$))
+    .pipe(takeUntil(this.ngUnsubscribe))
     .subscribe((data: any) => {
       this.toolType = data.type;
     });
@@ -80,7 +80,7 @@ export class NotebookItemComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.ngStop$.next(true);
-    this.ngStop$.unsubscribe();
+    this.ngUnsubscribe.next(true);
+    this.ngUnsubscribe.unsubscribe();
   }
 }

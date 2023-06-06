@@ -16,7 +16,7 @@ import { User } from '@jtr/shared';
 })
 export class EnrollComponent implements OnInit, OnDestroy {
   @Output() toggle = new EventEmitter();
-  private ngStop$ = new Subject<boolean>();
+  private ngUnsubscribe = new Subject<boolean>();
   hide: boolean = true;
   chide: boolean = true;
   submitted: boolean = false;
@@ -43,7 +43,7 @@ export class EnrollComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.data
-      .pipe(takeUntil(this.ngStop$))
+      .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(data => this.testRoute = data);
   }
 
@@ -55,7 +55,7 @@ export class EnrollComponent implements OnInit, OnDestroy {
     }
 
     this.auth.enroll(enrollForm.value)
-      .pipe(takeUntil(this.ngStop$))
+      .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(() => {
         this.jtr.success("Registration is successful, you may now login.");
         this.switchToLogin();
@@ -79,7 +79,7 @@ export class EnrollComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.ngStop$.next(true);
-    this.ngStop$.unsubscribe();
+    this.ngUnsubscribe.next(true);
+    this.ngUnsubscribe.unsubscribe();
   }
 }

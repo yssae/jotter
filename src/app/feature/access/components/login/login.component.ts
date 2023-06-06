@@ -12,7 +12,7 @@ import { Subject } from 'rxjs';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  private ngStop$ = new Subject<boolean>();
+  private ngUnsubscribe = new Subject<boolean>();
   loginForm: FormGroup;
   submitted: boolean = false;
 
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     this.auth.login(this.loginForm.value)
-      .pipe(takeUntil(this.ngStop$))
+      .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(() => this.router.navigate([JTROUTES.USER_DASHBOARD]));
   }
 
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.ngStop$.next(true);
-    this.ngStop$.unsubscribe();
+    this.ngUnsubscribe.next(true);
+    this.ngUnsubscribe.unsubscribe();
   }
 }

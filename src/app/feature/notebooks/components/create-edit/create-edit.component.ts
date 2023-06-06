@@ -19,7 +19,7 @@ export class CreateditComponent implements OnInit {
   readonly radius: number = 20;
   readonly color: string = "rgb(51, 51, 51, 0.30)";
 
-  private ngStop$ = new Subject<boolean>();
+  private ngUnsubscribe = new Subject<boolean>();
 
   @ViewChild('customUpload') customUpload: ElementRef;
   @Input('headerTitle') headerTitle: string;
@@ -56,7 +56,7 @@ export class CreateditComponent implements OnInit {
     }
 
     this.notebookService.createNotebook(this.notebookForm.value)
-      .pipe(takeUntil(this.ngStop$))
+      .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(() => this.jtr.closeAll());
   }
 
@@ -65,8 +65,8 @@ export class CreateditComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.ngStop$.next(true);
-    this.ngStop$.unsubscribe();
+    this.ngUnsubscribe.next(true);
+    this.ngUnsubscribe.unsubscribe();
   }
 
 }
