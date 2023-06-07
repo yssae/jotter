@@ -4,7 +4,7 @@ import { JtrDialogService } from '@jtr/shared';
 import { environment } from 'src/environments/environment';
 import { ENDPOINT } from 'src/app/shared/constants/endpoint.const';
 import { Note } from 'src/app/shared/models/note.model';
-import { Subject, map, tap, filter, catchError, throwError } from 'rxjs';
+import { map, tap, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

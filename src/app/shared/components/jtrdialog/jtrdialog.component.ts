@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { dialog } from '../../models/dialog.model';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+
 @Component({
   selector: 'jtr-dialog',
   templateUrl: './jtrdialog.component.html',
@@ -22,9 +23,7 @@ export class JtrDialogComponent implements OnInit {
     message: `An error occured while processing your request. Kindly try again later. If issue persists, you may contact us at support@jotter.com.`,
   }
 
-  constructor(
-    private dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: dialog,) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: dialog,) {
       this.mapDialogData(data);
     }
 
@@ -32,7 +31,7 @@ export class JtrDialogComponent implements OnInit {
 
   }
 
-  mapDialogData(data: dialog) {
+  mapDialogData(data: dialog): void {
     this.dialogData = {
       ...data,
       ...(data.status === 'success' ? this.successDialog : this.errorDialog),
@@ -43,9 +42,5 @@ export class JtrDialogComponent implements OnInit {
   isSuccess(): boolean {
     return this.dialogData.status == "success" ? true : false;
   }
-
-
-
-
 
 }

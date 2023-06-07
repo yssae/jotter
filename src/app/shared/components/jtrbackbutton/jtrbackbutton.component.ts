@@ -6,14 +6,15 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./jtrbackbutton.component.scss']
 })
 export class JtrbackbuttonComponent implements OnInit {
-  centered : boolean = true;
-  unbounded : boolean = false;
-  color: string = "rgb(35, 59, 85, 0.8)"
+  readonly centered : boolean = true;
+  readonly unbounded : boolean = false;
+  readonly color: string = "rgb(35, 59, 85, 0.8)"
+
+  @Input() path: string;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  @Input() path: string;
 }

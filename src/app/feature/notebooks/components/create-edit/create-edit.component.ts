@@ -1,25 +1,26 @@
-import { Component, OnInit, ElementRef, ViewChild, Input, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild, Input, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { COVEROPTIONS } from 'src/app/shared/constants/cover-options.const';
-import { NotebookService } from '@jtr/feature/services/notebook.service';
+
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { takeUntil, Subject } from 'rxjs';
+
+import { NotebookService } from '@jtr/feature/services/notebook.service';
 import { JtrDialogService } from '@jtr/shared';
 import { Notebook } from 'src/app/shared/models/notebook.model';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { COVEROPTIONS } from 'src/app/shared/constants/cover-options.const';
 
 @Component({
   selector: 'create-edit',
   templateUrl: './create-edit.component.html',
   styleUrls: ['./create-edit.component.scss']
 })
-export class CreateditComponent implements OnInit {
+export class CreateditComponent implements OnInit, OnDestroy {
+  private ngUnsubscribe = new Subject<boolean>();
+
   readonly centered: boolean = true;
   readonly unbounded: boolean = true;
-
   readonly radius: number = 20;
   readonly color: string = "rgb(51, 51, 51, 0.30)";
-
-  private ngUnsubscribe = new Subject<boolean>();
 
   @ViewChild('customUpload') customUpload: ElementRef;
   @Input('headerTitle') headerTitle: string;
@@ -44,11 +45,16 @@ export class CreateditComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  mapExistingNotebook(notebook: Notebook) {
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next(true);
+    this.ngUnsubscribe.unsubscribe();
+  }
+
+  mapExistingNotebook(notebook: Notebook): void {
     console.log(notebook)
   }
 
-  save() {
+  save(): void {
     //Patch Nb Deets not available in Backend
     if(this.notebookForm.invalid || this.headerTitle === 'Edit') {
       this.jtr.error();
@@ -60,13 +66,12 @@ export class CreateditComponent implements OnInit {
       .subscribe(() => this.jtr.closeAll());
   }
 
-  onTriggerFileUpload() {
+  onTriggerFileUpload(): void {
     this.customUpload.nativeElement.click();
   }
 
-  ngOnDestroy(): void {
-    this.ngUnsubscribe.next(true);
-    this.ngUnsubscribe.unsubscribe();
+  get cover(): string {
+    return this.notebookForm.get('cover')?.value
   }
 
 }

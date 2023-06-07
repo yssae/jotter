@@ -1,8 +1,11 @@
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
+
+import { takeUntil, Subject } from 'rxjs';
+
 import { NotebookService } from '@jtr/feature/services/notebook.service';
 import { MockNoteService } from 'src/app/mock/mock-note.service';
 import { Notebook } from 'src/app/shared/models/notebook.model';
-import { takeUntil, Subject } from 'rxjs';
+
 @Component({
   selector: 'jtr-notebooks',
   templateUrl: './notebooks.component.html',
@@ -34,6 +37,11 @@ export class NotebooksComponent implements OnInit, OnDestroy {
     console.log(this.notebooks)
   }
 
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next(true);
+    this.ngUnsubscribe.unsubscribe();
+  }
+
   mapNotebooks() {
     // this.mocknoteService.getNotebooks()
     // .pipe(takeUntil(this.ngUnsubscribe))
@@ -48,11 +56,6 @@ export class NotebooksComponent implements OnInit, OnDestroy {
       // console.log(notebooks)
       // this.notebooks = this.notebooks.concat(notebooks);
     });;
-  }
-
-  ngOnDestroy(): void {
-    this.ngUnsubscribe.next(true);
-    this.ngUnsubscribe.unsubscribe();
   }
 
 }

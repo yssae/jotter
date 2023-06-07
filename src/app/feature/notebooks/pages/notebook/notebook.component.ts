@@ -1,13 +1,15 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { TextEditorComponent } from '@jtr/feature/notes/components/text-editor/text-editor.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Note } from 'src/app/shared/models/note.model';
-import { Subject, takeUntil } from 'rxjs';
-import { Notebook } from 'src/app/shared/models/notebook.model';
-import { NoteService } from '@jtr/feature/services/note.service';
 import { Location } from '@angular/common';
+
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Subject, takeUntil } from 'rxjs';
+
+import { NoteService } from '@jtr/feature/services/note.service';
 import { NotebookService } from '@jtr/feature/services/notebook.service';
+import { TextEditorComponent } from '@jtr/feature/notes';
+import { Notebook } from 'src/app/shared/models/notebook.model';
+import { Note } from 'src/app/shared/models/note.model';
 
 @Component({
   selector: 'notebook',
@@ -45,12 +47,16 @@ export class NotebookComponent implements OnInit, OnDestroy {
     this.mapNoteEntries();
   }
 
+  ngOnDestroy() {
+    this.ngUnsubscribe.next(true);
+    this.ngUnsubscribe.unsubscribe();
+  }
+
   openNote() {
     this.dialog.open(TextEditorComponent)
   }
 
   mapNoteEntries() {
-    console.log('map entries')
     this.noteService.fetchNotes(this.currentNbID)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(data => {
@@ -70,8 +76,4 @@ export class NotebookComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
-    this.ngUnsubscribe.next(true);
-    this.ngUnsubscribe.unsubscribe();
-  }
 }

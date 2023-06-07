@@ -40,8 +40,11 @@ export class NotebookItemComponent implements OnInit, OnDestroy {
     .subscribe((data: any) => {
       this.toolType = data.type;
     });
+  }
 
-    console.log(this.notebookItem)
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next(true);
+    this.ngUnsubscribe.unsubscribe();
   }
 
   onHover() {
@@ -79,8 +82,5 @@ export class NotebookItemComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
-    this.ngUnsubscribe.next(true);
-    this.ngUnsubscribe.unsubscribe();
-  }
+
 }

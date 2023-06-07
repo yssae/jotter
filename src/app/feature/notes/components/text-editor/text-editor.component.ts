@@ -9,7 +9,6 @@ import { NoteService } from '@jtr/feature/services/note.service';
 import { JtrDialogService } from '@jtr/shared';
 import { DeleteNoteComponent } from '../delete-note/delete-note.component';
 import { Note } from 'src/app/shared/models/note.model';
-import { rippleSettings } from '@jtr/shared';
 
 @Component({
   selector: 'app-text-editor',
@@ -17,6 +16,9 @@ import { rippleSettings } from '@jtr/shared';
   styleUrls: ['./text-editor.component.scss']
 })
 export class TextEditorComponent implements OnInit, AfterViewInit {
+  private ngUnsubscribe = new Subject<boolean>()
+  private timeoutRef: any;
+
   readonly editorConfig = {
     toolbar: [
       ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
@@ -37,9 +39,6 @@ export class TextEditorComponent implements OnInit, AfterViewInit {
   noteForm: FormGroup;
   currentNote: Note;
   notebookID: string | null = '';
-
-  private timeoutRef: any;
-  private ngUnsubscribe = new Subject<boolean>()
 
   @ViewChild('colorPicker') colorPicker: ElementRef;
   @ViewChild('quillEditor') quillEditor!: QuillEditorComponent;

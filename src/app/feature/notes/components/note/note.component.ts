@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, Renderer2 } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { TextEditorComponent } from '../text-editor/text-editor.component';
-import { MockNoteService } from 'src/app/mock/mock-note.service';
-import { Note } from 'src/app/shared/models/note.model';
+
+import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
-import { NoteService } from '@jtr/feature/services/note.service';
+
+import { TextEditorComponent } from '../text-editor/text-editor.component';
+import { Note } from 'src/app/shared/models/note.model';
+
 @Component({
   selector: 'note',
   templateUrl: './note.component.html',
@@ -20,11 +21,15 @@ export class NoteComponent implements OnInit, OnDestroy {
   constructor(
     private renderer: Renderer2,
     private dialog: MatDialog,
-    private noteService: NoteService,
   ) { }
 
   ngOnInit(): void {
     this.content = this.htmlToText(this.note.content);
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next(true);
+    this.ngUnsubscribe.unsubscribe()
   }
 
   openNote(id: string, note?: Note) {
@@ -38,10 +43,7 @@ export class NoteComponent implements OnInit, OnDestroy {
 
     dialogRef.beforeClosed()
       .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(() => {
-        // TO DO: check for better implementation
-        this.savedNoteEvent.emit('note saved')
-      })
+      .subscribe(() => this.savedNoteEvent.emit('note saved'))
   }
 
   htmlToText(content: string): string {
@@ -71,11 +73,6 @@ export class NoteComponent implements OnInit, OnDestroy {
     const formattedText = extractedText.join(' ');
 
     return formattedText;
-  }
-
-  ngOnDestroy(): void {
-    this.ngUnsubscribe.next(true);
-    this.ngUnsubscribe.unsubscribe()
   }
 
 }
