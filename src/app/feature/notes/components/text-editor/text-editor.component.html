@@ -28,7 +28,9 @@
       <button type="button" jtrInvertColor [bgColor]="background"><mat-icon>file_copy</mat-icon></button> -->
       <!-- <div class="divider" jtrInvertColor [bgColor]="background"></div> -->
 
-      <button (click)="bookmark()" type="button" jtrInvertColor [bgColor]="background"><mat-icon>bookmark_border</mat-icon></button>
+      <button (click)="bookmark()" type="button" jtrInvertColor [bgColor]="background">
+        <mat-icon>{{ bookmarked ? 'bookmark' : 'bookmark_border' }}</mat-icon>
+      </button>
       <button (click)="openColorPicker()" type="button" jtrInvertColor [bgColor]="background"><mat-icon>color_lens</mat-icon></button>
       <input matRipple type='color' formControlName="background" jtrInvertColor [bgColor]="background" id='color-picker' #colorPicker/>
     </div>

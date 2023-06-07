@@ -105,10 +105,9 @@ export class TextEditorComponent implements OnInit, AfterViewInit {
   }
 
   bookmark() {
-    // TO DO: Toggle icon also fill and hollow
-    // DECIDE: Whether request to set this as fave is done here or in submit
     let bmControl = this.noteForm.get('bookmarked');
     bmControl?.setValue(!bmControl?.value);
+    this.save();
   }
 
   delete() {
@@ -124,8 +123,6 @@ export class TextEditorComponent implements OnInit, AfterViewInit {
         }
       });
     }
-
-
   }
 
   print() {
@@ -157,6 +154,10 @@ export class TextEditorComponent implements OnInit, AfterViewInit {
 
   get background(): string {
     return this.noteForm.get('background')?.value;
+  }
+
+  get bookmarked(): boolean {
+    return this.noteForm.get('bookmarked')?.value;
   }
 
 }
