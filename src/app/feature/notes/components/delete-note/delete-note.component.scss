@@ -1,0 +1,37 @@
+.wrapper {
+  width: 350px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+.dialog-body {
+  width: 90%;
+  display: flex;
+  margin: 1em auto 2em;
+
+  p {
+      font-size: 16px;
+      line-height: 23px;
+      text-align: left;
+  }
+}
+
+.action {
+  button{
+      width: 120px;
+      height: 30px;
+      color: #fff;
+      background: #34596F;
+      border-radius: 8px;
+      margin: auto 15px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  #cancelButton {
+      background-color: #333;
+  }
+}

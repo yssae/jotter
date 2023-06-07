@@ -59,4 +59,16 @@ export class NoteService {
       )
   }
 
+  deleteNote(id: string) {
+    const url = environment.API_BASEURL + ENDPOINT.NOTES + id;
+    return this.http.delete(url)
+      .pipe(
+        map((response: any) => response && response.status === 'success' ? true : false),
+        catchError(error => {
+          this.jtr.error();
+          return throwError(error);
+        })
+      )
+  }
+
 }

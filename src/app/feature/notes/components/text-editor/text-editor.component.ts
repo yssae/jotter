@@ -1,13 +1,16 @@
 import { Component, ElementRef, OnInit, ViewChild, Inject, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { NoteService } from '@jtr/feature/services/note.service';
-import { Note } from 'src/app/shared/models/note.model';
+
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { QuillEditorComponent } from 'ngx-quill';
-import { rippleSettings } from '@jtr/shared';
-import { ActivatedRoute } from '@angular/router';
 import { takeUntil, Subject } from 'rxjs';
+
+import { NoteService } from '@jtr/feature/services/note.service';
 import { JtrDialogService } from '@jtr/shared';
+import { DeleteNoteComponent } from '../delete-note/delete-note.component';
+import { Note } from 'src/app/shared/models/note.model';
+import { rippleSettings } from '@jtr/shared';
+
 @Component({
   selector: 'app-text-editor',
   templateUrl: './text-editor.component.html',
@@ -34,6 +37,7 @@ export class TextEditorComponent implements OnInit, AfterViewInit {
   noteForm: FormGroup;
   currentNote: Note;
   notebookID: string | null = '';
+
   private timeoutRef: any;
   private ngUnsubscribe = new Subject<boolean>()
 
@@ -44,8 +48,8 @@ export class TextEditorComponent implements OnInit, AfterViewInit {
   constructor(
     private fb: FormBuilder,
     private noteService: NoteService,
-    private route: ActivatedRoute,
     private jtr: JtrDialogService,
+    private dialog: MatDialog,
     private dialogRef: MatDialogRef<TextEditorComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any,) {
 
@@ -60,6 +64,22 @@ export class TextEditorComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.mapExistingNote(this.data);
+  }
+
+  ngAfterViewInit() {
+    this.timeoutRef = setTimeout(() => {
+      const quill = this.quillEditor.quillEditor;
+      if (quill && this.currentNote) {
+        quill.setContents(quill.clipboard.convert(this.currentNote.content));
+        quill.update();
+      }
+    }, 100);
+  }
+
+  ngOnDestroy(): void {
+    clearTimeout(this.timeoutRef);
+    this.ngUnsubscribe.next(true);
+    this.ngUnsubscribe.unsubscribe();
   }
 
   mapExistingNote(dialogData: any) {
@@ -81,10 +101,36 @@ export class TextEditorComponent implements OnInit, AfterViewInit {
   }
 
   save() {
-    if(this.noteForm.invalid) {
-      return
+    this.noteForm.valid ? (this.currentNote ? this.updateNote() : this.createNote()) : '';
+  }
+
+  bookmark() {
+    // TO DO: Toggle icon also fill and hollow
+    // DECIDE: Whether request to set this as fave is done here or in submit
+    let bmControl = this.noteForm.get('bookmarked');
+    bmControl?.setValue(!bmControl?.value);
+  }
+
+  delete() {
+    if(this.currentNote) {
+      let deleteNBRef = this.dialog.open(DeleteNoteComponent);
+      deleteNBRef.afterClosed()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((confirmation: boolean) => {
+        if(confirmation) {
+          this.noteService.deleteNote(this.currentNote._id)
+          .pipe(takeUntil(this.ngUnsubscribe))
+          .subscribe(response => response ? this.dialogRef.close() : this.jtr.error())
+        }
+      });
     }
-    this.currentNote ? this.updateNote() : this.createNote();
+
+
+  }
+
+  print() {
+    // TO DO: Research how to print text only
+    window.print()
   }
 
   private createNote() {
@@ -99,26 +145,13 @@ export class TextEditorComponent implements OnInit, AfterViewInit {
       .subscribe(response => response ? this.jtr.success("Note updated.") : this.jtr.error())
   }
 
-  bookmark() {
-    // TO DO: Toggle icon also fill and hollow
-    // DECIDE: Whether request to set this as fave is done here or in submit
-    let bmControl = this.noteForm.get('bookmarked');
-    bmControl?.setValue(!bmControl?.value);
-  }
-
-  print() {
-    // TO DO: Research how to print text only
-    window.print()
-  }
-
   changedEditor(event: any) {
     if(event.event === 'text-change') {
       this.noteForm.patchValue({ content: event.html })
     }
   }
 
-  openColorPicker(e:any) {
-    e.preventDefault();
+  openColorPicker() {
     this.colorPicker.nativeElement.click();
   }
 
@@ -126,19 +159,4 @@ export class TextEditorComponent implements OnInit, AfterViewInit {
     return this.noteForm.get('background')?.value;
   }
 
-  ngAfterViewInit() {
-    this.timeoutRef = setTimeout(() => {
-      const quill = this.quillEditor.quillEditor;
-      if (quill && this.currentNote) {
-        quill.setContents(quill.clipboard.convert(this.currentNote.content));
-        quill.update();
-      }
-    }, 100);
-  }
-
-  ngOnDestroy(): void {
-    clearTimeout(this.timeoutRef);
-    this.ngUnsubscribe.next(true);
-    this.ngUnsubscribe.unsubscribe();
-  }
 }
