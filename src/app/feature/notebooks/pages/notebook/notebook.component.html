@@ -4,13 +4,14 @@
     <ng-container *ngIf="notebook">
       <note-filter
         (savedNoteEvent)="mapNoteEntries()"
+        [searchControl]="searchString"
         [pageTitle]="notebook.title" [filterMenu]="filterMenu"
         [notebookID]="currentNbID" class="filter">
       </note-filter>
     </ng-container>
   </div>
   <ul class="notebook-body" *ngIf="noteEntries">
-    <li *ngFor="let note of noteEntries">
+    <li *ngFor="let note of filteredNoteEntries">
       <note [note]="note" (savedNoteEvent)="mapNoteEntries()"></note>
     </li>
   </ul>

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnInit, OnDestroy } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { MatDialog } from '@angular/material/dialog';
@@ -13,8 +14,10 @@ import { TextEditorComponent } from '@jtr/feature/notes/components/text-editor/t
 })
 export class NoteFilterComponent implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject<boolean>();
+
   toolType: number;
 
+  @Input() searchControl = new FormControl();
   @Input() filterMenu: any;
   @Input() pageTitle: string = "";
   @Input() notebookID: string | null;

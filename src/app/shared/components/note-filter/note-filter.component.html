@@ -4,7 +4,7 @@
   <div class="filter-fx">
     <div class="search filter-item" id="search">
       <mat-icon>search</mat-icon>
-      <input type="text" placeholder="Search">
+      <input type="text" placeholder="Search" [formControl]="searchControl">
     </div>
 
     <button class="filter-item" *ngIf="filterMenu['addButton']" (click)="onOpenTool()">

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AppMaterialModule } from './app-material.module';
 import { JtrbackbuttonComponent } from './components/jtrbackbutton/jtrbackbutton.component';
@@ -15,6 +16,7 @@ import { NoteFilterComponent } from './components/note-filter/note-filter.compon
   imports: [
     CommonModule,
     RouterModule,
+    ReactiveFormsModule,
     AppMaterialModule
   ],
   exports: [

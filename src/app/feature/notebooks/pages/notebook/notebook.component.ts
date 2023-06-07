@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { FormControl } from '@angular/forms';
 
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 
 import { NoteService } from '@jtr/feature/services/note.service';
@@ -27,12 +28,13 @@ export class NotebookComponent implements OnInit, OnDestroy {
   }
 
   noteEntries: Note[];
+  filteredNoteEntries: Note[];
   notebook: Notebook;
   currentNbID: string | null = "";
+  searchString = new FormControl();
 
   constructor(
     private dialog: MatDialog,
-    private router: Router,
     private route: ActivatedRoute,
     private noteService: NoteService,
     private location: Location,
@@ -45,6 +47,7 @@ export class NotebookComponent implements OnInit, OnDestroy {
     this.currentNbID = this.route.snapshot.paramMap.get('id');
     this.mapNotebook(this.location.getState());
     this.mapNoteEntries();
+    this.subscribeToSearch();
   }
 
   ngOnDestroy() {
@@ -61,6 +64,7 @@ export class NotebookComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(data => {
         this.noteEntries = data;
+        this.filteredNoteEntries = [...this.noteEntries]
       })
   }
 
@@ -74,6 +78,12 @@ export class NotebookComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((response: any) => this.notebook = response)
     }
+  }
+
+  subscribeToSearch() {
+    this.searchString.valueChanges
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(searchTerm => this.filteredNoteEntries = this.noteEntries.filter(note => note.title.toLowerCase().includes(searchTerm.toLowerCase())))
   }
 
 }
