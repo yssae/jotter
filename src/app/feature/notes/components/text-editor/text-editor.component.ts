@@ -124,11 +124,6 @@ export class TextEditorComponent implements OnInit, AfterViewInit {
     }
   }
 
-  print() {
-    // TO DO: Research how to print text only
-    window.print()
-  }
-
   private createNote() {
     this.noteService.createNote(this.noteForm.value)
       .pipe(takeUntil(this.ngUnsubscribe))
@@ -142,6 +137,7 @@ export class TextEditorComponent implements OnInit, AfterViewInit {
   }
 
   changedEditor(event: any) {
+    console.log(event)
     if(event.event === 'text-change') {
       this.noteForm.patchValue({ content: event.html })
     }
@@ -149,6 +145,30 @@ export class TextEditorComponent implements OnInit, AfterViewInit {
 
   openColorPicker() {
     this.colorPicker.nativeElement.click();
+  }
+
+  print() { // for enhancement
+    const printContent = this.noteForm.get('content')?.value
+    const printWindow = window.open('', '_blank');
+    printWindow?.document.write(`
+      <html>
+        <head>
+          <title>Jotter Print</title>
+        </head>
+        <body style="padding: 1em">
+          ${printContent}
+          <script type="text/javascript">
+            window.onload = function() {
+              window.print();
+              window.onafterprint = function() {
+                window.close();
+              };
+            };
+          </script>
+        </body>
+      </html>
+    `);
+    printWindow?.print();
   }
 
   get background(): string {
