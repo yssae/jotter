@@ -15,12 +15,11 @@
       <mat-icon>sort</mat-icon>Sort
     </button>
 
-    <!-- To do: refactor button -->
     <mat-menu #sortMenu="matMenu">
-      <button mat-menu-item>Title A to Z</button>
-      <button mat-menu-item>Title Z to A</button>
-      <button mat-menu-item>Date Created <p>Newest First</p></button>
-      <button mat-menu-item>Date Created <p>Oldest First</p></button>
+      <button mat-menu-item (click)="sort(sortOption.TITLE_ASCENDING)">Title A to Z</button>
+      <button mat-menu-item (click)="sort(sortOption.TITLE_DESCENDING)">Title Z to A</button>
+      <button mat-menu-item (click)="sort(sortOption.DATE_ASCENDING)">Date Created <p>Newest First</p></button>
+      <button mat-menu-item (click)="sort(sortOption.DATE_DESCENDING)">Date Created <p>Oldest First</p></button>
     </mat-menu>
   </div>
 </div>

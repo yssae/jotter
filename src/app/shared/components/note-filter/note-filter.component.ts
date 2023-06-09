@@ -7,6 +7,7 @@ import { Subject, takeUntil } from 'rxjs';
 
 import { NbToolsComponent } from '@jtr/feature/notebooks/pages/nb-tools/nb-tools.component';
 import { TextEditorComponent } from '@jtr/feature/notes/components/text-editor/text-editor.component';
+import { SORTOPTIONS } from '../../constants/sort-options.const';
 @Component({
   selector: 'note-filter',
   templateUrl: './note-filter.component.html',
@@ -16,24 +17,26 @@ export class NoteFilterComponent implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject<boolean>();
 
   toolType: number;
+  sortOption = SORTOPTIONS;
 
-  @Input() searchControl = new FormControl();
   @Input() filterMenu: any;
   @Input() pageTitle: string = "";
   @Input() notebookID: string | null;
+  @Input() searchControl = new FormControl();
   @Output() savedNoteEvent = new EventEmitter<string>();
+  @Output() sortEvent = new EventEmitter<Object>();
 
   constructor(
+    private activatedRoute: ActivatedRoute,
     private dialog: MatDialog,
-    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.activatedRoute.data
-    .pipe(takeUntil(this.ngUnsubscribe))
-    .subscribe((data: any) => {
-      this.toolType = data;
-    });
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data: any) => {
+        this.toolType = data.type;
+      });
   }
 
   ngOnDestroy(): void {
@@ -41,7 +44,11 @@ export class NoteFilterComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe.unsubscribe();
   }
 
-  onOpenTool() {
+  sort(option: any): void {
+    this.sortEvent.emit(option);
+  }
+
+  onOpenTool(): void {
     if(!this.toolType){
       return;
     }
@@ -60,6 +67,6 @@ export class NoteFilterComponent implements OnInit, OnDestroy {
         this.dialog.open(NbToolsComponent, { panelClass:'modal', data: {type: 'Create'}});
         break;
     }
-
   }
+
 }

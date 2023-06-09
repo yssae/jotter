@@ -4,8 +4,10 @@
     <ng-container *ngIf="notebook">
       <note-filter
         (savedNoteEvent)="mapNoteEntries()"
+        (sortEvent)="sort($event)"
         [searchControl]="searchString"
-        [pageTitle]="notebook.title" [filterMenu]="filterMenu"
+        [pageTitle]="notebook.title"
+        [filterMenu]="filterMenu"
         [notebookID]="currentNbID" class="filter">
       </note-filter>
     </ng-container>

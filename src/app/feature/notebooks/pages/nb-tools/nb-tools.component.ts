@@ -24,7 +24,7 @@ export class NbToolsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  determineNbTool() {
+  determineNbTool(): boolean {
    return this.headerTitle.toLowerCase() === 'delete' ? true : false;
   }
 }

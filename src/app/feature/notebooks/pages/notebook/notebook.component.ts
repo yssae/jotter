@@ -6,11 +6,14 @@ import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 
-import { NoteService } from '@jtr/feature/services/note.service';
-import { NotebookService } from '@jtr/feature/services/notebook.service';
+import { NoteService } from '@jtr/feature/services';
+import { NotebookService } from '@jtr/feature/services';
+import { UtilityService } from '@jtr/shared';
+
 import { TextEditorComponent } from '@jtr/feature/notes';
 import { Notebook } from 'src/app/shared/models/notebook.model';
 import { Note } from 'src/app/shared/models/note.model';
+
 
 @Component({
   selector: 'notebook',
@@ -35,13 +38,13 @@ export class NotebookComponent implements OnInit, OnDestroy {
 
   constructor(
     private dialog: MatDialog,
+    private location: Location,
     private route: ActivatedRoute,
     private noteService: NoteService,
-    private location: Location,
-    private notebookService: NotebookService,) {
+    private notebookService: NotebookService,
+    private utilityService: UtilityService) {
 
     }
-
 
   ngOnInit(): void {
     this.currentNbID = this.route.snapshot.paramMap.get('id');
@@ -50,16 +53,16 @@ export class NotebookComponent implements OnInit, OnDestroy {
     this.subscribeToSearch();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.ngUnsubscribe.next(true);
     this.ngUnsubscribe.unsubscribe();
   }
 
-  openNote() {
+  openNote(): void {
     this.dialog.open(TextEditorComponent)
   }
 
-  mapNoteEntries() {
+  mapNoteEntries(): void {
     this.noteService.fetchNotes(this.currentNbID)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(data => {
@@ -68,19 +71,23 @@ export class NotebookComponent implements OnInit, OnDestroy {
       })
   }
 
-  mapNotebook(notebook: any) {
+  mapNotebook(notebook: any): void {
     notebook && notebook._id ? this.notebook = notebook : this.fetchNotebookDetails();
   }
 
-  fetchNotebookDetails() {
+  fetchNotebookDetails(): void {
     if(this.currentNbID) {
       this.notebookService.fetchNotebookDetails(this.currentNbID)
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((response: any) => this.notebook = response)
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe((response: any) => this.notebook = response)
     }
   }
 
-  subscribeToSearch() {
+  sort(option: any): void {
+    this.utilityService.sort(this.filteredNoteEntries, option.property, option.ascending);
+  }
+
+  subscribeToSearch(): void {
     this.searchString.valueChanges
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(searchTerm => this.filteredNoteEntries = this.noteEntries.filter(note => note.title.toLowerCase().includes(searchTerm.toLowerCase())))
