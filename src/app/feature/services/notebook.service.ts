@@ -54,8 +54,18 @@ export class NotebookService {
   deleteNotebook(notebookID: string) {
     const url = environment.API_BASEURL + ENDPOINT.NOTEBOOK + notebookID;
     return this.http.delete(url).pipe(
-      tap(response => console.log(response)),
       map((response: any) => response.data),
+      catchError(error => {
+        this.jtr.error();
+        return throwError(error);
+      })
+    )
+  }
+
+  editNotebook(notebook: Notebook) {
+    const url = environment.API_BASEURL + ENDPOINT.NOTEBOOK + notebook._id;
+    return this.http.put(url, notebook).pipe(
+      map((response: any) => response.status),
       catchError(error => {
         this.jtr.error();
         return throwError(error);

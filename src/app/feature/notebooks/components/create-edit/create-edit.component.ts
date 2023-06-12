@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ElementRef, ViewChild, Input, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { takeUntil, Subject } from 'rxjs';
@@ -27,6 +27,7 @@ export class CreateditComponent implements OnInit, OnDestroy {
 
   notebookCovers = COVEROPTIONS;
   notebookForm: FormGroup;
+  selectedNotebook: Notebook;
 
   constructor(
     private fb: FormBuilder,
@@ -36,14 +37,16 @@ export class CreateditComponent implements OnInit, OnDestroy {
     @Inject(MAT_DIALOG_DATA) private data: any,
     ) {
 
+    this.selectedNotebook = data.notebook;
     this.notebookForm = this.fb.group({
+      _id: '',
       title: ['Untitled Notebook', Validators.required],
       cover: [this.notebookCovers[0].src, Validators.required],
-      imageDescription: this.notebookCovers[0].alt,
     });
   }
 
   ngOnInit(): void {
+    this.mapExistingNotebook(this.selectedNotebook);
   }
 
   ngOnDestroy(): void {
@@ -52,18 +55,34 @@ export class CreateditComponent implements OnInit, OnDestroy {
   }
 
   mapExistingNotebook(notebook: Notebook): void {
-    console.log(notebook)
+    if(notebook && notebook._id) {
+      this.notebookForm.patchValue({
+        title: notebook.title,
+        cover: notebook.cover,
+        _id: notebook._id
+      })
+      this._id?.setValidators([Validators.required])
+      this.notebookForm.updateValueAndValidity();
+    }
   }
 
   save(): void {
-    //Patch Nb Deets not available in Backend
-    if(this.notebookForm.invalid || this.headerTitle === 'Edit') {
-      this.jtr.error();
+    if(this.notebookForm.invalid) {
+      this.jtr.error("Invalid form. Please fill up the form before saving.");
       return;
     }
 
-    // this.dialogRef.close(true);
+    this.selectedNotebook ? this.updateNotebook() : this.saveNew();
+  }
+
+  saveNew() {
     this.notebookService.createNotebook(this.notebookForm.value)
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(() => this.jtr.closeAll());
+  }
+
+  updateNotebook() {
+    this.notebookService.editNotebook(this.notebookForm.value)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(() => this.jtr.closeAll());
   }
@@ -74,6 +93,10 @@ export class CreateditComponent implements OnInit, OnDestroy {
 
   get cover(): string {
     return this.notebookForm.get('cover')?.value
+  }
+
+  get _id(): AbstractControl | null {
+    return this.notebookForm.get('_id');
   }
 
 }

@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+import { MatDialog } from '@angular/material/dialog';
+import { takeUntil, Subject } from 'rxjs';
+
 import { NbToolsComponent } from '../../pages/nb-tools/nb-tools.component';
-import { MockNoteService } from 'src/app/mock/mock-note.service';
 import { Notebook } from 'src/app/shared/models/notebook.model';
 import { JTROUTES } from 'src/app/shared/constants/jtr-routes.const';
-import { takeUntil, Subject } from 'rxjs';
 
 @Component({
   selector: 'notebook-item',
@@ -29,10 +30,10 @@ export class NotebookItemComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    private dialog: MatDialog,
-    private router: Router,
     private activatedRoute: ActivatedRoute,
-    private noteService: MockNoteService) { }
+    private router: Router,
+    private dialog: MatDialog,
+   ) { }
 
 
   ngOnInit(): void {
@@ -58,12 +59,12 @@ export class NotebookItemComponent implements OnInit, OnDestroy {
 
   editNotebook(notebook: Notebook) {
     let dialogRef = this.dialog.open(NbToolsComponent, {panelClass: 'jtr-dialog', data: {type: 'Edit', notebook: notebook}});
-    dialogRef.afterClosed().subscribe(() => this.notebookRefresh.emit())
+    dialogRef.afterClosed().pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.notebookRefresh.emit())
   }
 
   deleteNotebook(notebookItem: Notebook) {
     let dialogRef = this.dialog.open(NbToolsComponent, { panelClass: 'jtr-dialog', data: {type: 'Delete', notebookData: notebookItem}});
-    dialogRef.afterClosed().subscribe(() => this.notebookRefresh.emit())
+    dialogRef.afterClosed().pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.notebookRefresh.emit())
   }
 
   selectTool(index: number, notebookItem: Notebook) {

@@ -12,14 +12,14 @@ import { Notebook } from 'src/app/shared/models/notebook.model';
   styleUrls: ['./notebooks.component.scss']
 })
 export class NotebooksComponent implements OnInit, OnDestroy {
+  private ngUnsubscribe = new Subject<boolean>();
+
   readonly filterMenu = {
     'search' : true,
     'addButton' : true,
     'title' : 'Notebook',
     'sort' : true
   }
-
-  private ngUnsubscribe = new Subject<boolean>();
 
   sideNavOpened: boolean;
   title: string = "Notebooks";
