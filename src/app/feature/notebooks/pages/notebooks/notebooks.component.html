@@ -1,7 +1,7 @@
 <div class="container">
-  <note-filter [pageTitle]="title" [filterMenu]="filterMenu" (notebookRefresh)="mapNotebooks()"></note-filter>
+  <note-filter [pageTitle]="title" [filterMenu]="filterMenu"  [searchControl]="searchString" (sortEvent)="sort($event)" (notebookRefresh)="mapNotebooks()"></note-filter>
   <ul class="notebook-lists">
-    <li *ngFor="let notebook of notebooks; let index = index">
+    <li *ngFor="let notebook of filteredNotebooks; let index = index">
       <notebook-item (notebookRefresh)="mapNotebooks()"[notebookItem]="notebook"></notebook-item>
     </li>
   </ul>

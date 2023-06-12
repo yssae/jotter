@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
-
+import { FormControl } from '@angular/forms';
 import { takeUntil, Subject } from 'rxjs';
 
 import { NotebookService } from '@jtr/feature/services/notebook.service';
-import { MockNoteService } from 'src/app/mock/mock-note.service';
 import { Notebook } from 'src/app/shared/models/notebook.model';
+import { UtilityService } from '@jtr/shared';
 
 @Component({
   selector: 'jtr-notebooks',
@@ -23,16 +23,21 @@ export class NotebooksComponent implements OnInit, OnDestroy {
 
   sideNavOpened: boolean;
   title: string = "Notebooks";
+  searchString = new FormControl();
+
 
   notebooks : Notebook[];
+  filteredNotebooks: Notebook[];
   selectedNotebook: Notebook;
 
   constructor(
     private notebookService: NotebookService,
+    private utilityService: UtilityService,
     ) { }
 
   ngOnInit(): void {
     this.mapNotebooks();
+    this.subscribeToSearch();
   }
 
   ngOnDestroy(): void {
@@ -44,8 +49,19 @@ export class NotebooksComponent implements OnInit, OnDestroy {
     this.notebookService.fetchNotebooks()
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((notebooks: any) => {
-        this.notebooks = notebooks
+        this.notebooks = notebooks;
+        this.filteredNotebooks = [...this.notebooks]
       });;
+  }
+
+  sort(option: any): void {
+    this.utilityService.sort(this.filteredNotebooks, option.property, option.ascending);
+  }
+
+  subscribeToSearch(): void {
+    this.searchString.valueChanges
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(searchTerm => this.filteredNotebooks = this.notebooks.filter(note => note.title.toLowerCase().includes(searchTerm.toLowerCase())))
   }
 
 }
