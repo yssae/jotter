@@ -23,6 +23,7 @@ export class NoteFilterComponent implements OnInit, OnDestroy {
   @Input() pageTitle: string = "";
   @Input() notebookID: string | null;
   @Input() searchControl = new FormControl();
+  @Output() notebookRefresh = new EventEmitter();
   @Output() savedNoteEvent = new EventEmitter<string>();
   @Output() sortEvent = new EventEmitter<Object>();
 
@@ -55,7 +56,8 @@ export class NoteFilterComponent implements OnInit, OnDestroy {
 
     switch (this.toolType) {
       case 1 :
-        this.dialog.open(NbToolsComponent, { panelClass:'modal', data: {type: 'Create'}});
+        let nbToolsRef = this.dialog.open(NbToolsComponent, { panelClass:'modal', data: {type: 'Create'}});
+        nbToolsRef.afterClosed().pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.notebookRefresh.emit(true));
         break;
 
       case 2 :

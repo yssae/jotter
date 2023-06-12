@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ElementRef, ViewChild, Input, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { takeUntil, Subject } from 'rxjs';
 
 import { NotebookService } from '@jtr/feature/services/notebook.service';
@@ -31,6 +31,7 @@ export class CreateditComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private jtr: JtrDialogService,
+    private dialogRef: MatDialogRef<CreateditComponent>,
     private notebookService: NotebookService,
     @Inject(MAT_DIALOG_DATA) private data: any,
     ) {
@@ -61,6 +62,7 @@ export class CreateditComponent implements OnInit, OnDestroy {
       return;
     }
 
+    // this.dialogRef.close(true);
     this.notebookService.createNotebook(this.notebookForm.value)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(() => this.jtr.closeAll());

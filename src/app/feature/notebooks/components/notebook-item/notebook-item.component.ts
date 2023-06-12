@@ -58,12 +58,12 @@ export class NotebookItemComponent implements OnInit, OnDestroy {
 
   editNotebook(notebook: Notebook) {
     let dialogRef = this.dialog.open(NbToolsComponent, {panelClass: 'jtr-dialog', data: {type: 'Edit', notebook: notebook}});
-    dialogRef.afterClosed().subscribe((closeEvent: boolean) => closeEvent ? this.notebookRefresh.emit() : '')
+    dialogRef.afterClosed().subscribe(() => this.notebookRefresh.emit())
   }
 
   deleteNotebook(notebookItem: Notebook) {
     let dialogRef = this.dialog.open(NbToolsComponent, { panelClass: 'jtr-dialog', data: {type: 'Delete', notebookData: notebookItem}});
-    dialogRef.afterClosed().subscribe((closeEvent: boolean) => closeEvent ? this.notebookRefresh.emit() : '')
+    dialogRef.afterClosed().subscribe(() => this.notebookRefresh.emit())
   }
 
   selectTool(index: number, notebookItem: Notebook) {

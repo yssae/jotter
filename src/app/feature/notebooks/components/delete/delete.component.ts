@@ -33,10 +33,6 @@ export class DeleteComponent implements OnInit, OnDestroy {
     this.dialogRef.close();
     this.notebookService.deleteNotebook(this.notebookData._id)
       .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(response => {
-        if(response) {
-          this.jtr.success("Notebook deleted.");
-        }
-      });
+      .subscribe();
   }
 }
