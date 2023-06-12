@@ -58,7 +58,7 @@ export class NotesComponent implements OnInit, OnDestroy {
   }
 
   sort(option: any): void {
-    this.utilityService.sort(this.notes, option.property, option.ascending);
+    this.utilityService.sort(this.filteredNotes, option.property, option.ascending);
   }
 
   subscribeToSearch(): void {
