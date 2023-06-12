@@ -59,6 +59,20 @@ export class NoteService {
       )
   }
 
+  fetchAllNotes(favorite?: boolean) {
+    const url = environment.API_BASEURL + ENDPOINT.NOTES;
+    const noteParams = favorite ? new HttpParams().set('bookmarked', true) : {};
+    return this.http.get(url, { params: noteParams })
+    .pipe(
+      map((response: any) => response.data),
+      catchError(error => {
+        this.jtr.error();
+        return throwError(error);
+      })
+    )
+
+  }
+
   deleteNote(id: string) {
     const url = environment.API_BASEURL + ENDPOINT.NOTES + id;
     return this.http.delete(url)

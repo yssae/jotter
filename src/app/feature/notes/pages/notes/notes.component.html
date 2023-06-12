@@ -1,5 +1,11 @@
 <div class="container">
-  <ul *ngIf="notes">
-    <li *ngFor="let note of notes"><note [note]="note"></note></li>
-  </ul>
+  <note-filter (sortEvent)="sort($event)" [searchControl]="searchString" [pageTitle]="title" [filterMenu]="filterMenu">
+  </note-filter>
+  <div class="container">
+    <ul *ngIf="notes">
+      <li *ngFor="let note of filteredNotes">
+        <note [note]="note"></note>
+      </li>
+    </ul>
+  </div>
 </div>

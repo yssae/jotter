@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from '@jtr/feature/user';
 import { AllNotesComponent } from '@jtr/feature/user';
 import { FavoritesComponent } from '@jtr/feature/user';
+import { NotesComponent } from '@jtr/feature/notes';
+
 
 const routes: Routes = [
   {
@@ -19,19 +21,9 @@ const routes: Routes = [
         loadChildren: () => import('./../notebooks/notebooks.module').then(m => m.NotebooksModule)
       },
       {
-        path: 'notes',
-        component: AllNotesComponent,
-        data: {
-          type: 2
-        }
+        path: '', // notes & favorites
+        loadChildren: () => import('./../notes/notes.module').then(m => m.NotesModule)
       },
-      {
-        path: 'favorites',
-        component: FavoritesComponent,
-        data: {
-          type: 3
-        }
-      }
     ]
   },
 ];

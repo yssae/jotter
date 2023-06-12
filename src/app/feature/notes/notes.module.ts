@@ -8,6 +8,8 @@ import { NoteComponent } from '@jtr/feature/notes';
 import { TextEditorComponent } from '@jtr/feature/notes';
 import { DeleteNoteComponent } from '@jtr/feature/notes';
 import { InvertColorDirective } from './directives/invert-color.directive';
+import { SharedModule } from '@jtr/shared';
+import { NotesRoutingModule } from './notes-routing.module';
 @NgModule({
   declarations: [
     NotesComponent,
@@ -19,8 +21,10 @@ import { InvertColorDirective } from './directives/invert-color.directive';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    NotesRoutingModule,
     QuillModule.forRoot(),
-    AppMaterialModule
+    AppMaterialModule,
+    SharedModule
   ],
   exports: [
     NotesComponent,

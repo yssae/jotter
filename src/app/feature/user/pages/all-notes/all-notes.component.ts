@@ -9,7 +9,7 @@ export class AllNotesComponent implements OnInit {
   title:string = "All Notes";
   filterMenu = {
     'search' : true,
-    'addButton' : true,
+    'addButton' : false,
     'title' : 'Note',
     'sort' : true
   }
