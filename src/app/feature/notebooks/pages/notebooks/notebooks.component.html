@@ -2,7 +2,7 @@
   <note-filter [pageTitle]="title" [filterMenu]="filterMenu"></note-filter>
   <ul class="notebook-lists">
     <li *ngFor="let notebook of notebooks; let index = index">
-      <notebook-item [notebookItem]="notebook"></notebook-item>
+      <notebook-item (notebookRefresh)="mapNotebooks()"[notebookItem]="notebook"></notebook-item>
     </li>
   </ul>
 </div>

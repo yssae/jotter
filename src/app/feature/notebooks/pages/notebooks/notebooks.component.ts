@@ -29,12 +29,10 @@ export class NotebooksComponent implements OnInit, OnDestroy {
 
   constructor(
     private notebookService: NotebookService,
-    private mocknoteService: MockNoteService,
     ) { }
 
   ngOnInit(): void {
     this.mapNotebooks();
-    console.log(this.notebooks)
   }
 
   ngOnDestroy(): void {
@@ -43,19 +41,11 @@ export class NotebooksComponent implements OnInit, OnDestroy {
   }
 
   mapNotebooks() {
-    // this.mocknoteService.getNotebooks()
-    // .pipe(takeUntil(this.ngUnsubscribe))
-    // .subscribe(data => {
-    //   this.notebooks = data;
-    // });
-
     this.notebookService.fetchNotebooks()
-    .pipe(takeUntil(this.ngUnsubscribe))
-    .subscribe((notebooks: any) => {
-      this.notebooks = notebooks
-      // console.log(notebooks)
-      // this.notebooks = this.notebooks.concat(notebooks);
-    });;
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((notebooks: any) => {
+        this.notebooks = notebooks
+      });;
   }
 
 }

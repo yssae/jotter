@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NbToolsComponent } from '../../pages/nb-tools/nb-tools.component';
@@ -22,6 +22,7 @@ export class NotebookItemComponent implements OnInit, OnDestroy {
   readonly radius: number = 25;
 
   @Input() notebookItem: Notebook;
+  @Output() notebookRefresh = new EventEmitter();
 
   toolType: number = 0;
   triggerFx: boolean = false;
@@ -36,10 +37,10 @@ export class NotebookItemComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.activatedRoute.data
-    .pipe(takeUntil(this.ngUnsubscribe))
-    .subscribe((data: any) => {
-      this.toolType = data.type;
-    });
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data: any) => {
+        this.toolType = data.type;
+      });
   }
 
   ngOnDestroy(): void {
@@ -52,15 +53,17 @@ export class NotebookItemComponent implements OnInit, OnDestroy {
   }
 
   openNotebook(notebook: Notebook) {
-    this.router.navigateByUrl(JTROUTES.NOTEBOOK + notebook._id, { state: notebook })
+    this.router.navigateByUrl(JTROUTES.NOTEBOOK + notebook._id, { state: notebook });
   }
 
   editNotebook(notebook: Notebook) {
-    this.dialog.open(NbToolsComponent, {panelClass: 'jtr-dialog', data: {type: 'Edit', notebook: notebook}});
+    let dialogRef = this.dialog.open(NbToolsComponent, {panelClass: 'jtr-dialog', data: {type: 'Edit', notebook: notebook}});
+    dialogRef.afterClosed().subscribe((closeEvent: boolean) => closeEvent ? this.notebookRefresh.emit() : '')
   }
 
   deleteNotebook(notebookItem: Notebook) {
-    this.dialog.open(NbToolsComponent, { panelClass: 'jtr-dialog', data: {type: 'Delete', notebookData: notebookItem}});
+    let dialogRef = this.dialog.open(NbToolsComponent, { panelClass: 'jtr-dialog', data: {type: 'Delete', notebookData: notebookItem}});
+    dialogRef.afterClosed().subscribe((closeEvent: boolean) => closeEvent ? this.notebookRefresh.emit() : '')
   }
 
   selectTool(index: number, notebookItem: Notebook) {

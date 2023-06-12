@@ -28,7 +28,7 @@
     </div>
   </div>
   <div class="actions">
-    <button>Save</button>
-    <button id="cancel" mat-dialog-close>Cancel</button>
+    <button [mat-dialog-close]="true">Save</button>
+    <button id="cancel" [mat-dialog-close]="false">Cancel</button>
   </div>
 </form>
