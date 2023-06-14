@@ -43,7 +43,7 @@ export class NoteComponent implements OnInit, OnDestroy {
 
     dialogRef.beforeClosed()
       .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(() => this.savedNoteEvent.emit('note saved'))
+      .subscribe((dialogData) => this.savedNoteEvent.emit(dialogData))
   }
 
   htmlToText(content: string): string {

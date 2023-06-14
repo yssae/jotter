@@ -45,8 +45,6 @@ export class NotebookService {
     return this.notebooks$;
   }
 
-
-
   fetchNotebookDetails(notebookID: string) {
     const url = environment.API_BASEURL + ENDPOINT.NOTEBOOK + notebookID;
     return this.http.get(url).pipe(

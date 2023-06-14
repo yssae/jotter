@@ -4,12 +4,13 @@ import { JtrDialogService } from '@jtr/shared';
 import { environment } from 'src/environments/environment';
 import { ENDPOINT } from 'src/app/shared/constants/endpoint.const';
 import { Note } from 'src/app/shared/models/note.model';
-import { map, tap, catchError, throwError } from 'rxjs';
+import { Observable, shareReplay, map, tap, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoteService {
+  private notesforNotebook$: Observable<Note[]>;
 
   constructor(
     private http: HttpClient,
@@ -40,10 +41,12 @@ export class NoteService {
     )
   }
 
-  fetchNotes(notebookID: any) {
+  fetchNotes(notebookID: any, forceUpdate: boolean = false) {
     const url = environment.API_BASEURL + ENDPOINT.NOTES;
     const noteParams = new HttpParams().append('notebookID', notebookID);
-    return this.http.get(url, { params: noteParams })
+
+    if(!this.notesforNotebook$ || forceUpdate) {
+      this.notesforNotebook$ = this.http.get<Note[]>(url, { params: noteParams })
       .pipe(
         map((response: any) => response.data),
         catchError(error => {
@@ -55,8 +58,12 @@ export class NoteService {
             this.jtr.error();
             return throwError(error);
           }
-        })
+        }),
+        shareReplay({ bufferSize: 1, refCount: true })
       )
+    }
+
+    return this.notesforNotebook$;
   }
 
   fetchAllNotes(favorite?: boolean) {

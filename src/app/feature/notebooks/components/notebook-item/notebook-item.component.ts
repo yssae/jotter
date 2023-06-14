@@ -60,10 +60,7 @@ export class NotebookItemComponent implements OnInit, OnDestroy {
 
   editNotebook(notebook: Notebook) {
     let dialogRef = this.dialog.open(CreateditComponent, {panelClass: 'jtr-dialog', data: {type: 'Edit', notebook: notebook}});
-    dialogRef.afterClosed().pipe(takeUntil(this.ngUnsubscribe)).subscribe((dialogData) => {
-      console.log(dialogData)
-      this.notebookRefresh.emit(dialogData)
-    });
+    dialogRef.afterClosed().pipe(takeUntil(this.ngUnsubscribe)).subscribe((dialogData) => this.notebookRefresh.emit(dialogData));
   }
 
   deleteNotebook(notebookItem: Notebook) {

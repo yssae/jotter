@@ -26,7 +26,7 @@ export class NoteFilterComponent implements OnInit, OnDestroy {
   @Input() notebookID: string | null;
   @Input() searchControl = new FormControl();
   @Output() notebookRefresh = new EventEmitter();
-  @Output() savedNoteEvent = new EventEmitter<string>();
+  @Output() savedNoteEvent = new EventEmitter<boolean>();
   @Output() sortEvent = new EventEmitter<Object>();
 
   constructor(
@@ -65,7 +65,7 @@ export class NoteFilterComponent implements OnInit, OnDestroy {
 
       case 2 : {
         let dialogRef = this.dialog.open(TextEditorComponent, { id: 'editor', data: this.notebookID });
-        dialogRef.afterClosed().pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.savedNoteEvent.emit('note saved'));
+        dialogRef.afterClosed().pipe(takeUntil(this.ngUnsubscribe)).subscribe((dialogData) => this.savedNoteEvent.emit(dialogData));
         break;
       }
 

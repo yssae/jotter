@@ -113,31 +113,36 @@ export class TextEditorComponent implements OnInit, AfterViewInit {
     if(this.currentNote) {
       let deleteNBRef = this.dialog.open(DeleteNoteComponent);
       deleteNBRef.afterClosed()
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((confirmation: boolean) => {
-        if(confirmation) {
-          this.noteService.deleteNote(this.currentNote._id)
-          .pipe(takeUntil(this.ngUnsubscribe))
-          .subscribe(response => response ? this.dialogRef.close() : this.jtr.error())
-        }
-      });
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe((confirmation: boolean) => {
+          if(confirmation) {
+            this.noteService.deleteNote(this.currentNote._id)
+            .pipe(takeUntil(this.ngUnsubscribe))
+            .subscribe(response => response ? this.dialogRef.close(true) : this.jtr.error())
+          }
+        });
     }
   }
 
   private createNote() {
     this.noteService.createNote(this.noteForm.value)
       .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(response => response ? this.jtr.success("Note saved!") : this.jtr.error())
+      .subscribe(response => {
+        response ? this.jtr.success("Note saved!") : this.jtr.error();
+        this.dialogRef.close(true)
+      })
   }
 
   private updateNote() {
     this.noteService.updateNote(this.noteForm.value, this.currentNote._id)
       .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(response => response ? this.jtr.success("Note updated.") : this.jtr.error())
+      .subscribe(response => {
+        response ? this.jtr.success("Note updated!") : this.jtr.error();
+        this.dialogRef.close(true)
+      })
   }
 
   changedEditor(event: any) {
-    console.log(event)
     if(event.event === 'text-change') {
       this.noteForm.patchValue({ content: event.html })
     }

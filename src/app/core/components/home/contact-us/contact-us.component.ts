@@ -30,8 +30,6 @@ export class ContactUsComponent implements OnInit {
     if(!message || this.contactForm.invalid) {
       return;
     }
-
-    console.log(message);
   }
 
   get f() {

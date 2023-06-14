@@ -1,4 +1,4 @@
-<form class="container" [formGroup]="noteForm" (ngSubmit)="save()" [style.background]="background">
+<form class="container" [formGroup]="noteForm" [style.background]="background">
   <div class="header">
     <jtr-back-button mat-dialog-close></jtr-back-button>
     <div><input type="text" formControlName="title" jtrInvertColor [bgColor]="background" id="title"></div>
@@ -15,18 +15,9 @@
   <div class="footer" >
     <div class="wrap">
       <button (click)="delete()" type="button" jtrInvertColor [bgColor]="background"><mat-icon>delete</mat-icon></button>
-      <button jtrInvertColor [bgColor]="background" type="submit"><mat-icon>save</mat-icon></button>
-      <!-- <div class="divider" jtrInvertColor [bgColor]="background"></div> -->
+      <button (click)="save()"  type="submit" jtrInvertColor [bgColor]="background"><mat-icon>save</mat-icon></button>
       <button (click)="print()" type="button" jtrInvertColor [bgColor]="background"><mat-icon>print</mat-icon></button>
-
-      <!-- NOTE: No fx in BE to support this fx at the moment -->
-      <!-- <button type="button" jtrInvertColor [bgColor]="background"><mat-icon>move_to_inbox</mat-icon></button>
-      <button type="button" jtrInvertColor [bgColor]="background"><mat-icon>file_copy</mat-icon></button> -->
-      <!-- <div class="divider" jtrInvertColor [bgColor]="background"></div> -->
-
-      <button (click)="bookmark()" type="button" jtrInvertColor [bgColor]="background">
-        <mat-icon>{{ bookmarked ? 'bookmark' : 'bookmark_border' }}</mat-icon>
-      </button>
+      <button (click)="bookmark()" type="button" jtrInvertColor [bgColor]="background"><mat-icon>{{ bookmarked ? 'bookmark' : 'bookmark_border' }}</mat-icon></button>
       <button (click)="openColorPicker()" type="button" jtrInvertColor [bgColor]="background"><mat-icon>color_lens</mat-icon></button>
       <input matRipple type='color' formControlName="background" jtrInvertColor [bgColor]="background" id='color-picker' #colorPicker/>
     </div>
