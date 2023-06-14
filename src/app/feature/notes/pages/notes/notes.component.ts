@@ -15,6 +15,7 @@ import { Note } from 'src/app/shared/models/note.model'
 })
 export class NotesComponent implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject<boolean>();
+
   readonly filterMenu = {
     'search' : true,
     'addButton' : false,
@@ -47,11 +48,11 @@ export class NotesComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe.unsubscribe();
   }
 
-  mapNotes() {
+  mapNotes(): void {
     let favorites = (this.title.toLowerCase() === 'favorites');
-    this.noteService.fetchAllNotes(favorites)
+    this.noteService.fetchNotes(favorites)
       .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(notes => {
+      .subscribe((notes: Note[]) => {
         this.notes = notes;
         this.filteredNotes = [...this.notes];
       })

@@ -4,8 +4,11 @@
   <div class="container">
     <ul *ngIf="notes">
       <li *ngFor="let note of filteredNotes">
-        <note [note]="note"></note>
+        <note [note]="note" (savedNoteEvent)="mapNotes()"></note>
       </li>
     </ul>
+    <div class="no-content" *ngIf="!filteredNotes">
+      <p>No entries yet.</p>
+    </div>
   </div>
 </div>
