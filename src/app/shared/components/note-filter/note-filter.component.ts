@@ -5,9 +5,11 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
 
-import { NbToolsComponent } from '@jtr/feature/notebooks/pages/nb-tools/nb-tools.component';
 import { TextEditorComponent } from '@jtr/feature/notes/components/text-editor/text-editor.component';
+import { CreateditComponent } from './../../../feature/notebooks/components/create-edit/create-edit.component';
+
 import { SORTOPTIONS } from '../../constants/sort-options.const';
+
 @Component({
   selector: 'note-filter',
   templateUrl: './note-filter.component.html',
@@ -55,19 +57,23 @@ export class NoteFilterComponent implements OnInit, OnDestroy {
     }
 
     switch (this.toolType) {
-      case 1 :
-        let nbToolsRef = this.dialog.open(NbToolsComponent, { panelClass:'modal', data: {type: 'Create'}});
-        nbToolsRef.afterClosed().pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.notebookRefresh.emit(true));
+      case 1 : {
+        let dialogRef = this.dialog.open(CreateditComponent, { panelClass:'modal', data: {type: 'Create'}});
+        dialogRef.afterClosed().pipe(takeUntil(this.ngUnsubscribe)).subscribe((dialogData) => this.notebookRefresh.emit(dialogData));
         break;
+      }
 
-      case 2 :
+      case 2 : {
         let dialogRef = this.dialog.open(TextEditorComponent, { id: 'editor', data: this.notebookID });
         dialogRef.afterClosed().pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.savedNoteEvent.emit('note saved'));
         break;
+      }
 
-      default :
-        this.dialog.open(NbToolsComponent, { panelClass:'modal', data: {type: 'Create'}});
+      default :{
+        let dialogRef = this.dialog.open(CreateditComponent, { panelClass:'modal', data: {type: 'Create'}});
+        dialogRef.afterClosed().pipe(takeUntil(this.ngUnsubscribe)).subscribe((dialogData) => this.notebookRefresh.emit(dialogData));
         break;
+      }
     }
   }
 

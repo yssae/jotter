@@ -4,12 +4,14 @@ import { environment } from 'src/environments/environment';
 import { ENDPOINT } from 'src/app/shared/constants/endpoint.const';
 import { Notebook } from 'src/app/shared/models/notebook.model';
 import { JtrDialogService } from '@jtr/shared';
-import { map, tap, catchError, throwError } from 'rxjs';
+import { Observable, shareReplay, map, tap, catchError, throwError } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotebookService {
+  private notebooks$: Observable<Notebook[]>;
 
   constructor(
     private http: HttpClient,
@@ -27,18 +29,23 @@ export class NotebookService {
     )
   }
 
-  fetchNotebooks() {
+  fetchNotebooks(forceUpdate: boolean = false): Observable<Notebook[]> {
     const url = environment.API_BASEURL +  ENDPOINT.NOTEBOOK_LIST;
-    return this.http.get(url)
-      .pipe(
-        tap(response => console.log(response)),
+    if (!this.notebooks$ || forceUpdate) {
+      this.notebooks$ = this.http.get<Notebook[]>(url).pipe(
         map((response: any) => response.data),
         catchError(error => {
           this.jtr.error();
           return throwError(error);
-        })
-      )
+        }),
+        shareReplay({ bufferSize: 1, refCount: true })
+      );
+    }
+
+    return this.notebooks$;
   }
+
+
 
   fetchNotebookDetails(notebookID: string) {
     const url = environment.API_BASEURL + ENDPOINT.NOTEBOOK + notebookID;

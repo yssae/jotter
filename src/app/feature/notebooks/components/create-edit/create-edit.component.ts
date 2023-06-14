@@ -37,6 +37,7 @@ export class CreateditComponent implements OnInit, OnDestroy {
     @Inject(MAT_DIALOG_DATA) private data: any,
     ) {
 
+    this.headerTitle = data.type;
     this.selectedNotebook = data.notebook;
     this.notebookForm = this.fb.group({
       _id: '',
@@ -78,13 +79,13 @@ export class CreateditComponent implements OnInit, OnDestroy {
   saveNew() {
     this.notebookService.createNotebook(this.notebookForm.value)
       .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(() => this.jtr.closeAll());
+      .subscribe(() => this.dialogRef.close(true));
   }
 
   updateNotebook() {
     this.notebookService.editNotebook(this.notebookForm.value)
       .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(() => this.jtr.closeAll());
+      .subscribe(() => this.dialogRef.close(true));
   }
 
   onTriggerFileUpload(): void {

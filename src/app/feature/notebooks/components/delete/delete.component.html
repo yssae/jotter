@@ -9,6 +9,6 @@
   <br><br>
   <div class="action">
       <button (click)="deleteNotebook()">Delete</button>
-      <button id="cancelButton" mat-dialog-close>Cancel</button>
+      <button id="cancelButton" [mat-dialog-close]="false">Cancel</button>
   </div>
 </div>

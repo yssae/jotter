@@ -1,34 +1,36 @@
-<form [formGroup]="notebookForm" (ngSubmit)="save()" class="wrapper" #nbForm>
-  <h1><b>{{ headerTitle }} Notebook</b></h1>
-  <div class="innerwrap">
-    <div class="cover">
-      <div class="box">
-        <img [src]="cover" [alt]="this.notebookForm.get('imageDescription')?.value">
+<div class="container">
+  <form [formGroup]="notebookForm" class="wrapper" #nbForm>
+    <h1><b>{{ headerTitle }} Notebook</b></h1>
+    <div class="innerwrap">
+      <div class="cover">
+        <div class="box">
+          <img [src]="cover" [alt]="this.notebookForm.get('imageDescription')?.value">
+        </div>
+      </div>
+      <br>
+      <div class="defaultBox">
+        <div id="title">
+          <input formControlName="title" type="text">
+          <button matRipple [matRippleCentered]="centered" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
+            [matRippleColor]="color">
+            <img src="assets/images/Edit Title.png" height="17" width="17"></button>
+        </div>
+        <div class="choose">
+          <p><b>Choose Cover</b></p>
+          <ul class="default-covers">
+            <li *ngFor="let cover of notebookCovers">
+              <input type="radio" [id]="cover.name" formControlName="cover" [value]="cover.src">
+              <label [for]="cover.name">
+                <img [src]="cover.thumbnail" [alt]="cover.alt" type="image" [matTooltip]="cover.alt">
+              </label>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-    <br>
-    <div class="defaultBox">
-      <div id="title">
-        <input formControlName="title" type="text">
-        <button matRipple [matRippleCentered]="centered" [matRippleUnbounded]="unbounded" [matRippleRadius]="radius"
-          [matRippleColor]="color">
-          <img src="assets/images/Edit Title.png" height="17" width="17"></button>
-      </div>
-      <div class="choose">
-        <p><b>Choose Cover</b></p>
-        <ul class="default-covers">
-          <li *ngFor="let cover of notebookCovers">
-            <input type="radio" [id]="cover.name" formControlName="cover" [value]="cover.src">
-            <label [for]="cover.name">
-              <img [src]="cover.thumbnail" [alt]="cover.alt" type="image" [matTooltip]="cover.alt">
-            </label>
-          </li>
-        </ul>
-      </div>
+    <div class="actions">
+      <button (click)="save()" type="submit">Save</button>
+      <button [mat-dialog-close]="false" type="button" id="cancel">Cancel</button>
     </div>
-  </div>
-  <div class="actions">
-    <button>Save</button>
-    <button id="cancel" [mat-dialog-close]="false">Cancel</button>
-  </div>
-</form>
+  </form>
+</div>

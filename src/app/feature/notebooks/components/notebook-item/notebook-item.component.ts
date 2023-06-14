@@ -4,7 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router'
 import { MatDialog } from '@angular/material/dialog';
 import { takeUntil, Subject } from 'rxjs';
 
-import { NbToolsComponent } from '../../pages/nb-tools/nb-tools.component';
+import { CreateditComponent } from '../create-edit/create-edit.component';
+import { DeleteComponent } from '../delete/delete.component';
 import { Notebook } from 'src/app/shared/models/notebook.model';
 import { JTROUTES } from 'src/app/shared/constants/jtr-routes.const';
 
@@ -58,13 +59,16 @@ export class NotebookItemComponent implements OnInit, OnDestroy {
   }
 
   editNotebook(notebook: Notebook) {
-    let dialogRef = this.dialog.open(NbToolsComponent, {panelClass: 'jtr-dialog', data: {type: 'Edit', notebook: notebook}});
-    dialogRef.afterClosed().pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.notebookRefresh.emit())
+    let dialogRef = this.dialog.open(CreateditComponent, {panelClass: 'jtr-dialog', data: {type: 'Edit', notebook: notebook}});
+    dialogRef.afterClosed().pipe(takeUntil(this.ngUnsubscribe)).subscribe((dialogData) => {
+      console.log(dialogData)
+      this.notebookRefresh.emit(dialogData)
+    });
   }
 
   deleteNotebook(notebookItem: Notebook) {
-    let dialogRef = this.dialog.open(NbToolsComponent, { panelClass: 'jtr-dialog', data: {type: 'Delete', notebookData: notebookItem}});
-    dialogRef.afterClosed().pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.notebookRefresh.emit())
+    let dialogRef = this.dialog.open(DeleteComponent, { panelClass: 'jtr-dialog', data: notebookItem });
+    dialogRef.afterClosed().pipe(takeUntil(this.ngUnsubscribe)).subscribe((dialogData) => this.notebookRefresh.emit(dialogData));
   }
 
   selectTool(index: number, notebookItem: Notebook) {

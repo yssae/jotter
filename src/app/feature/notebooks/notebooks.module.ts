@@ -11,7 +11,6 @@ import { NotebookItemComponent } from '@jtr/feature/notebooks';
 import { NotebooksComponent } from '@jtr/feature/notebooks';
 import { CreateditComponent } from '@jtr/feature/notebooks';
 import { DeleteComponent } from '@jtr/feature/notebooks';
-import { NbToolsComponent } from '@jtr/feature/notebooks';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,6 @@ import { NbToolsComponent } from '@jtr/feature/notebooks';
     NotebooksComponent,
     CreateditComponent,
     DeleteComponent,
-    NbToolsComponent
   ],
   imports: [
     CommonModule,
@@ -30,6 +28,9 @@ import { NbToolsComponent } from '@jtr/feature/notebooks';
     AppMaterialModule,
     NotebooksRoutingModule,
     NotesModule
+  ],
+  exports: [
+    CreateditComponent
   ]
 })
 export class NotebooksModule { }

@@ -45,8 +45,8 @@ export class NotebooksComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe.unsubscribe();
   }
 
-  mapNotebooks() {
-    this.notebookService.fetchNotebooks()
+  mapNotebooks(forceUpdate: boolean = false) {
+    this.notebookService.fetchNotebooks(forceUpdate)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((notebooks: any) => {
         this.notebooks = notebooks;
