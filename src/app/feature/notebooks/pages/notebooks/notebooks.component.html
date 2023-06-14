@@ -5,4 +5,7 @@
       <notebook-item (notebookRefresh)="mapNotebooks()"[notebookItem]="notebook"></notebook-item>
     </li>
   </ul>
+  <div class="no-content" *ngIf="!filteredNotebooks">
+    <p>No entries yet.</p>
+  </div>
 </div>
