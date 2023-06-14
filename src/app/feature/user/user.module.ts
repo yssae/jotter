@@ -8,15 +8,11 @@ import { NotesModule } from '../notes';
 
 import { UserNavComponent } from '@jtr/feature/user';
 import { UserComponent } from '@jtr/feature/user';
-import { AllNotesComponent } from './pages/all-notes/all-notes.component';
-import { FavoritesComponent } from './pages/favorites/favorites.component';
 
 @NgModule({
   declarations: [
     UserNavComponent,
     UserComponent,
-    AllNotesComponent,
-    FavoritesComponent
   ],
   imports: [
     CommonModule,

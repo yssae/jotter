@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from '@jtr/feature/user';
-import { AllNotesComponent } from '@jtr/feature/user';
-import { FavoritesComponent } from '@jtr/feature/user';
-import { NotesComponent } from '@jtr/feature/notes';
-
 
 const routes: Routes = [
   {
