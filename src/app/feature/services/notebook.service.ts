@@ -11,7 +11,7 @@ import { Observable, shareReplay, map, tap, catchError, throwError } from 'rxjs'
   providedIn: 'root'
 })
 export class NotebookService {
-  private notebooks$: Observable<Notebook[]>;
+  private notebooks$: Observable<Notebook[]> | null;
 
   constructor(
     private http: HttpClient,
@@ -21,7 +21,10 @@ export class NotebookService {
   createNotebook(notebook: Notebook) {
     const url = environment.API_BASEURL + ENDPOINT.NOTEBOOK;
     return this.http.post(url, notebook).pipe(
-      map((response: any) => response.status),
+      map((response: any) => {
+        this.clearCache();
+        return response.status
+      }),
       catchError(error => {
         this.jtr.error();
         return throwError(error);
@@ -29,9 +32,9 @@ export class NotebookService {
     )
   }
 
-  fetchNotebooks(forceUpdate: boolean = false): Observable<Notebook[]> {
+  fetchNotebooks(): Observable<Notebook[]> {
     const url = environment.API_BASEURL +  ENDPOINT.NOTEBOOK_LIST;
-    if (!this.notebooks$ || forceUpdate) {
+    if (!this.notebooks$) {
       this.notebooks$ = this.http.get<Notebook[]>(url).pipe(
         map((response: any) => response.data),
         catchError(error => {
@@ -59,7 +62,10 @@ export class NotebookService {
   deleteNotebook(notebookID: string) {
     const url = environment.API_BASEURL + ENDPOINT.NOTEBOOK + notebookID;
     return this.http.delete(url).pipe(
-      map((response: any) => response.data),
+      map((response: any) => {
+        this.clearCache();
+        return response.data
+      }),
       catchError(error => {
         this.jtr.error();
         return throwError(error);
@@ -70,7 +76,10 @@ export class NotebookService {
   editNotebook(notebook: Notebook) {
     const url = environment.API_BASEURL + ENDPOINT.NOTEBOOK + notebook._id;
     return this.http.put(url, notebook).pipe(
-      map((response: any) => response.status),
+      map((response: any) => {
+        this.clearCache();
+        return response.status;
+      }),
       catchError(error => {
         this.jtr.error();
         return throwError(error);
@@ -78,4 +87,7 @@ export class NotebookService {
     )
   }
 
+  private clearCache() {
+    this.notebooks$ = null;
+  }
 }

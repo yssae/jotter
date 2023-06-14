@@ -62,8 +62,8 @@ export class NotebookComponent implements OnInit, OnDestroy {
     this.dialog.open(TextEditorComponent)
   }
 
-  mapNoteEntries(forceUpdate: boolean = false): void {
-    this.noteService.fetchNotes(this.currentNbID, forceUpdate)
+  mapNoteEntries(): void {
+    this.noteService.fetchNotesforNb(this.currentNbID)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(data => {
         this.noteEntries = data;

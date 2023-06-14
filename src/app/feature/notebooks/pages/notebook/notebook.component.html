@@ -3,7 +3,7 @@
     <jtr-back-button [path]="'/user'" class="back-button"></jtr-back-button>
     <ng-container *ngIf="notebook">
       <note-filter
-        (savedNoteEvent)="mapNoteEntries($event)"
+        (savedNoteEvent)="mapNoteEntries()"
         (sortEvent)="sort($event)"
         [searchControl]="searchString"
         [pageTitle]="notebook.title"
@@ -14,7 +14,7 @@
   </div>
   <ul class="notebook-body" *ngIf="noteEntries">
     <li *ngFor="let note of filteredNoteEntries">
-      <note [note]="note" (savedNoteEvent)="mapNoteEntries($event)"></note>
+      <note [note]="note" (savedNoteEvent)="mapNoteEntries()"></note>
     </li>
   </ul>
   <div class="no-content" *ngIf="!noteEntries">
