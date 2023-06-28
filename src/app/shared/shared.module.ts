@@ -21,7 +21,8 @@ import { NoteFilterComponent } from './components/note-filter/note-filter.compon
   ],
   exports: [
     JtrbackbuttonComponent,
-    NoteFilterComponent
+    NoteFilterComponent,
+    JtrDialogComponent
   ]
 })
 export class SharedModule { }
