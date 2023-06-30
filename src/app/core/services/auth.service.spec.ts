@@ -53,6 +53,31 @@ describe('AuthService', () => {
     expect(authService).toBeTruthy();
   });
 
+  describe('enroll', () => {
+    it('should make a POST request to enroll API and return status after successful enrollment', () => {
+      const mockUser: User = { username: 'testuser', password: 'testpassword' };
+      const url = environment.API_BASEURL + ENDPOINT.REGISTER;
+
+      authService.enroll(mockUser).subscribe((response) => expect(response).toBeTruthy());
+
+      const req = httpTestingController.expectOne(url);
+      expect(req.request.method).toBe('POST');
+      expect(req.request.body).toEqual(mockUser);
+    });
+
+    it('should call dialog service and propagate error', () => {
+      const mockUser: User = { username: 'testuser', password: 'testpassword' };
+
+      authService.enroll(mockUser).subscribe({
+        error: () => expect(jtrDialogServiceSpy.error).toHaveBeenCalled()
+      })
+
+      const url = environment.API_BASEURL + ENDPOINT.REGISTER;
+      const req = httpTestingController.expectOne(url);
+      req.flush(null, { status: 500, statusText: 'Server Error' }); // Simulate an error response
+    })
+  })
+
   describe('login', () => {
     it('should make a POST request to Login API', () => {
       const mockUser: User = { username: 'testuser', password: 'testpassword' };
