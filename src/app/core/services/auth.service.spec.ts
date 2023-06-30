@@ -1,14 +1,20 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
+import { AccessModule, LoginEnrollComponent } from './../../feature/access';
 import { AuthService } from './auth.service';
 import { JtrDialogService, User } from '@jtr/shared';
+
 import { environment } from 'src/environments/environment';
 import { ENDPOINT } from 'src/app/shared/constants/endpoint.const';
+import { JTROUTES } from 'src/app/shared/constants/jtr-routes.const';
 
 describe('AuthService', () => {
+  let router: Router;
   let authService: AuthService;
   let httpTestingController: HttpTestingController;
   let jtrDialogServiceSpy: jasmine.SpyObj<JtrDialogService>;
@@ -19,8 +25,11 @@ describe('AuthService', () => {
 
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
+        AccessModule,
         HttpClientTestingModule,
+        RouterTestingModule.withRoutes([
+          { path: 'auth', component: LoginEnrollComponent },
+        ]),
       ],
       providers: [
         AuthService,
@@ -29,6 +38,7 @@ describe('AuthService', () => {
       ],
     }).compileComponents();
 
+    router = TestBed.inject(Router);
     authService = TestBed.inject(AuthService);
     httpTestingController = TestBed.inject(HttpTestingController);
     jtrDialogServiceSpy = TestBed.inject(JtrDialogService) as jasmine.SpyObj<JtrDialogService>;
@@ -42,7 +52,6 @@ describe('AuthService', () => {
   it('should be created', () => {
     expect(authService).toBeTruthy();
   });
-
 
   describe('login', () => {
     it('should make a POST request to Login API', () => {
@@ -85,6 +94,25 @@ describe('AuthService', () => {
       const req = httpTestingController.expectOne(url);
       req.flush(null, { status: 500, statusText: 'Server Error' }); // Simulate an error response
     })
+  })
+
+  describe('logout', () => {
+    it('should remove token in localStorage and nullify userSubject', () => {
+      const userToken = localStorage.getItem('user');
+
+      authService.logout();
+      expect(userToken).toBeNull();
+      expect(authService.userValue).toBeNull();
+    });
+
+    it('should navigate to login page after logout', fakeAsync(() => {
+      spyOn(router, 'navigate').and.returnValue(Promise.resolve(true));
+
+      authService.logout();
+
+      tick(); // Simulate the passage of time until all pending asynchronous tasks are complete
+      expect(router.navigate).toHaveBeenCalledWith([JTROUTES.LOGIN])
+    }))
   })
 
 });
